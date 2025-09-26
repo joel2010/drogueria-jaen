@@ -4,22 +4,58 @@
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
+@import 'aos/dist/aos.css';
 
 :root {
-  --primary: #123B84;
-  --color-secondary: 210 20% 90%;
+    --primary: #123B84;
+    --color-secondary: 210 20% 90%;
 }
 
 @theme {
-  --color-primary: var(--primary);
-  --color-secondary: hsl(var(--color-secondary));
-  --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --color-primary: var(--primary);
+    --color-secondary: hsl(var(--color-secondary));
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-.max-width{
+.card-hover {
+    @apply transform transition-transform transition-shadow duration-1000 ease-out cursor-pointer bg-white rounded-lg shadow-md;
+}
+
+.card-hover:hover {
+    @apply -translate-y-1 shadow-lg scale-[1.02];
+}
+
+
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 220px;
+    /* ajusta a tu diseño */
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+    /* animación suave */
+    will-change: transform;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    /* cada slide ocupa todo el ancho */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.max-width {
     max-width: 1200px;
     padding-inline: 16px;
+
     @media (min-width: 1201px) {
         padding-left: 0rem;
         padding-right: 0rem;
@@ -29,28 +65,25 @@
 
 
 .header-container {
-  display: flex;
-  flex-direction: column;
-  max-width: 1201px; /* 1280px */
-  padding: 0 0 0 1rem; /* top 0, right 0, bottom 0, left 1rem */
+    display: flex;
+    flex-direction: column;
+    max-width: 1201px;
+    padding: 0 0 0 1rem;
 }
 
-/* A partir de md (768px) */
 @media (min-width: 768px) {
-  .header-container {
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0.75rem 1rem 0 1rem; /* top, right, bottom, left */
-    justify-content: space-between;
-    align-items: center;
-  }
+    .header-container {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0.75rem 1rem 0 1rem;
+        justify-content: space-between;
+        align-items: center;
+    }
 }
 
-/* A partir de xl (1281px) */
 @media (min-width: 1281px) {
-  .header-container {
-    padding-left: 0;
-    padding-right: 0;
-  }
+    .header-container {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
-

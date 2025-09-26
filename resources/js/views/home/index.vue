@@ -1,13 +1,13 @@
 <template>
     <div>
-        <HeroSection image="/images/home-banner.png" title="En Droguería Jaén, la salud es un compromiso compartido">
+        <!-- <HeroSection image="/images/home-banner.png" title="En Droguería Jaén, la salud es un compromiso compartido">
         </HeroSection>
         <FeatureCarousel></FeatureCarousel>
-        <AboutSection></AboutSection>
-        <HelpSection></HelpSection>
-        <BenefitsSection></BenefitsSection>
+        <AboutSection></AboutSection> -->
+        <!-- <HelpSection></HelpSection> -->
+        <!-- <BenefitsSection></BenefitsSection> -->
         <ProductSection></ProductSection>
-        <ContactSection></ContactSection>
+        <!-- <ContactSection></ContactSection> -->
     </div>
 </template>
 <script setup>

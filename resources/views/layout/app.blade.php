@@ -21,7 +21,7 @@
         @include('layout.partials.header')
 
         <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0 ">
-            <main class="w-full flex-col-reverse lg:flex-row min-h-full" id="">
+            <main class="w-full flex-col-reverse lg:flex-row min-h-full overflow-x-hidden" id="">
                  @yield('content')
             </main>
         </div>

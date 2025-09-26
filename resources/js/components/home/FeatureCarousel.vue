@@ -65,19 +65,3 @@ const prevCard = () => {
 };
 </script>
 
-<style scoped>
-.slide-fade-enter-active,
-.slide-fade-leave-active {
-    transition: all 0.3s ease;
-}
-
-.slide-fade-enter-from {
-    transform: translateX(20px);
-    opacity: 0;
-}
-
-.slide-fade-leave-to {
-    transform: translateX(-20px);
-    opacity: 0;
-}
-</style>

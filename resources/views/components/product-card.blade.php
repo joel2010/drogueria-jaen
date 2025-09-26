@@ -1,0 +1,18 @@
+<div class="bg-white rounded-xl shadow-md p-4 flex flex-col items-center text-center
+    transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] transform hover:scale-[1.03] hover:shadow-2xl hover:-translate-y-1"
+    data-aos="fade-up"
+    data-aos-delay="{{ $index * 100 }}"
+    data-aos-duration="1200"
+    data-aos-easing="ease-in-out-cubic"
+>
+    {{-- Imagen --}}
+    <div class="mb-4">
+        <img src="{{ $product['imageSrc'] }}" alt="{{ $product['name'] }}" class="w-20 h-20 object-contain">
+    </div>
+
+    {{-- Nombre --}}
+    <h3 class="font-semibold text-gray-800 mb-1">{{ $product['name'] }}</h3>
+
+    {{-- Descripción --}}
+    <p class="text-gray-600 text-sm">{{ $product['description'] }}</p>
+</div>
