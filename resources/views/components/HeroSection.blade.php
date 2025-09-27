@@ -18,21 +18,21 @@
     @if(isset($showWspButton) && $showWspButton)
         <a href="URL_DE_TU_WHATSAPP" target="_blank" rel="noopener noreferrer"
            class="items-center z-10
-                  hidden tablet:inline-flex
-                  bg-[#63C154] text-white font-bold rounded-full
-                  shadow-lg p-1 pr-4 transition-all duration-300
+                  grid tablet:inline-flex
+                  bg-[#63C154] text-white font-bold tablet:rounded-full
+                  shadow-lg tablet:p-1 transition-all duration-300
                   hover:bg-[#52A847] transform hover:scale-[1.03]
                   cursor-pointer
-                  absolute bottom-4 right-4
-                  tablet:bottom-[-20px] tablet:right-[17%]">
+                  fixed bottom-5 right-5
+                  tablet:bottom-8 tablet:right-8">
 
-            <div class="bg-white text-gray-800 rounded-full py-1 px-4 mr-3
+            <div class="bg-white text-gray-800 tablet:rounded-full py-1 px-2 tablet:px-4
                         leading-tight flex flex-col items-center justify-center">
                 <span class="text-[10px] font-normal">Te <strong class="font-bold">ayudamos</strong> con tu</span>
                 <span class="text-[10px] font-bold">Cotización</span>
             </div>
 
-            <img src="/icons/wsp.svg" alt="WhatsApp Icon" class="w-8 h-8 tablet:w-7 tablet:h-7">
+            <img src="/icons/wsp.svg" alt="WhatsApp Icon" class="w-10 h-10 mx-auto my-1 tablet:my-0 tablet:ml-1 tablet:w-8 tablet:h-8">
         </a>
     @endif
 </div>

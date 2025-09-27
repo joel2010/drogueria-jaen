@@ -9,7 +9,7 @@
                 </div>
                 <div class="flex items-center space-x-2 border-l border-primary pl-2">
                     <img src="/icons/location.svg" alt="icono ubicación" class="w-4 h-4 mr-1">
-                    <p class="max-w-[100px] leading-tight text-[11px]">Los Olivos - Lima, Perú</p>
+                    <p class="leading-tight text-[11px]">Los Olivos - Lima, Perú</p>
                 </div>
             </div>
             <a href="#"
@@ -38,23 +38,23 @@
                     <div class="flex items-center space-x-2 ">
                         <img src="/icons/phone.svg" alt="icono teléfono" class="w-6 h-6">
                         <div>
-                            <span class="font-bold">Contáctanos</span>
-                            <p class="text-sm">957 390 675</p>
+                            <span class="font-[600] text-[12px]">Contáctanos</span>
+                            <p class="text-[12px]">957 390 675</p>
                         </div>
                     </div>
                     <div class="flex items-center space-x-2 border-l border-primary pl-4">
                         <img src="/icons/location.svg" alt="icono ubicación" class="w-6 h-6">
                         <div>
-                            <span class="font-bold">Nuestra oficina</span>
-                            <p class="text-sm text-gray-600 max-w-[200px]">Los Olivos
+                            <span class="font-[600] text-[12px] ">Nuestra oficina</span>
+                            <p class="text-[12px] max-w-[200px]">Los Olivos
                                 - Lima, Perú</p>
                         </div>
                     </div>
                 </div>
                 <a href="#"
-                    class="bg-green-600 text-white font-semibold py-1 px-5 rounded-full flex items-center space-x-2 shadow-lg hover:bg-green-700 transition-colors mt-4 tablet:mt-0 tablet:ml-2">
-                    <img src="/icons/wsp.svg" alt="icono whatsapp" class="w-5 h-5">
-                    <span>COTIZA AQUÍ</span>
+                    class="bg-green-600 text-white font-semibold py-1 px-5 rounded-full flex items-center space-x-2 shadow-lg hover:bg-green-700 transition-colors mt-4 tablet:mt-0 tablet:ml-8 ">
+                    <img src="/icons/wsp.svg" alt="icono whatsapp" class="w-[18px] h-[18px]">
+                    <span class="text-[12px] leading-none mt-0.5">COTIZA AQUÍ</span>
                 </a>
             </div>
         </div>

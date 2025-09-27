@@ -40,8 +40,8 @@ $content = [
 <section class="bg-[#00E5A1] py-6 tablet:py-8 text-center">
     <div class="mx-auto px-4 max-width">
         {{-- Encabezado --}}
-        <div class="mb-8">
-            <h2 class="text-title mb-2">
+        <div class="mb-6">
+            <h2 class="text-title2">
                 {{ $content['title'] }}
             </h2>
             <p class="text-subtitle !font-normal">
@@ -80,7 +80,7 @@ $content = [
         {{-- Botón Ver más --}}
         <div class="mt-8">
             <button
-                class="bg-primary text-white font-semibold py-1 px-4 tablet:py-3 tablet:px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300">
+                class="bg-primary text-white font-semibold py-1 px-4 tablet:py-2 tablet:px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300">
                 Ver más productos
             </button>
         </div>

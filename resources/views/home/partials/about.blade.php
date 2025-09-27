@@ -46,7 +46,7 @@ compromiso humano, ofreciendo un servicio completo que asegura bienestar y tranq
             </h2>
 
             @foreach($content['paragraphs'] as $index => $paragraph)
-            <p class="text-description mb-4  tablet:mb-2" data-aos="fade-up" data-aos-delay="{{ 100 + $index * 150 }}"
+            <p class="text-description2 mb-4  tablet:mb-4" data-aos="fade-up" data-aos-delay="{{ 100 + $index * 150 }}"
                 data-aos-duration="1200" data-aos-easing="ease-in-out-cubic">
                 {{ $paragraph }}
             </p>
@@ -57,24 +57,6 @@ compromiso humano, ofreciendo un servicio completo que asegura bienestar y tranq
                 data-aos-duration="1200" data-aos-easing="ease-in-out-cubic">
                 <img src="{{ $content['imageSrc'] }}" alt="{{ $content['imageAlt'] }}"
                     class="rounded-lg object-cover w-full h-[300px]">
-
-                <a href="URL_DE_TU_WHATSAPP" target="_blank" rel="noopener noreferrer" class="items-center z-10
-                  grid tablet:hidden
-                  bg-[#63C154] text-white font-bold
-                  shadow-lg transition-all duration-300
-                  hover:bg-[#52A847] transform hover:scale-[1.03]
-                  cursor-pointer
-                  absolute top-[-18px] right-5">
-
-                    <div class="bg-white text-gray-800 py-1 px-1
-                        leading-tight flex flex-col items-center justify-center">
-                        <span class="text-[10px] font-normal">Te <strong class="font-bold">ayudamos</strong> con
-                            tu</span>
-                        <span class="text-[10px] font-bold">Cotización</span>
-                    </div>
-
-                    <img src="/icons/wsp.svg" alt="WhatsApp Icon" class="w-10 h-10 mx-auto my-1">
-                </a>
             </div>
 
             {{-- Carrusel móvil --}}
@@ -82,7 +64,7 @@ compromiso humano, ofreciendo un servicio completo que asegura bienestar y tranq
                 data-aos="fade-up" data-aos-delay="500" data-aos-duration="1200" data-aos-easing="ease-in-out-cubic">
                 {{-- Botones --}}
                 <button id="prevBtn"
-                    class="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white/70 backdrop-blur-sm shadow-md transition-all duration-300 border-[1px] border-primary border-solid"
+                    class="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-1  rounded-full bg-white/70 backdrop-blur-sm shadow-md transition-all duration-300 border-[1px] border-primary border-solid"
                     aria-label="Anterior">
                     <img src="/icons/button-left.svg" alt="Anterior" class="w-4 h-4">
                 </button>
@@ -99,13 +81,13 @@ compromiso humano, ofreciendo un servicio completo que asegura bienestar y tranq
                     <div class="carousel-slide" id="carousel-slide-about" data-aos="fade-up"
                         data-aos-delay="{{ 600 + $featureIndex * 150 }}" data-aos-duration="1200"
                         data-aos-easing="ease-in-out-cubic">
-                        <div class="flex flex-col items-center text-center px-6">
+                        <div class="flex flex-col items-center text-center px-6 mx-1 tablet:mx-0">
                             <div class="flex items-center mb-4">
                                 <img src="{{ $feature['iconSrc'] }}" alt="icono {{ strtolower($feature['title']) }}"
                                     class="min-w-[50px] h-[50px] mr-2">
                                 <h3 class="text-title">{{ $feature['title'] }}</h3>
                             </div>
-                            <p class="text-description">{{ $feature['description'] }}</p>
+                            <p class="text-description2">{{ $feature['description'] }}</p>
                         </div>
                     </div>
                     @endforeach
@@ -113,7 +95,7 @@ compromiso humano, ofreciendo un servicio completo que asegura bienestar y tranq
             </div>
 
             {{-- Versión escritorio --}}
-            <div class="hidden tablet:block space-y-6 order-3 desktop:order-4 mt-8">
+            <div class="hidden tablet:block space-y-6 order-3 desktop:order-4 mt-5">
                 @foreach($content['features'] as $featureIndex => $item)
                 <div class="flex items-start" data-aos="fade-up" data-aos-delay="{{ 700 + $featureIndex * 150 }}"
                     data-aos-duration="1200" data-aos-easing="ease-in-out-cubic">
@@ -133,7 +115,7 @@ compromiso humano, ofreciendo un servicio completo que asegura bienestar y tranq
             <div class="space-y-6 order-3 desktop:order-4 flex justify-center desktop:justify-start" data-aos="fade-up"
                 data-aos-delay="1100" data-aos-duration="1200" data-aos-easing="ease-in-out-cubic">
                 <button type="button"
-                    class="w-full bg-primary mx-auto mt-4 tablet:mx-0 text-white font-semibold py-1 px-5 tablet:py-3 tablet:px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300 max-w-max tablet:ml-15 tablet:mt-4">
+                    class="w-full bg-primary mx-auto mt-2 tablet:mx-0 text-white font-semibold py-1 px-5 tablet:py-2 tablet:px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300 max-w-max tablet:ml-15 tablet:mt-4">
                     Conócenos
                 </button>
             </div>

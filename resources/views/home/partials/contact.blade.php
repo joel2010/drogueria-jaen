@@ -37,17 +37,17 @@ $content = [
 
 <section class="max-width mx-auto px-4 py-8 max-width">
     {{-- Encabezado --}}
-    <div class="text-center mb-5 tablet:mb-12" data-aos="fade-up" data-aos-duration="1200" data-aos-easing="ease-in-out-cubic">
-        <h2 class="text-title mb-2">
+    <div class="text-center mb-5 tablet:mb-8" data-aos="fade-up" data-aos-duration="1200" data-aos-easing="ease-in-out-cubic">
+        <h2 class="text-title2">
             {{ $content['title'] }}
         </h2>
-        <p class="text-description">
+        <p class="text-description !text-black">
             {{ $content['subtitle'] }}
         </p>
     </div>
 
     {{-- Información de contacto --}}
-    <div class="flex flex-col tablet:flex-row justify-around items-center tablet:items-start gap-3 tablet:gap-16 mb-7">
+    <div class="flex flex-col tablet:flex-row justify-around items-center tablet:items-center gap-3 tablet:gap-16 mb-7">
         @foreach ($content['contactInfo'] as $index => $item)
         <div class="flex flex-col items-center text-center tablet:items-center gap-2 tablet:flex-row tablet:text-left"
             data-aos="fade-up" data-aos-delay="{{ $index * 150 }}" data-aos-duration="1200"
@@ -55,7 +55,7 @@ $content = [
             <img src="{{ $item['icon'] }}" alt="{{ $item['name'] }} icon" class="w-8 h-8 mb-2 tablet:mb-0">
             <div class="flex flex-col tablet:flex-col tablet:items-start">
                 @foreach ($item['details'] as $detail)
-                <span class="text-sm text-description">{{ $detail }}</span>
+                <span class="text-description !text-black">{{ $detail }}</span>
                 @endforeach
             </div>
         </div>
@@ -98,7 +98,7 @@ $content = [
                     class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-primary mb-1"></textarea>
 
                 <button type="submit"
-                    class="w-full bg-primary text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300">
+                    class="w-full bg-primary text-white font-semibold py-2 px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300">
                     Enviar mensaje
                 </button>
             </form>

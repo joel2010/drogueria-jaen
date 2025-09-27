@@ -1,5 +1,5 @@
 <footer class="w-full bg-gray-100 text-gray-800 relative ">
-    <div class="max-width mx-auto px-4 py-8 tablet:py-12">
+    <div class="max-width mx-auto px-4 py-5 tablet:py-12">
         <div
             class="flex flex-col items-center tablet:justify-around tablet:items-start text-center tablet:text-left space-y-8 tablet:space-y-0">
 
@@ -89,13 +89,13 @@
         </div>
     </div>
 
-    <div class="max-width mx-auto mb-12 flex flex-col tablet:flex-row tablet:justify-between items-center place-content-center space-y-4 pt-2 border-black border-t">
+    <div class="max-width mx-auto mb-12 flex flex-col tablet:flex-row tablet:justify-between items-center place-content-center space-y-4 pt-2 border-black border-t gap-1 tablet:gap-0">
         <div class="flex items-center space-x-2 mb-0">
             <img src="/icons/book.svg" alt="icono libro de reclamaciones" class="w-16">
             <span class="text-sm">Libros de reclamaciones</span>
         </div>
         <div class="flex flex-col tablet:flex-row items-center space-y-2">
-            <span class="text-sm font-semibold tablet:mb-0">Síguenos en:</span>
+            <span class="text-sm font-semibold mb-1 tablet:mb-0">Síguenos en:</span>
             <div class="flex space-x-4">
                 <a href="#" aria-label="Facebook" class="text-gray-600 hover:text-blue-600 transition-colors">
                     <img src="/icons/fb.svg" alt="icono Facebook" class="w-5 h-5">

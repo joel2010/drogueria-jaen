@@ -32,8 +32,8 @@
             <div class="w-full desktop:w-1/2 order-1 flex justify-center"
                  data-aos="fade-right"
                  data-aos-duration="1000">
-                <div class="bg-white rounded-xl shadow-lg px-8 py-4 desktop:p-8 mt-6 desktop:my-10 desktop:translate-y-0">
-                    <h2 class="text-title mb-6 text-center desktop:text-left"
+                <div class="bg-white rounded-xl shadow-lg px-8 py-4 desktop:p-6 mt-6 desktop:my-10 desktop:translate-y-0">
+                    <h2 class="text-title mb-2 tablet:mb-6 text-center desktop:text-left"
                         data-aos="fade-up"
                         data-aos-delay="200">
                         {{ $content['title'] }}
