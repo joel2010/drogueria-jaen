@@ -1,4 +1,4 @@
-<div class="bg-white rounded-xl shadow-md p-4 flex flex-col items-center text-center
+<div class="bg-white rounded-xl shadow-md p-4 flex flex-col items-center text-center h-full min-h-[220px]
     transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] transform hover:scale-[1.03] hover:shadow-2xl hover:-translate-y-1"
     data-aos="fade-up"
     data-aos-delay="{{ $index * 100 }}"

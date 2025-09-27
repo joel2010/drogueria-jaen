@@ -11,9 +11,9 @@ app.mixin({
     mounted() {
         AOS.init({
             once: true,
-            duration: 700,
-            easing: 'ease-out-quart',
-            offset: 120,
+            duration: 400,
+            easing: 'ease-out',
+            offset: 0,
         });
     }
 });

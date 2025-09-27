@@ -40,12 +40,12 @@
                     </h2>
                     <div class="space-y-4">
                         @foreach ($content['features'] as $i => $item)
-                            <div class="flex items-start gap-4"
+                            <div class="flex items-start gap-2"
                                  data-aos="fade-up"
                                  data-aos-delay="{{ 300 + ($i * 200) }}">
                                 <img src="{{ $item['icon'] }}" alt="{{ $item['title'] }} icon" class="w-8 h-8 flex-shrink-0">
                                 <div>
-                                    <h3 class="font-semibold text-gray-800">{{ $item['title'] }}</h3>
+                                    <h3 class="text-gray-800">{{ $item['title'] }}</h3>
                                     @if (!empty($item['description']))
                                         <p class="text-gray-600 text-sm">{{ $item['description'] }}</p>
                                     @endif

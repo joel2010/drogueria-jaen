@@ -46,19 +46,15 @@ $features = [
     <div class="md:hidden relative max-w-6xl mx-auto overflow-hidden h-[260px]">
         {{-- Botones --}}
         <button id="featuredPrevBtn"
-            class="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/70 backdrop-blur-sm shadow-md transition-all duration-300"
+            class="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white/70 backdrop-blur-sm shadow-md transition-all duration-300 border-[1px] border-primary border-solid"
             aria-label="Anterior">
-            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
+            <img src="/icons/button-left.svg" alt="Anterior" class="w-4 h-4">
         </button>
 
         <button id="featuredNextBtn"
-            class="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/70 backdrop-blur-sm shadow-md transition-all duration-300"
+            class="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white/70 backdrop-blur-sm shadow-md transition-all duration-300 border-[1px] border-primary border-solid"
             aria-label="Siguiente">
-            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
+            <img src="/icons/button-right.svg" alt="Siguiente" class="w-4 h-4">
         </button>
 
         {{-- Track de slides --}}

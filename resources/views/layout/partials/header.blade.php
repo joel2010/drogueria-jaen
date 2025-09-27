@@ -20,15 +20,11 @@
         </div>
 
         <div class="md:hidden flex justify-between items-center w-full mb-4 pr-4">
-            <button id="mobile-menu-button" class="text-primary p-2 focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
-                    </path>
-                </svg>
+            <button id="mobile-menu-button" class="text-primary focus:outline-none">
+                <img src="/icons/menu.svg" alt="Menú móvil" class="w-6 h-6">
             </button>
             <a href="#" class="flex items-center">
-                <img src="/images/logo.svg" alt="Drogueria Jaen Logo" class="w-[170px]">
+                <img src="/images/logo_mobile.png" alt="Drogueria Jaen Logo" class="w-[170px]">
             </a>
             <div class="w-8"></div>
         </div>

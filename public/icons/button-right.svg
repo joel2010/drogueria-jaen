@@ -1,0 +1,10 @@
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- La Flecha apuntando a la derecha (cuerpo y punta) -->
+  <!-- Usamos un viewBox de 18x18 para mantener consistencia -->
+
+  <!-- Línea del cuerpo de la flecha (ajustada al centro) -->
+  <path d="M4.5 9H13.5" stroke="#000" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- Punta de la flecha (triángulo) -->
+  <path d="M10.5 6L13.5 9L10.5 12" stroke="#000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
