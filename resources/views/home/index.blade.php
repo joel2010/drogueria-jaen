@@ -6,6 +6,7 @@
     <x-HeroSection
         image="/images/home-banner.png"
         title="En Droguería Jaén, la salud es un compromiso compartido"
+        showWspButton="true"
     />
 
 

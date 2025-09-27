@@ -66,29 +66,29 @@ $content = [
 ];
 @endphp
 
-<section class="max-width mx-auto px-4 py-12 text-center relative">
+<section class="max-width mx-auto px-4 py-6 tablet:pt-0 tablet:pb-8 text-center relative">
     {{-- Título --}}
     <div class="mb-8" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="text-3xl font-bold text-gray-800 mb-2">
+        <h2 class="text-title mb-2">
             {{ $content['title'] }}
         </h2>
-        <p class="text-gray-600">
+        <p class="text-description">
             {{ $content['subtitle'] }}
         </p>
     </div>
 
     {{-- Grid responsivo (2 columnas en mobile, 4 en desktop) --}}
-    <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+    <div class="grid grid-cols-2 desktop:grid-cols-4 gap-7 items-stretch">
         @foreach ($content['benefits'] as $i => $benefit)
-            <div class="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center justify-start text-center h-full"
+            <div class="bg-white rounded-xl shadow-lg p-4 tablet:p-6 flex flex-col items-center justify-start text-center h-full"
                 data-aos="zoom-in" data-aos-delay="{{ $i * 150 }}" data-aos-duration="900">
                 <div class="mb-4">
                     <img src="{{ $benefit['iconSrc'] }}" alt="icono {{ strtolower($benefit['title']) }}" class="w-14 h-14">
                 </div>
-                <h3 class="font-bold text-lg text-gray-800 mb-2">
+                <h3 class="text-title mb-2">
                     {{ $benefit['title'] }}
                 </h3>
-                <p class="text-gray-600 text-xs md:text-sm leading-relaxed mb-auto">
+                <p class="text-description">
                     {{ $benefit['description'] }}
                 </p>
             </div>

@@ -22,20 +22,20 @@ $features = [
 ];
 @endphp
 
-<section class="mx-auto py-12 relative max-width">
+<section class="mx-auto tablet:py-8 relative max-width">
     {{-- Versión escritorio --}}
-    <div class="hidden md:flex justify-between gap-8 items-stretch mx-auto">
+    <div class="hidden tablet:flex justify-between gap-8 items-stretch mx-auto">
         @foreach($features as $index => $feature)
-        <div class="card-hover p-6 flex flex-col items-center text-center h-auto md:max-w-xs w-full" data-aos="fade-up"
-            data-aos-easing="ease-out-cubic" data-aos-duration="1200" data-aos-offset="150"
+        <div class="card-hover p-4 flex flex-col items-center text-center h-auto tablet:max-w-xs w-full"
+            data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="1200" data-aos-offset="150"
             data-aos-delay="{{ $index * 200 }}">
             <div class="mb-4">
                 <img src="{{ $feature['iconSrc'] }}" alt="icono {{ strtolower($feature['title']) }}" class="w-14 h-14">
             </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">
+            <h3 class="text-xl font-title font-semibold text-gray-800 mb-2">
                 {{ $feature['title'] }}
             </h3>
-            <p class="text-gray-600 text-sm leading-relaxed mb-auto">
+            <p class="text-gray-600 font-desctiption text-sm leading-relaxed mb-auto">
                 {{ $feature['description'] }}
             </p>
         </div>
@@ -43,8 +43,9 @@ $features = [
     </div>
 
     {{-- Versión móvil con carrusel --}}
-    <div class="md:hidden relative max-w-6xl mx-auto overflow-hidden h-[260px]">
-        {{-- Botones --}}
+    <div class="tablet:hidden relative max-w-desktop mx-auto overflow-hidden py-6
+            px-4 tablet:py-4">
+
         <button id="featuredPrevBtn"
             class="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white/70 backdrop-blur-sm shadow-md transition-all duration-300 border-[1px] border-primary border-solid"
             aria-label="Anterior">
@@ -57,26 +58,28 @@ $features = [
             <img src="/icons/button-right.svg" alt="Siguiente" class="w-4 h-4">
         </button>
 
-        {{-- Track de slides --}}
-        <div class="carousel-track flex transition-transform duration-700 ease-in-out">
-            @foreach($features as $index => $feature)
-            <div class="carousel-slide flex-shrink-0 w-full !h-auto !items-stretch" id="slide-featured">
-                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center h-full mx-4"
-                    data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="1200" data-aos-offset="150"
-                    data-aos-delay="{{ $index * 200 }}">
-                    <div class="mb-4">
-                        <img src="{{ $feature['iconSrc'] }}" alt="icono {{ strtolower($feature['title']) }}"
-                            class="w-14 h-14">
+
+        <div class="w-full h-full">
+            <div class="carousel-track flex transition-transform duration-700 ease-in-out h-full">
+                @foreach($features as $index => $feature)
+                <div class="carousel-slide flex-shrink-0 w-[300px] !h-auto !items-stretch" id="slide-featured">
+                    <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center text-center h-full mx-4"
+                        data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="1200"
+                        data-aos-offset="150" data-aos-delay="{{ $index * 200 }}">
+                        <div class="mb-4">
+                            <img src="{{ $feature['iconSrc'] }}" alt="icono {{ strtolower($feature['title']) }}"
+                                class="w-14 h-14">
+                        </div>
+                        <h3 class="text-title mb-2">
+                            {{ $feature['title'] }}
+                        </h3>
+                        <p class="text-description leading-relaxed mb-auto">
+                            {{ $feature['description'] }}
+                        </p>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">
-                        {{ $feature['title'] }}
-                    </h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-auto">
-                        {{ $feature['description'] }}
-                    </p>
                 </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
     </div>
 </section>

@@ -24,16 +24,16 @@
     ];
 @endphp
 
-<section class="bg-primary py-0 md:my-[50px]">
+<section class="bg-primary py-0 tablet:my-8">
     <div class="mx-auto px-4 max-width">
-        <div class="flex flex-col lg:flex-row items-center gap-4 md:gap-12">
+        <div class="flex flex-col desktop:flex-row items-center gap-4 desktop:gap-12">
 
             {{-- Caja de texto --}}
-            <div class="w-full lg:w-1/2 order-1 flex justify-center"
+            <div class="w-full desktop:w-1/2 order-1 flex justify-center"
                  data-aos="fade-right"
                  data-aos-duration="1000">
-                <div class="bg-white rounded-xl shadow-lg p-6 lg:p-8 mt-8 md:mt-0 lg:translate-y-0">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center lg:text-left"
+                <div class="bg-white rounded-xl shadow-lg px-8 py-4 desktop:p-8 mt-6 desktop:my-10 desktop:translate-y-0">
+                    <h2 class="text-title mb-6 text-center desktop:text-left"
                         data-aos="fade-up"
                         data-aos-delay="200">
                         {{ $content['title'] }}
@@ -45,9 +45,9 @@
                                  data-aos-delay="{{ 300 + ($i * 200) }}">
                                 <img src="{{ $item['icon'] }}" alt="{{ $item['title'] }} icon" class="w-8 h-8 flex-shrink-0">
                                 <div>
-                                    <h3 class="text-gray-800">{{ $item['title'] }}</h3>
+                                    <h3 class="text-description">{{ $item['title'] }}</h3>
                                     @if (!empty($item['description']))
-                                        <p class="text-gray-600 text-sm">{{ $item['description'] }}</p>
+                                        <p class="text-description">{{ $item['description'] }}</p>
                                     @endif
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
             </div>
 
             {{-- Imagen --}}
-            <div class="w-full lg:w-1/2 order-2 flex justify-center lg:justify-end md:mt-[-100px]"
+            <div class="w-full desktop:w-1/2 order-2 flex justify-center desktop:justify-end desktop:mt-[-100px]"
                  data-aos="fade-left"
                  data-aos-duration="1000"
                  data-aos-delay="400">

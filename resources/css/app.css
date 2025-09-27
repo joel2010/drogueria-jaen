@@ -14,8 +14,11 @@
 @theme {
     --color-primary: var(--primary);
     --color-secondary: hsl(var(--color-secondary));
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
-        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Hind', ui-sans-serif, system-ui, sans-serif;
+    --breakpoint-tablet: 768px;
+    --breakpoint-desktop: 1001px;
+    --spacing-tablet: 768px;
+    --spacing-desktop: 1000px;
 }
 
 .card-hover {
@@ -53,10 +56,10 @@
 
 
 .max-width {
-    max-width: 1200px;
+    max-width: 1000px;
     padding-inline: 16px;
 
-    @media (min-width: 1201px) {
+    @media (min-width: 1001px) {
         padding-left: 0rem;
         padding-right: 0rem;
 
@@ -67,8 +70,38 @@
 .header-container {
     display: flex;
     flex-direction: column;
-    max-width: 1201px;
-    padding: 0 0 0 1rem;
+    max-width: 1000px;
+    padding: 0 0 0 0rem;
+}
+.main__container{
+    overflow: hidden;
+}
+
+
+
+.text-title{
+    font-size: 20px;
+    font-weight: bold;
+    color: #3C3C3C;
+}
+
+
+.text-description {
+    font-size: 12px;
+    font-weight: 400;
+    color: #6B7280;
+}
+
+.text-subtitle {
+    font-size: 16px;
+    font-weight: bold;
+    color: #3C3C3C;
+}
+
+.text-description2 {
+    font-size: 14px;
+    font-weight: 400;
+    color: #6B7280;
 }
 
 @media (min-width: 768px) {
@@ -79,9 +112,15 @@
         justify-content: space-between;
         align-items: center;
     }
+    .main__container{
+        overflow: auto !important;
+    }
+    .text-description{
+        font-size: 14px;
+    }
 }
 
-@media (min-width: 1281px) {
+@media (min-width: 1001px) {
     .header-container {
         padding-left: 0;
         padding-right: 0;

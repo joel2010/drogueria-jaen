@@ -7,12 +7,12 @@
 >
     {{-- Imagen --}}
     <div class="mb-4">
-        <img src="{{ $product['imageSrc'] }}" alt="{{ $product['name'] }}" class="w-20 h-20 object-contain">
+        <img src="{{ $product['imageSrc'] }}" alt="{{ $product['name'] }}" class="w-full object-contain  h-[100px]">
     </div>
 
     {{-- Nombre --}}
-    <h3 class="font-semibold text-gray-800 mb-1">{{ $product['name'] }}</h3>
+    <h3 class="text-subtitle mb-1">{{ $product['name'] }}</h3>
 
     {{-- Descripción --}}
-    <p class="text-gray-600 text-sm">{{ $product['description'] }}</p>
+    <p class="text-description2">{{ $product['description'] }}</p>
 </div>

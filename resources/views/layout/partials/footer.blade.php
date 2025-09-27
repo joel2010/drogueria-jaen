@@ -1,17 +1,17 @@
 <footer class="w-full bg-gray-100 text-gray-800 relative ">
-    <div class="max-width mx-auto px-4 py-8 md:py-12">
+    <div class="max-width mx-auto px-4 py-8 tablet:py-12">
         <div
-            class="flex flex-col items-center md:justify-around md:items-start text-center md:text-left space-y-8 md:space-y-0">
+            class="flex flex-col items-center tablet:justify-around tablet:items-start text-center tablet:text-left space-y-8 tablet:space-y-0">
 
-            <div class="flex flex-col items-center md:items-start mb-6 md:mb-0 mx-auto">
-                <a href="#" class="mb-6">
-                    <img src="/images/logo.svg" alt="Drogueria Jaen Logo" class=" w-full md:w-[220px]">
+            <div class="flex flex-col items-center tablet:items-start mb-0 tablet:mb-0 mx-auto">
+                <a href="#" class="tablet:mb-6">
+                    <img src="/images/logo.svg" alt="Drogueria Jaen Logo" class=" w-full tablet:w-[220px]">
                 </a>
             </div>
 
-            <nav class="hidden md:block mx-auto md:mb-7">
+            <nav class="hidden tablet:block mx-auto tablet:mb-7">
                 <ul
-                    class="flex flex-wrap lg:flex-nowrap lg:gap-[30px] justify-center md:justify-start space-x-4 text-sm font-semibold">
+                    class="flex flex-wrap desktop:flex-nowrap desktop:gap-[30px] justify-center tablet:justify-start space-x-4 text-subtitle !font-medium">
                     <li><a href="#" class="hover:text-cyan-600 transition-colors">Inicio</a></li>
                     <li><a href="#" class="hover:text-cyan-600 transition-colors">Nosotros</a></li>
                     <li><a href="#" class="hover:text-cyan-600 transition-colors">Productos</a></li>
@@ -23,32 +23,32 @@
             </nav>
 
             <ul
-                class="hidden md:flex flex-wrap lg:flex-nowrap lg:gap-[30px] justify-center space-x-4 text-sm font-semibold w-full md:justify-between">
-                <div class="flex items-center md:items-center  md:flex-col md:space-x-0 md:space-y-2">
+                class="hidden tablet:flex flex-wrap desktop:flex-nowrap desktop:gap-[30px] justify-center space-x-4 text-sm font-semibold w-full tablet:justify-between">
+                <div class="flex items-center tablet:items-center  tablet:flex-col tablet:space-x-0 tablet:mr-0 ">
                     <div class="flex items-center space-x-2 mx-auto">
                         <img src="/icons/location.svg" alt="icono ubicación" class="w-6 h-6">
-                        <span class="font-bold">Dirección</span>
+                        <span class="!font-bold text-subtitle">Dirección</span>
                     </div>
-                    <p class="text-sm text-center">Los Olivos - Lima, Perú</p>
+                    <p class="text-subtitle !font-medium">Los Olivos - Lima, Perú</p>
                 </div>
-                <div class="flex items-center md:items-center  md:flex-col md:space-x-0 md:space-y-2">
+                <div class="flex items-center tablet:items-center  tablet:flex-col tablet:space-x-0 tablet:mr-0">
                     <div class="flex items-center space-x-2 mx-auto">
                         <img src="/icons/email.svg" alt="icono email" class="w-6 h-6">
-                        <span class="font-bold">Email</span>
+                        <span class="!font-bold text-subtitle">Email</span>
                     </div>
-                    <p class="text-sm text-center">drogueriajaen@gmail.com</p>
+                    <p class="text-subtitle !font-medium">drogueriajaen@gmail.com</p>
                 </div>
-                <div class="flex items-center md:items-center  md:flex-col md:space-x-0 md:space-y-2">
+                <div class="flex items-center tablet:items-center  tablet:flex-col tablet:space-x-0 tablet:mr-0">
                     <div class="flex items-center space-x-2 mx-auto">
                         <img src="/icons/phone.svg" alt="icono teléfono" class="w-6 h-6">
-                        <span class="font-bold">Teléfono</span>
+                        <span class="!font-bold text-subtitle">Teléfono</span>
                     </div>
-                    <p class="text-sm text-center">957 390 675</p>
+                    <p class="text-subtitle !font-medium">957 390 675</p>
                 </div>
         </div>
     </div>
 
-    <div class="md:hidden w-full space-y-4 text-center ">
+    <div class="tablet:hidden w-full space-y-4 text-center ">
         <div class="border-y border-primary">
             <button data-accordion-button="inicio"
                 class="w-full flex justify-between items-center py-3 font-semibold text-gray-800 px-5">
@@ -89,13 +89,13 @@
         </div>
     </div>
 
-    <div class=" max-width mx-auto mb-5 flex flex-col md:flex-row md:justify-between items-center space-y-4 pt-4">
-        <div class="flex items-center space-x-2">
+    <div class="max-width mx-auto mb-12 flex flex-col tablet:flex-row tablet:justify-between items-center place-content-center space-y-4 pt-2 border-black border-t">
+        <div class="flex items-center space-x-2 mb-0">
             <img src="/icons/book.svg" alt="icono libro de reclamaciones" class="w-16">
             <span class="text-sm">Libros de reclamaciones</span>
         </div>
-        <div class="flex flex-col md:flex-row items-center space-y-2">
-            <span class="text-sm font-semibold md:mb-0">Síguenos en:</span>
+        <div class="flex flex-col tablet:flex-row items-center space-y-2">
+            <span class="text-sm font-semibold tablet:mb-0">Síguenos en:</span>
             <div class="flex space-x-4">
                 <a href="#" aria-label="Facebook" class="text-gray-600 hover:text-blue-600 transition-colors">
                     <img src="/icons/fb.svg" alt="icono Facebook" class="w-5 h-5">
@@ -111,7 +111,7 @@
     </div>
     </div>
 
-    <div class="w-full bg-blue-900 text-white text-center py-4">
+    <div class="w-full bg-blue-900 text-white text-center py-4 px-4">
         <p class="text-xs">Drogueria Jaen © 2025 - Derechos Reservados | Desarrollado por Platurno Digital</p>
     </div>
 </footer>

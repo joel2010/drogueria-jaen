@@ -37,22 +37,22 @@ $content = [
 ];
 @endphp
 
-<section class="bg-[#00E5A1] py-12 text-center">
+<section class="bg-[#00E5A1] py-6 tablet:py-8 text-center">
     <div class="mx-auto px-4 max-width">
         {{-- Encabezado --}}
         <div class="mb-8">
-            <h2 class="text-3xl font-bold text-gray-800 mb-2">
+            <h2 class="text-title mb-2">
                 {{ $content['title'] }}
             </h2>
-            <p class="text-gray-800">
+            <p class="text-subtitle !font-normal">
                 {{ $content['subtitle'] }}
             </p>
         </div>
 
         {{-- Carrusel en móvil --}}
-        <div class="md:hidden relative">
+        <div class="desktop:hidden relative">
             <div id="carousel"
-                class="flex overflow-x-auto relative w-full h-full snap-x snap-mandatory scroll-smooth gap-2">
+                class="flex overflow-x-auto relative w-full h-full snap-x snap-mandatory scroll-smooth gap-2 overflow-y-hidden">
                 @foreach ($content['products'] as $index => $product)
                 <div class="flex-shrink-0 snap-center gap-2 w-[49%]">
                     <x-product-card :product="$product" class="mx-2" :index="$index" />
@@ -71,7 +71,7 @@ $content = [
         </div>
 
         {{-- Grid en escritorio --}}
-        <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-5 gap-6 justify-center">
+        <div class="hidden desktop:grid  desktop:grid-cols-5 gap-6 justify-center">
             @foreach (array_slice($content['products'], 0, 5) as $index => $product)
             <x-product-card :product="$product" :index="$index" />
             @endforeach
@@ -80,7 +80,7 @@ $content = [
         {{-- Botón Ver más --}}
         <div class="mt-8">
             <button
-                class="bg-primary text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300">
+                class="bg-primary text-white font-semibold py-1 px-4 tablet:py-3 tablet:px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300">
                 Ver más productos
             </button>
         </div>

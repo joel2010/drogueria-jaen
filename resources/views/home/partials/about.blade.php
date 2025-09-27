@@ -1,160 +1,155 @@
 {{-- resources/views/components/about-section.blade.php --}}
 @php
 $content = [
-    'title' => 'Nosotros',
-    'paragraphs' => [
-        'En Droguería Jaén somos una empresa del rubro salud dedicada a ofrecer soluciones confiables e integrales para el
-        bienestar de las personas y el fortalecimiento del sector sanitario.',
-        'Nos especializamos en la venta de productos farmacéuticos, equipamiento médico y hospitalario, dispositivos médicos y
-        contamos con un servicio seguro de almacenamiento que garantiza la conservación de los productos e insumos bajo los más
-        altos estándares de calidad.'
-    ],
-    'imageSrc' => '/images/home-about.png',
-    'imageAlt' => 'Persona con tablet en droguería',
-    'features' => [
-        [
-            'iconSrc' => '/icons/mission.svg',
-            'title' => 'Misión',
-            'description' => 'Brindar soluciones integrales en salud mediante medicamentos, dispositivos, equipamiento médico,
-            almacenamiento especializado y cuidados de enfermería en casa, garantizando calidad, continuidad y confianza para
-            instituciones y familias.'
-        ],
-        [
-            'iconSrc' => '/icons/vision.svg',
-            'title' => 'Visión',
-            'description' => 'Ser reconocidos como la empresa líder e integral en salud, destacando por nuestra confiabilidad,
-            innovación y compromiso humano, y consolidándonos como el aliado primordial de instituciones y hogares.'
-        ],
-        [
-            'iconSrc' => '/icons/philosophy.svg',
-            'title' => 'Filosofía',
-            'description' => 'Creemos que la salud es el bien más valioso. Nuestra filosofía se basa en la integralidad, confianza y
-            compromiso humano, ofreciendo un servicio completo que asegura bienestar y tranquilidad a cada cliente.'
-        ],
-    ]
+'title' => 'Nosotros',
+'paragraphs' => [
+'En Droguería Jaén somos una empresa del rubro salud dedicada a ofrecer soluciones confiables e integrales para el
+bienestar de las personas y el fortalecimiento del sector sanitario.',
+'Nos especializamos en la venta de productos farmacéuticos, equipamiento médico y hospitalario, dispositivos médicos y
+contamos con un servicio seguro de almacenamiento que garantiza la conservación de los productos e insumos bajo los más
+altos estándares de calidad.'
+],
+'imageSrc' => '/images/home-about.png',
+'imageAlt' => 'Persona con tablet en droguería',
+'features' => [
+[
+'iconSrc' => '/icons/mission.svg',
+'title' => 'Misión',
+'description' => 'Brindar soluciones integrales en salud mediante medicamentos, dispositivos, equipamiento médico,
+almacenamiento especializado y cuidados de enfermería en casa, garantizando calidad, continuidad y confianza para
+instituciones y familias.'
+],
+[
+'iconSrc' => '/icons/vision.svg',
+'title' => 'Visión',
+'description' => 'Ser reconocidos como la empresa líder e integral en salud, destacando por nuestra confiabilidad,
+innovación y compromiso humano, y consolidándonos como el aliado primordial de instituciones y hogares.'
+],
+[
+'iconSrc' => '/icons/philosophy.svg',
+'title' => 'Filosofía',
+'description' => 'Creemos que la salud es el bien más valioso. Nuestra filosofía se basa en la integralidad, confianza y
+compromiso humano, ofreciendo un servicio completo que asegura bienestar y tranquilidad a cada cliente.'
+],
+]
 ];
 @endphp
 
-<section class="mx-auto px-4 xl:px-0 max-width text-justify pb-10">
-    <div class="flex flex-col lg:flex-row items-start lg:items-stretch gap-12">
+<section class="mx-auto px-4 desktop:px-0 max-width text-justify pb-6 tablet:pb-10">
+    <div class="flex flex-col tablet:flex-row items-start tablet:items-stretch gap-9">
 
         {{-- Texto --}}
-        <div class="w-full flex-1 order-1 lg:order-2">
-            <h2 class="text-3xl font-bold text-primary mb-1"
-                data-aos="fade-up"
-                data-aos-duration="1200"
+        <div class="w-full flex-1 order-1 tablet:order-2">
+            <h2 class="text-title !text-primary mb-1" data-aos="fade-up" data-aos-duration="1200"
                 data-aos-easing="ease-in-out-cubic">
                 {{ $content['title'] }}
             </h2>
 
             @foreach($content['paragraphs'] as $index => $paragraph)
-                <p class="text-gray-600 mb-2"
-                   data-aos="fade-up"
-                   data-aos-delay="{{ 100 + $index * 150 }}"
-                   data-aos-duration="1200"
-                   data-aos-easing="ease-in-out-cubic">
-                    {{ $paragraph }}
-                </p>
+            <p class="text-description mb-4  tablet:mb-2" data-aos="fade-up" data-aos-delay="{{ 100 + $index * 150 }}"
+                data-aos-duration="1200" data-aos-easing="ease-in-out-cubic">
+                {{ $paragraph }}
+            </p>
             @endforeach
 
             {{-- Imagen móvil --}}
-            <div class="w-full order-2 lg:hidden my-4"
-                 data-aos="fade-up"
-                 data-aos-delay="400"
-                 data-aos-duration="1200"
-                 data-aos-easing="ease-in-out-cubic">
+            <div class="w-full order-2 tablet:hidden my-4" data-aos="fade-up" data-aos-delay="400"
+                data-aos-duration="1200" data-aos-easing="ease-in-out-cubic">
                 <img src="{{ $content['imageSrc'] }}" alt="{{ $content['imageAlt'] }}"
-                     class="rounded-lg object-cover w-full h-[300px]">
+                    class="rounded-lg object-cover w-full h-[300px]">
+
+                <a href="URL_DE_TU_WHATSAPP" target="_blank" rel="noopener noreferrer" class="items-center z-10
+                  grid tablet:hidden
+                  bg-[#63C154] text-white font-bold
+                  shadow-lg transition-all duration-300
+                  hover:bg-[#52A847] transform hover:scale-[1.03]
+                  cursor-pointer
+                  absolute top-[-18px] right-5">
+
+                    <div class="bg-white text-gray-800 py-1 px-1
+                        leading-tight flex flex-col items-center justify-center">
+                        <span class="text-[10px] font-normal">Te <strong class="font-bold">ayudamos</strong> con
+                            tu</span>
+                        <span class="text-[10px] font-bold">Cotización</span>
+                    </div>
+
+                    <img src="/icons/wsp.svg" alt="WhatsApp Icon" class="w-10 h-10 mx-auto my-1">
+                </a>
             </div>
 
             {{-- Carrusel móvil --}}
-            <div class="md:hidden relative max-w-6xl mx-auto overflow-hidden h-[220px] carousel-container"
-                 data-aos="fade-up"
-                 data-aos-delay="500"
-                 data-aos-duration="1200"
-                 data-aos-easing="ease-in-out-cubic">
+            <div class="md:hidden relative max-w-desktop mx-auto overflow-hidden carousel-container !h-auto"
+                data-aos="fade-up" data-aos-delay="500" data-aos-duration="1200" data-aos-easing="ease-in-out-cubic">
                 {{-- Botones --}}
                 <button id="prevBtn"
-                        class="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white/70 backdrop-blur-sm shadow-md transition-all duration-300 border-[1px] border-primary border-solid"
-                        aria-label="Anterior">
+                    class="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white/70 backdrop-blur-sm shadow-md transition-all duration-300 border-[1px] border-primary border-solid"
+                    aria-label="Anterior">
                     <img src="/icons/button-left.svg" alt="Anterior" class="w-4 h-4">
                 </button>
 
                 <button id="nextBtn"
-                        class="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white/70 backdrop-blur-sm shadow-md transition-all duration-300 border-[1px] border-primary border-solid"
-                        aria-label="Siguiente">
+                    class="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white/70 backdrop-blur-sm shadow-md transition-all duration-300 border-[1px] border-primary border-solid"
+                    aria-label="Siguiente">
                     <img src="/icons/button-right.svg" alt="Siguiente" class="w-4 h-4">
                 </button>
 
                 {{-- Track --}}
                 <div class="carousel-track" id="carouselTrackAbout">
                     @foreach($content['features'] as $featureIndex => $feature)
-                        <div class="carousel-slide"
-                             id="carousel-slide-about"
-                             data-aos="fade-up"
-                             data-aos-delay="{{ 600 + $featureIndex * 150 }}"
-                             data-aos-duration="1200"
-                             data-aos-easing="ease-in-out-cubic">
-                            <div class="flex flex-col items-center text-center px-6">
-                                <div class="flex items-center mb-4">
-                                    <img src="{{ $feature['iconSrc'] }}" alt="icono {{ strtolower($feature['title']) }}"
-                                         class="min-w-[50px] h-[50px] mr-2">
-                                    <h3 class="font-semibold text-xl text-gray-800">{{ $feature['title'] }}</h3>
-                                </div>
-                                <p class="text-gray-600 text-sm">{{ $feature['description'] }}</p>
+                    <div class="carousel-slide" id="carousel-slide-about" data-aos="fade-up"
+                        data-aos-delay="{{ 600 + $featureIndex * 150 }}" data-aos-duration="1200"
+                        data-aos-easing="ease-in-out-cubic">
+                        <div class="flex flex-col items-center text-center px-6">
+                            <div class="flex items-center mb-4">
+                                <img src="{{ $feature['iconSrc'] }}" alt="icono {{ strtolower($feature['title']) }}"
+                                    class="min-w-[50px] h-[50px] mr-2">
+                                <h3 class="text-title">{{ $feature['title'] }}</h3>
                             </div>
+                            <p class="text-description">{{ $feature['description'] }}</p>
                         </div>
+                    </div>
                     @endforeach
                 </div>
             </div>
 
             {{-- Versión escritorio --}}
-            <div class="hidden md:block space-y-6 order-3 lg:order-4 mt-8">
+            <div class="hidden tablet:block space-y-6 order-3 desktop:order-4 mt-8">
                 @foreach($content['features'] as $featureIndex => $item)
-                    <div class="flex items-start"
-                         data-aos="fade-up"
-                         data-aos-delay="{{ 700 + $featureIndex * 150 }}"
-                         data-aos-duration="1200"
-                         data-aos-easing="ease-in-out-cubic">
-                        <div class="flex items-center mb-2">
-                            <img src="{{ $item['iconSrc'] }}" alt="icono {{ strtolower($item['title']) }}"
-                                 class="min-w-[50px] h-[50px] mr-2">
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-xl text-gray-800">{{ $item['title'] }}</h3>
-                            <p class="text-gray-600 text-sm">{{ $item['description'] }}</p>
-                        </div>
+                <div class="flex items-start" data-aos="fade-up" data-aos-delay="{{ 700 + $featureIndex * 150 }}"
+                    data-aos-duration="1200" data-aos-easing="ease-in-out-cubic">
+                    <div class="flex items-center mb-2">
+                        <img src="{{ $item['iconSrc'] }}" alt="icono {{ strtolower($item['title']) }}"
+                            class="min-w-[50px] h-[50px] mr-2">
                     </div>
+                    <div>
+                        <h3 class="text-title">{{ $item['title'] }}</h3>
+                        <p class="text-description">{{ $item['description'] }}</p>
+                    </div>
+                </div>
                 @endforeach
             </div>
 
             {{-- Botón --}}
-            <div class="space-y-6 order-3 lg:order-4 flex justify-center lg:justify-start"
-                 data-aos="fade-up"
-                 data-aos-delay="1100"
-                 data-aos-duration="1200"
-                 data-aos-easing="ease-in-out-cubic">
+            <div class="space-y-6 order-3 desktop:order-4 flex justify-center desktop:justify-start" data-aos="fade-up"
+                data-aos-delay="1100" data-aos-duration="1200" data-aos-easing="ease-in-out-cubic">
                 <button type="button"
-                        class="w-full bg-primary mx-auto md:mx-0 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300 max-w-max md:ml-15 md:mt-8">
+                    class="w-full bg-primary mx-auto mt-4 tablet:mx-0 text-white font-semibold py-1 px-5 tablet:py-3 tablet:px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300 max-w-max tablet:ml-15 tablet:mt-4">
                     Conócenos
                 </button>
             </div>
         </div>
 
         {{-- Imagen escritorio --}}
-        <div class="hidden lg:block order-2 lg:order-1"
-             data-aos="fade-left"
-             data-aos-delay="1200"
-             data-aos-duration="1200"
-             data-aos-easing="ease-in-out-cubic">
-            <img src="{{ $content['imageSrc'] }}" alt="{{ $content['imageAlt'] }}" class="rounded-lg shadow-lg"
-                 width="300">
+        <div class="hidden desktop:block order-2 desktop:order-1" data-aos="fade-left" data-aos-delay="1200"
+            data-aos-duration="1200" data-aos-easing="ease-in-out-cubic">
+            <img src="{{ $content['imageSrc'] }}" alt="{{ $content['imageAlt'] }}" class="rounded-lg shadow-[25px]"
+                width="300">
         </div>
     </div>
 </section>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
     const track = document.getElementById("carouselTrackAbout");
     const slides = document.querySelectorAll("#carousel-slide-about");
     const prevBtn = document.getElementById("prevBtn");
