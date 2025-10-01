@@ -114,10 +114,10 @@ compromiso humano, ofreciendo un servicio completo que asegura bienestar y tranq
             {{-- Botón --}}
             <div class="space-y-6 order-3 desktop:order-4 flex justify-center desktop:justify-start" data-aos="fade-up"
                 data-aos-delay="1100" data-aos-duration="1200" data-aos-easing="ease-in-out-cubic">
-                <button type="button"
-                    class="w-full bg-primary mx-auto mt-2 tablet:mx-0 text-white font-semibold py-1 px-5 tablet:py-2 tablet:px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300 max-w-max tablet:ml-15 tablet:mt-4">
+                <a href="/nosotros"
+                    class="w-full cursor-pointer bg-primary mx-auto mt-2 tablet:mx-0 text-white font-semibold py-1 px-5 tablet:py-2 tablet:px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300 max-w-max tablet:ml-15 tablet:mt-4">
                     Conócenos
-                </button>
+                </a>
             </div>
         </div>
 

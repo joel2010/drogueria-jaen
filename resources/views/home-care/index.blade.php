@@ -85,10 +85,11 @@ for ($i = 0; $i
 
             <div class="flex items-center justify-center gap-2 mx-auto mt-4" data-aos="zoom-in" data-aos-delay="700">
                 <img src="/icons/wsp.svg" alt="WhatsApp Icon" class="w-10 h-10 mr-3">
-                <button type="button"
+                <a href="https://api.whatsapp.com/send?phone=51957390675&text=Hola%20Drogueria%20Jaen,%20quiero%20cotizar%20algunos%20productos%20que%20vi%20en%20su%20web,%20quisiera%20mas%20informacion"
+                    target="_blank" rel="noopener noreferrer"
                     class="w-full bg-primary text-white font-semibold py-1 px-5 tablet:py-2 tablet:px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300 max-w-max">
                     Solicitar más información
-                </button>
+                </a>
             </div>
         </div>
 
@@ -101,7 +102,7 @@ for ($i = 0; $i
     </div>
 </div>
 
-<section class="my-7 tablet:my-11">
+<section class="">
     @include('home.partials.products')
 </section>
 

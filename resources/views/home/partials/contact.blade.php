@@ -24,7 +24,7 @@ $content = [
 ],
 'schedule' => [
 'title' => 'Horario de atención:',
-'time' => 'Lunes - Viernes 8am a 5pm',
+'time' => 'Lunes - Viernes 8:00 Am a 5:00 Pm',
 ],
 'formTitle' => 'Escríbenos para contactarnos',
 'privacyText' => 'He leído y acepto',
@@ -55,8 +55,15 @@ $content = [
             <img src="{{ $item['icon'] }}" alt="{{ $item['name'] }} icon" class="w-8 h-8 mb-2 tablet:mb-0">
             <div class="flex flex-col tablet:flex-col tablet:items-start">
                 @foreach ($item['details'] as $detail)
-                <span class="text-description !text-black">{{ $detail }}</span>
+                    @if (Str::contains(Str::lower($detail), ['@']))
+                        <a href="mailto:{{ $detail }}" class="text-description !text-black hover:underline">{{ $detail }}</a>
+                    @elseif (Str::contains(Str::lower($item['name']), ['teléfono', 'whatsapp', 'wsp']))
+                        <a href="https://api.whatsapp.com/send?phone=51957390675&text=Hola%20Drogueria%20Jaen,%20quiero%20cotizar%20algunos%20productos%20que%20vi%20en%20su%20web,%20quisiera%20mas%20informacion" target="_blank" class="text-description !text-black hover:underline">{{ $detail }}</a>
+                    @else
+                        <span class="text-description !text-black">{{ $detail }}</span>
+                    @endif
                 @endforeach
+
             </div>
         </div>
         @endforeach

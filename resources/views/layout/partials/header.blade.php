@@ -12,15 +12,16 @@
                     <p class="leading-tight text-[11px]">Los Olivos - Lima, Perú</p>
                 </div>
             </div>
-            <a href="https://api.whatsapp.com/send?phone=51957390675&text=Hola%20Drogueria%20Jaen,%20quiero%20cotizar%20algunos%20productos%20que%20vi%20en%20su%20web,%20quisiera%20mas%20informacion"
-               class="bg-green-600 text-white font-semibold py-2 px-4 flex items-center space-x-1 shadow-lg hover:bg-green-700 transition-colors">
+            <a  href="https://api.whatsapp.com/send?phone=51957390675&text=Hola%20Drogueria%20Jaen,%20quiero%20cotizar%20algunos%20productos%20que%20vi%20en%20su%20web,%20quisiera%20mas%20informacion"
+               class="bg-green-600 text-white font-semibold py-2 px-4 flex items-center space-x-1 shadow-lg hover:bg-green-700 transition-colors"
+               target="_blank" rel="noopener">
                 <img src="/icons/wsp.svg" alt="icono whatsapp" class="w-4 h-4">
                 <span class="text-[11px]">COTIZA AQUÍ</span>
             </a>
         </div>
 
         {{-- Mobile Header --}}
-        <div class="tablet:hidden flex justify-between items-center w-full mb-0 tablet:mb-4 pr-4">
+        <div class="tablet:hidden flex justify-between items-center w-full mb-0 tablet:mb-4 px-4">
             <button id="mobile-menu-button" class="text-primary focus:outline-none">
                 <img src="/icons/menu.svg" alt="Menú móvil" class="w-8 h-8">
             </button>
@@ -53,7 +54,8 @@
                     </div>
                 </div>
                 <a href="https://api.whatsapp.com/send?phone=51957390675&text=Hola%20Drogueria%20Jaen,%20quiero%20cotizar%20algunos%20productos%20que%20vi%20en%20su%20web,%20quisiera%20mas%20informacion"
-                   class="bg-green-600 text-white font-semibold py-1 px-5 rounded-full flex items-center space-x-2 shadow-lg hover:bg-green-700 transition-colors mt-4 tablet:mt-0 tablet:ml-8">
+                    target="_blank" rel="noopener"
+                    class="bg-green-600 text-white font-semibold py-1 px-5 rounded-full flex items-center space-x-2 shadow-lg hover:bg-green-700 transition-colors mt-4 tablet:mt-0 tablet:ml-8">
                     <img src="/icons/wsp.svg" alt="icono whatsapp" class="w-[18px] h-[18px]">
                     <span class="text-[12px] leading-none mt-0.5">COTIZA AQUÍ</span>
                 </a>

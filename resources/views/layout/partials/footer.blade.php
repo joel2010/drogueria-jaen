@@ -12,13 +12,12 @@
             <nav class="hidden tablet:block mx-auto tablet:mb-7">
                 <ul
                     class="flex flex-wrap desktop:flex-nowrap desktop:gap-[30px] justify-center tablet:justify-start space-x-4 text-subtitle !font-medium">
-                    <li><a href="#" class="hover:text-cyan-600 transition-colors">Inicio</a></li>
-                    <li><a href="#" class="hover:text-cyan-600 transition-colors">Nosotros</a></li>
-                    <li><a href="#" class="hover:text-cyan-600 transition-colors">Productos</a></li>
-                    <li><a href="#" class="hover:text-cyan-600 transition-colors">Servicios</a></li>
-                    <li><a href="#" class="hover:text-cyan-600 transition-colors">Cuidado En Casa</a></li>
-                    <li><a href="#" class="hover:text-cyan-600 transition-colors">Noticias</a></li>
-                    <li><a href="#" class="hover:text-cyan-600 transition-colors">Contacto</a></li>
+                    <li><a href="/home" class="hover:text-cyan-600 transition-colors">Inicio</a></li>
+                    <li><a href="/nosotros" class="hover:text-cyan-600 transition-colors">Nosotros</a></li>
+                    <li><a href="/productos" class="hover:text-cyan-600 transition-colors">Productos</a></li>
+                    <li><a href="/servicios" class="hover:text-cyan-600 transition-colors">Servicios</a></li>
+                    <li><a href="/cuidado-en-casa" class="hover:text-cyan-600 transition-colors">Cuidado En Casa</a></li>
+                    <li><a href="/contacto" class="hover:text-cyan-600 transition-colors">Contacto</a></li>
                 </ul>
             </nav>
 
@@ -36,14 +35,20 @@
                         <img src="/icons/email.svg" alt="icono email" class="w-6 h-6">
                         <span class="!font-bold text-subtitle">Email</span>
                     </div>
-                    <p class="text-subtitle !font-medium">drogueriajaen@gmail.com</p>
+                    <p class="text-subtitle !font-medium">
+                        <a href="mailto:drogueriajaen@gmail.com" class="hover:text-cyan-600 transition-colors">drogueriajaen@gmail.com</a>
+                    </p>
                 </div>
                 <div class="flex items-center tablet:items-center  tablet:flex-col tablet:space-x-0 tablet:mr-0">
                     <div class="flex items-center space-x-2 mx-auto">
                         <img src="/icons/phone.svg" alt="icono teléfono" class="w-6 h-6">
                         <span class="!font-bold text-subtitle">Teléfono</span>
                     </div>
-                    <p class="text-subtitle !font-medium">957 390 675</p>
+                    <p class="text-subtitle !font-medium">
+                        <a href="https://wa.me/51957390675?text=Hola%2C%20quisiera%20más%20información%20sobre%20sus%20servicios" target="_blank" rel="noopener" class="hover:text-cyan-600 transition-colors">
+                            957 390 675
+                        </a>
+                    </p>
                 </div>
         </div>
     </div>
@@ -60,12 +65,12 @@
             </button>
             <div data-accordion-menu="inicio" class="hidden text-left py-2 px-5">
                 <ul class="space-y-2">
-                    <li><a href="#" class="block hover:text-cyan-600 transition-colors">Nosotros</a></li>
-                    <li><a href="#" class="block hover:text-cyan-600 transition-colors">Productos</a></li>
-                    <li><a href="#" class="block hover:text-cyan-600 transition-colors">Servicios</a></li>
-                    <li><a href="#" class="block hover:text-cyan-600 transition-colors">Cuidado En Casa</a></li>
-                    <li><a href="#" class="block hover:text-cyan-600 transition-colors">Noticias</a></li>
-                    <li><a href="#" class="block hover:text-cyan-600 transition-colors">Contacto</a></li>
+                    <li><a href="/home" class="hover:text-cyan-600 transition-colors">Inicio</a></li>
+                    <li><a href="/nosotros" class="block hover:text-cyan-600 transition-colors">Nosotros</a></li>
+                    <li><a href="/productos" class="block hover:text-cyan-600 transition-colors">Productos</a></li>
+                    <li><a href="/servicios" class="block hover:text-cyan-600 transition-colors">Servicios</a></li>
+                    <li><a href="/cuidado-en-casa" class="block hover:text-cyan-600 transition-colors">Cuidado En Casa</a></li>
+                    <li><a href="/contacto" class="block hover:text-cyan-600 transition-colors">Contacto</a></li>
                 </ul>
             </div>
         </div>

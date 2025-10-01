@@ -79,10 +79,10 @@ $content = [
 
         {{-- Botón Ver más --}}
         <div class="mt-8">
-            <button
-                class="bg-primary text-white font-semibold py-1 px-4 tablet:py-2 tablet:px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300">
+            <a href="/productos"
+                class="bg-primary cursor-pointer text-white font-semibold py-1 px-4 tablet:py-2 tablet:px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300">
                 Ver más productos
-            </button>
+            </a>
         </div>
     </div>
 </section>
