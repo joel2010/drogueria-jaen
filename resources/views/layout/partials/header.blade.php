@@ -12,7 +12,7 @@
                     <p class="leading-tight text-[11px]">Los Olivos - Lima, Perú</p>
                 </div>
             </div>
-            <a href="#"
+            <a href="https://api.whatsapp.com/send?phone=51957390675&text=Hola%20Drogueria%20Jaen,%20quiero%20cotizar%20algunos%20productos%20que%20vi%20en%20su%20web,%20quisiera%20mas%20informacion"
                class="bg-green-600 text-white font-semibold py-2 px-4 flex items-center space-x-1 shadow-lg hover:bg-green-700 transition-colors">
                 <img src="/icons/wsp.svg" alt="icono whatsapp" class="w-4 h-4">
                 <span class="text-[11px]">COTIZA AQUÍ</span>
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#"
+                <a href="https://api.whatsapp.com/send?phone=51957390675&text=Hola%20Drogueria%20Jaen,%20quiero%20cotizar%20algunos%20productos%20que%20vi%20en%20su%20web,%20quisiera%20mas%20informacion"
                    class="bg-green-600 text-white font-semibold py-1 px-5 rounded-full flex items-center space-x-2 shadow-lg hover:bg-green-700 transition-colors mt-4 tablet:mt-0 tablet:ml-8">
                     <img src="/icons/wsp.svg" alt="icono whatsapp" class="w-[18px] h-[18px]">
                     <span class="text-[12px] leading-none mt-0.5">COTIZA AQUÍ</span>

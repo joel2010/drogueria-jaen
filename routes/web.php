@@ -6,9 +6,9 @@ Route::get('/', function () {
     return view('home.index');
 });
 
-// Route::get('/nosotros', function () {
-//     return view('about.index');
-// });
+Route::get('/nosotros', function () {
+    return view('about.index');
+});
 
 Route::get('/contacto', function () {
     return view('contact.index');
@@ -20,4 +20,12 @@ Route::get('/servicios', function () {
 
 Route::get('/cuidado-en-casa', function () {
     return view('home-care.index');
+});
+
+Route::get('/productos', function () {
+    return view('products.index');
+});
+
+Route::get('/producto/{id}', function ($id) {
+    return view('products.detail', ['id' => $id]);
 });

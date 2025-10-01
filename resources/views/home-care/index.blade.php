@@ -33,7 +33,7 @@ for ($i = 0; $i
     $marqueeContent=implode('', $items); @endphp
 
 
-    <x-HeroSection image="/images/home-banner.png" title="Cuidado en Casa"
+    <x-HeroSection image="/images/care-home-banner.jpg" title="Cuidado en Casa"
     showWspButton="true" />
 
 <div class="w-full overflow-hidden bg-gray-50 border-y border-gray-200">

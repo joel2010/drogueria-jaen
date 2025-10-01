@@ -2,7 +2,7 @@
 
 @section('content')
 
-<x-HeroSection class="h-[200px]" image="/images/home-banner.png" title="Nuestros Servicios" showWspButton="true" />
+<x-HeroSection class="h-[200px]" image="/images/service-banner.jpg" title="Nuestros Servicios" showWspButton="true" />
 
 <section class="mx-auto px-4 max-width py-12">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
