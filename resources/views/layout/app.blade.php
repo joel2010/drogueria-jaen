@@ -30,7 +30,7 @@
     <meta property="og:site_name" content="Droguería Jaén" />
 
     <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image:height" content="625" />
     <meta property="og:image:alt" content="Descripción alternativa de la imagen para accesibilidad" />
     <title>Droguería Jaén | Tu socio en salud</title>
     <meta name="description"
