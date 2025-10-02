@@ -29,7 +29,7 @@ $items = [];
 
 for ($i = 0; $i
 < 10; $i++) { $items[]='<span class="flex items-center whitespace-nowrap">' . $message
-    . ' <span class="ml-5 mr-3 text-[#00FFC3] text-xl font-bold">' . $separator . '</span></span>' ; }
+    . ' <span class="ml-5 mr-3 text-[#00FFC3] text-[16px] font-bold">' . $separator . '</span></span>' ; }
     $marqueeContent=implode('', $items); @endphp
 
 
@@ -38,10 +38,10 @@ for ($i = 0; $i
 
 <div class="w-full overflow-hidden bg-gray-50 border-y border-gray-200">
     <div class="marquee-wrapper flex">
-        <div class="marquee-content flex py-2 text-title !text-primary">
+        <div class="marquee-content flex py-2 text-title !text-[18px]  !text-primary">
             {!! $marqueeContent !!}
         </div>
-        <div class="marquee-content flex py-2 text-title !text-primary">
+        <div class="marquee-content flex py-2 text-title !text-[18px] !text-primary">
             {!! $marqueeContent !!}
         </div>
     </div>

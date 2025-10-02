@@ -14,7 +14,7 @@
         'Atendemos a clínicas, hospitales, farmacias, laboratorios y empresas de salud ocupacional, garantizando un
         abastecimiento confiable, productos de alta calidad y almacenamiento seguro que aseguran la continuidad en la
         atención y el cumplimiento de estándares.',
-        'image' => '/images/services1.png',
+        'image' => '/images/service1.jpg',
         ],
         [
         'title' => 'Venta de productos farmacéuticos',
@@ -55,12 +55,12 @@
                             transition-all duration-500 transform hover:-translate-y-2 h-full rounded-[20px]">
 
                     {{-- Imagen --}}
-                    <img src="{{ $service['image'] }}" alt="{{ $service['title'] }}" class="w-full h-48 object-cover">
+                    <img src="{{ $service['image'] }}" alt="{{ $service['title'] }}" class="w-full h-[230px] tablet:h-48 object-cover">
 
                     {{-- Texto --}}
                     <div class="bg-primary text-white p-6">
-                        <h3 class="text-title mb-2 !text-white">{{ $service['title'] }}</h3>
-                        <p class="text-description !text-white leading-relaxed">
+                        <h3 class="text-title text-center tablet:text-left mb-2 !text-white">{{ $service['title'] }}</h3>
+                        <p class="text-description text-center tablet:text-left !text-white leading-relaxed">
                             {{ $service['description'] }}
                         </p>
                     </div>

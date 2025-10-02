@@ -1,4 +1,6 @@
 @php
+
+
 $content = [
     'title' => 'Nuestros Productos',
     'subtitle' => 'Descubre nuestra amplia gama de productos de alta calidad',
@@ -66,31 +68,52 @@ $content = [
         ],
     ],
 ];
+
+$background_color = $background_color ?? 'bg-[#00E5A1]';
+$title_text = $title_text ?? $content['title'];
+$title_color = $title_color ?? 'text-title2';
+$bg_button = $bg_button ?? 'bg-primary';
+$text_button = $text_button ?? 'text-white';
 @endphp
 
-<section class="bg-[#00E5A1] py-6 tablet:py-8 text-center">
+{{-- Usamos la prop $background_color para el fondo --}}
+<section class="{{ $background_color }} py-6 tablet:py-8 text-center">
     <div class="mx-auto px-4 max-width">
         {{-- Encabezado --}}
         <div class="mb-6">
-            <h2 class="text-title2">
-                {{ $content['title'] }}
+            {{-- Usamos la prop $title_color para la clase y $title_text para el contenido --}}
+            <h2 class="{{ $title_color }} text-title2">
+                {{ $title_text }}
             </h2>
-            <p class="text-subtitle !font-normal">
+            <p class=" {{ $title_color }} text-subtitle !font-normal">
                 {{ $content['subtitle'] }}
             </p>
         </div>
 
         {{-- Carrusel en móvil --}}
-<div class="desktop:hidden relative"> <div id="carousel" class="flex overflow-x-auto relative w-full h-full snap-x snap-mandatory scroll-smooth gap-2 overflow-y-hidden"> @foreach ($content['products'] as $index => $product) <div class="flex-shrink-0 snap-center gap-2 w-[49%]"> <x-product-card :product="$product" class="mx-2" :index="$index" /> </div> @endforeach </div> <button onclick="scrollCarousel(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white/70 backdrop-blur-sm shadow-md transition-all duration-300 border-[1px] border-primary border-solid" aria-label="Anterior"> <img src="/icons/button-left.svg" alt="Anterior" class="w-4 h-4"> </button> <button onclick="scrollCarousel(1)" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white/70 backdrop-blur-sm shadow-md transition-all duration-300 border-[1px] border-primary border-solid" aria-label="Siguiente"> <img src="/icons/button-right.svg" alt="Siguiente" class="w-4 h-4"> </div>
+        <div class="desktop:hidden relative">
+            <div id="carousel"
+                class="flex overflow-x-auto relative w-full h-full snap-x snap-mandatory scroll-smooth gap-2 overflow-y-hidden">
+                @foreach ($content['products'] as $index => $product) <div
+                    class="flex-shrink-0 snap-center gap-2 w-[49%]">
+                    <x-product-card :product="$product" class="mx-2" :index="$index" />
+                </div> @endforeach </div> <button onclick="scrollCarousel('carousel', -1)"
+                class="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white/70 backdrop-blur-sm shadow-md transition-all duration-300 border-[1px] border-primary border-solid"
+                aria-label="Anterior"> <img src="/icons/button-left.svg" alt="Anterior" class="w-4 h-4"> </button>
+            <button onclick="scrollCarousel('carousel', 1)"
+                class="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white/70 backdrop-blur-sm shadow-md transition-all duration-300 border-[1px] border-primary border-solid"
+                aria-label="Siguiente"> <img src="/icons/button-right.svg" alt="Siguiente" class="w-4 h-4">
+            </button>
+        </div>
 
         {{-- Carrusel en desktop --}}
         <div class="hidden desktop:block relative">
             <div id="carousel-desktop"
                 class="flex overflow-x-auto overflow-y-hidden scroll-hidden scroll-smooth gap-6 snap-x snap-mandatory">
                 @foreach ($content['products'] as $index => $product)
-                    <div class="flex-shrink-0 snap-start w-[18%] min-w-[220px]">
-                        <x-product-card :product="$product" :index="$index" />
-                    </div>
+                <div class="flex-shrink-0 snap-start w-[18%] min-w-[220px]">
+                    <x-product-card :product="$product" :index="$index" />
+                </div>
                 @endforeach
             </div>
             <button onclick="scrollCarousel('carousel-desktop', -1)"
@@ -108,7 +131,7 @@ $content = [
         {{-- Botón Ver más --}}
         <div class="mt-8">
             <a href="/productos"
-                class="bg-primary cursor-pointer text-white font-semibold py-1 px-4 tablet:py-2 tablet:px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300">
+                class="{{ $bg_button }} cursor-pointer {{ $text_button }} font-semibold py-1 px-4 tablet:py-2 tablet:px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300">
                 Ver más productos
             </a>
         </div>

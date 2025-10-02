@@ -47,27 +47,32 @@ $content = [
     </div>
 
     {{-- Información de contacto --}}
-    <div class="flex flex-col tablet:flex-row justify-around items-center tablet:items-center gap-3 tablet:gap-16 mb-7">
-        @foreach ($content['contactInfo'] as $index => $item)
-        <div class="flex flex-col items-center text-center tablet:items-center gap-2 tablet:flex-row tablet:text-left"
+{{-- CONTENEDOR PRINCIPAL: Debe ser flex-col en móvil para apilar los ítems. --}}
+<div class="flex flex-col justify-around items-start tablet:flex-row tablet:items-center gap-3 tablet:gap-16 mb-7">
+    @foreach ($content['contactInfo'] as $index => $item)
+        {{-- CONTENEDOR DE CADA ÍTEM: Usamos 'flex' (implica flex-row) e 'items-center' para alinear el icono y el texto en la misma fila. Usamos 'text-left' para el texto. --}}
+        <div class="flex items-center text-left gap-4 tablet:gap-2 mx-auto tablet:mx-0"
             data-aos="fade-up" data-aos-delay="{{ $index * 150 }}" data-aos-duration="1200"
             data-aos-easing="ease-in-out-cubic">
-            <img src="{{ $item['icon'] }}" alt="{{ $item['name'] }} icon" class="w-8 h-8 mb-2 tablet:mb-0">
-            <div class="flex flex-col tablet:flex-col tablet:items-start">
+
+            {{-- Icono --}}
+            <img src="{{ $item['icon'] }}" alt="{{ $item['name'] }} icon" class="w-8 h-8 flex-shrink-0">
+
+            {{-- Contenedor de Texto (siempre en columna, alineado a la izquierda) --}}
+            <div class="flex flex-col items-start w-[200px] tablet:w-auto text-center">
                 @foreach ($item['details'] as $detail)
                     @if (Str::contains(Str::lower($detail), ['@']))
-                        <a href="mailto:{{ $detail }}" class="text-description !text-black hover:underline">{{ $detail }}</a>
+                        <a href="mailto:{{ $detail }}" class="text-description !text-black hover:underline text-center">{{ $detail }}</a>
                     @elseif (Str::contains(Str::lower($item['name']), ['teléfono', 'whatsapp', 'wsp']))
-                        <a href="https://api.whatsapp.com/send?phone=51957390675&text=Hola%20Drogueria%20Jaen,%20quiero%20cotizar%20algunos%20productos%20que%20vi%20en%20su%20web,%20quisiera%20mas%20informacion" target="_blank" class="text-description !text-black hover:underline">{{ $detail }}</a>
+                        <a href="https://api.whatsapp.com/send?phone=51957390675&text=Hola%20Drogueria%20Jaen,%20quiero%20cotizar%20algunos%20productos%20que%20vi%20en%20su%20web,%20quisiera%20mas%20informacion" target="_blank" class="text-description !text-black hover:underline text-center">{{ $detail }}</a>
                     @else
                         <span class="text-description !text-black">{{ $detail }}</span>
                     @endif
                 @endforeach
-
             </div>
         </div>
-        @endforeach
-    </div>
+    @endforeach
+</div>
 
     {{-- Horario --}}
     <div class="text-center bg-[#00E5A1] py-2 px-9 md:px-4 mx-auto mb-7 w-max flex flex-col tablet:flex-row items-center tablet:gap-1 justify-center"

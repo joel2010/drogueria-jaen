@@ -5,5 +5,11 @@
         {{-- @include('products.partials.catalogs') --}}
         <catalog-products></catalog-products>
     </div>
-    @include('products.partials.products-featured')
+    @include('home.partials.products', [
+    'background_color' => 'bg-primary',
+    'title_text' => 'Productos Destacados',
+    'title_color' => '!text-white',
+    'bg_button' => 'bg-white',
+    'text_button' => 'text-primary',
+])
 @endsection
