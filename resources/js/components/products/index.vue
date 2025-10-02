@@ -16,14 +16,36 @@
           <span class="text-primary">Filtrar</span>
         </button>
 
-        <button
-          class="flex items-center w-full bg-white text-primary border border-primary text-sm py-1 px-5 md:py-2 md:px-8 rounded-md transition-colors duration-300 max-w-max"
-        >
-          <span>Orden predeterminado</span>
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
+ <div class="relative">
+          <button
+            @click="toggleSortMenu"
+            class="flex items-center w-full bg-white text-primary border border-primary text-sm py-1 px-5 md:py-2 md:px-8 rounded-md transition-colors duration-300 max-w-max"
+          >
+            <span>{{ sortLabel }}</span>
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Popover -->
+          <div
+            v-show="openSortMenu"
+            class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border z-50"
+          >
+            <button
+              class="w-full text-left px-4 py-2 hover:bg-gray-100"
+              @click="setSort('asc')"
+            >
+             Orden ascendente
+            </button>
+            <button
+              class="w-full text-left px-4 py-2 hover:bg-gray-100"
+              @click="setSort('desc')"
+            >
+              Orden descendente
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -89,13 +111,33 @@
           <h2 class="text-3xl font-bold text-gray-800">Productos</h2>
           <div class="relative">
             <button
+              @click="toggleSortMenu"
               class="flex items-center w-full bg-primary text-white font-semibold py-1 px-4 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300 max-w-max"
             >
-              <span>Orden predeterminado</span>
+              <span>{{ sortLabel }}</span>
               <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
+
+            <!-- Popover -->
+            <div
+              v-show="openSortMenu"
+              class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border z-50"
+            >
+              <button
+                class="w-full text-left px-4 py-2 hover:bg-gray-100"
+                @click="setSort('asc')"
+              >
+                Orden ascendente
+              </button>
+              <button
+                class="w-full text-left px-4 py-2 hover:bg-gray-100"
+                @click="setSort('desc')"
+              >
+                Orden descendente
+              </button>
+            </div>
           </div>
         </div>
 
@@ -388,11 +430,11 @@ const mapFilterKey = (filterName) => {
 // --- Paginador ---
 const currentPage = ref(1);
 const pageSize = 8;
-const totalPages = computed(() => Math.max(1, Math.ceil(filteredProducts.value.length / pageSize)));
+const totalPages = computed(() => Math.max(1, Math.ceil(sortedProducts.value.length / pageSize)));
 
 const paginatedProducts = computed(() => {
   const start = (currentPage.value - 1) * pageSize;
-  return filteredProducts.value.slice(start, start + pageSize);
+  return sortedProducts.value.slice(start, start + pageSize);
 });
 
 const goToPage = (page) => {
@@ -423,6 +465,34 @@ const clearFilters = () => {
   selectedFilters.value = {};
   currentPage.value = 1;
 };
+const sortOrder = ref("asc");
+const openSortMenu = ref(false);
+
+const toggleSortMenu = () => {
+  openSortMenu.value = !openSortMenu.value;
+};
+
+const setSort = (order) => {
+  sortOrder.value = order;
+  openSortMenu.value = false;
+};
+
+const sortLabel = computed(() => {
+  if (sortOrder.value === "asc") return "Orden ascendente";
+  if (sortOrder.value === "desc") return "Orden descendente";
+  return "Orden predeterminado";
+});
+
+// --- Productos ordenados ---
+const sortedProducts = computed(() => {
+  let results = [...filteredProducts.value];
+  if (sortOrder.value === "asc") {
+    results.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortOrder.value === "desc") {
+    results.sort((a, b) => b.name.localeCompare(a.name));
+  }
+  return results;
+});
 
 // Bloquear scroll del body cuando drawer abierto
 watch(openFilterMenu, (val) => {
