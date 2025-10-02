@@ -30,7 +30,7 @@
           <!-- Popover -->
           <div
             v-show="openSortMenu"
-            class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border z-50"
+            class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-50"
           >
             <button
               class="w-full text-left px-4 py-2 hover:bg-gray-100"
@@ -123,7 +123,7 @@
             <!-- Popover -->
             <div
               v-show="openSortMenu"
-              class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border z-50"
+              class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-2xl z-50"
             >
               <button
                 class="w-full text-left px-4 py-2 hover:bg-gray-100"
