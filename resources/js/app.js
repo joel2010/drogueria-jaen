@@ -1,6 +1,7 @@
 import './bootstrap';
 import { createApp } from 'vue';
 import HomeSection from '@views/home/index.vue';
+import CatalogSection from '@components/products/index.vue';
 import AOS from "aos";
 import "aos/dist/aos.css"; // 👈 importante si no lo tienes importado aún
 
@@ -19,6 +20,6 @@ app.mixin({
 });
 
 // Registrar componente global
-app.component('home-section', HomeSection);
+app.component('catalog-products', CatalogSection);
 
 app.mount('#app');

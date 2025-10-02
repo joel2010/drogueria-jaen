@@ -1,32 +1,123 @@
 @php
-// --- Datos del Producto (Ejemplo basado en tus imágenes) ---
-$product = [
-    'name' => 'Transpore 3M 1527-1',
-    'subtitle' => 'Cinta médica hipoalergénica',
-    // Actualización para carrusel: Usamos todas las imágenes disponibles
-    'images' => [
-        '/productdetail.png',
-        '/productdetail.png',
-        '/productdetail.png',
-        '/productdetail.png',
+// --- Data de productos (basada en tu array Vue adaptado a PHP) ---
+$baseProducts = [
+    [
+        'id' => 1,
+        'name' => "Transpore 3M 1527-3",
+        'subtitle' => "Cinta médica hipoalergénica de uso quirúrgico",
+        'imageSrc' => "product/product1.png",
+        'category' => "Dispositivos médicos",
+        'brand' => "3M",
+        'type' => "Cintas",
+        'specialty' => "Cirugía",
     ],
-    // 'image_main' y 'images_thumbs' ya no son necesarios con la nueva estructura
+    [
+        'id' => 2,
+        'name' => "Micropore 3M Blanco",
+        'subtitle' => "Cinta adhesiva transpirable para fijación",
+        'imageSrc' => "product/product2.png",
+        'category' => "Ofertas",
+        'brand' => "3M",
+        'type' => "Cintas",
+        'specialty' => "Laboratorio",
+    ],
+    [
+        'id' => 3,
+        'name' => "Gasa Estéril 10x10 cm",
+        'subtitle' => "Gasa absorbente para cubrir heridas",
+        'imageSrc' => "product/product3.png",
+        'category' => "Dispositivos médicos",
+        'brand' => "B. Braun",
+        'type' => "Gasa",
+        'specialty' => "Emergencia",
+    ],
+    [
+        'id' => 4,
+        'name' => "Steri Strip Adhesivo",
+        'subtitle' => "Tira adhesiva para cierre de pequeñas heridas",
+        'imageSrc' => "product/product4.png",
+        'category' => "Ofertas",
+        'brand' => "Johnson & Johnson",
+        'type' => "Suturas",
+        'specialty' => "Protección",
+    ],
+    [
+        'id' => 5,
+        'name' => "Esparadrapo B. Braun Classic",
+        'subtitle' => "Cinta médica de fijación fuerte",
+        'imageSrc' => "product/product2.png",
+        'category' => "Dispositivos médicos",
+        'brand' => "B. Braun",
+        'type' => "Cintas",
+        'specialty' => "Rehabilitación",
+    ],
+    [
+        'id' => 6,
+        'name' => "Gasa Johnson Multiuso",
+        'subtitle' => "Ideal para curaciones en emergencia",
+        'imageSrc' => "product/product1.png",
+        'category' => "Ofertas",
+        'brand' => "Johnson & Johnson",
+        'type' => "Gasa",
+        'specialty' => "Emergencia",
+    ],
+    [
+        'id' => 7,
+        'name' => "Sutura absorbible 3M",
+        'subtitle' => "Sutura quirúrgica de rápida absorción",
+        'imageSrc' => "product/product3.png",
+        'category' => "Dispositivos médicos",
+        'brand' => "3M",
+        'type' => "Suturas",
+        'specialty' => "Cirugía",
+    ],
+    [
+        'id' => 8,
+        'name' => "Sutura no absorbible B. Braun",
+        'subtitle' => "Resistente, indicada para cirugía general",
+        'imageSrc' => "product/product4.png",
+        'category' => "Dispositivos médicos",
+        'brand' => "B. Braun",
+        'type' => "Suturas",
+        'specialty' => "Esterilización",
+    ],
+];
+
+// --- Obtenemos el producto según ID de la URL ---
+$productId = request()->route('id') ?? 1; // si no hay id, mostramos el 1
+$product = collect($baseProducts)->firstWhere('id', intval($productId));
+
+// Si no se encuentra, fallback a uno genérico
+if (!$product) {
+    $product = $baseProducts[0];
+}
+
+// --- Armamos estructura extendida con imágenes y descripción ---
+$product = array_merge($product, [
+    'images' => [
+        $product['imageSrc'],
+        $product['imageSrc'],
+        $product['imageSrc'],
+        $product['imageSrc'],
+    ],
     'description_points' => [
-        'El corte fácil, recto y bidireccional permite al profesional de la salud cortar la cinta a la medida sin necesidad de tijeras.',
+        'El corte fácil, recto y bidireccional permite cortar la cinta a medida sin necesidad de tijeras.',
         'Su porosidad permite el normal funcionamiento e intercambio gaseoso de la piel.',
         'Fácil de manipular con guantes.',
         'Buena adhesión a la piel y a los tubos para una colocación segura.',
         'Transparente para permitir un control fácil.',
         'Hipoalergénico y sin látex para pacientes sensibles.',
-        'Buena resistencia a la penetración del agua o la humedad de la piel (sudor).',
+        'Buena resistencia a la humedad o sudor.',
     ],
     'specs' => [
-        'TIPO' => 'Cinta Quirúrgica',
+        'TIPO' => $product['type'],
         'PRESENTACIÓN' => 'Caja 12 unidades',
-        'ESPECIALIDAD' => 'Emergencia',
-    ]
-];
+        'ESPECIALIDAD' => $product['specialty'],
+        'MARCA' => $product['brand'],
+    ],
+]);
 @endphp
+
 
 @extends('layout.app')
 
