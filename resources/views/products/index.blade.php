@@ -2,7 +2,6 @@
 
 @section('content')
     <div>
-        {{-- @include('products.partials.catalogs') --}}
         <catalog-products></catalog-products>
     </div>
     @include('home.partials.products', [

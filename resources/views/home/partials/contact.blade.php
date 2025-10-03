@@ -46,20 +46,15 @@ $content = [
         </p>
     </div>
 
-    {{-- Información de contacto --}}
-{{-- CONTENEDOR PRINCIPAL: Debe ser flex-col en móvil para apilar los ítems. --}}
 <div class="flex flex-col justify-around items-start tablet:flex-row tablet:items-center gap-3 tablet:gap-16 mb-7">
     @foreach ($content['contactInfo'] as $index => $item)
-        {{-- CONTENEDOR DE CADA ÍTEM: Usamos 'flex' (implica flex-row) e 'items-center' para alinear el icono y el texto en la misma fila. Usamos 'text-left' para el texto. --}}
         <div class="flex items-center text-left gap-4 tablet:gap-2 mx-auto tablet:mx-0"
             data-aos="fade-up" data-aos-delay="{{ $index * 150 }}" data-aos-duration="1200"
             data-aos-easing="ease-in-out-cubic">
 
-            {{-- Icono --}}
             <img src="{{ $item['icon'] }}" alt="{{ $item['name'] }} icon" class="w-8 h-8 flex-shrink-0">
 
-            {{-- Contenedor de Texto (siempre en columna, alineado a la izquierda) --}}
-            <div class="flex flex-col items-start w-[200px] tablet:w-auto text-center">
+            <div class="flex flex-col items-start w-[170px] tablet:w-auto text-center">
                 @foreach ($item['details'] as $detail)
                     @if (Str::contains(Str::lower($detail), ['@']))
                         <a href="mailto:{{ $detail }}" class="text-description !text-black hover:underline text-center">{{ $detail }}</a>
@@ -74,14 +69,12 @@ $content = [
     @endforeach
 </div>
 
-    {{-- Horario --}}
     <div class="text-center bg-[#00E5A1] py-2 px-9 md:px-4 mx-auto mb-7 w-max flex flex-col tablet:flex-row items-center tablet:gap-1 justify-center"
         data-aos="fade-up" data-aos-delay="500" data-aos-duration="1200" data-aos-easing="ease-in-out-cubic">
         <p class="text-subtitle">{{ $content['schedule']['title'] }}</p>
         <p class="text-subtitle !font-normal mt-[-7px] tablet:mt-0">{{ $content['schedule']['time'] }}</p>
     </div>
 
-    {{-- Formulario + Imagen --}}
     <div class="flex flex-col tablet:flex-row items-center tablet:items-start gap-12">
         <div class="w-full tablet:w-1/2" data-aos="fade-right" data-aos-delay="600" data-aos-duration="1200"
             data-aos-easing="ease-in-out-cubic">
@@ -128,7 +121,6 @@ $content = [
         </div>
     </div>
 
-    {{-- Imagen móvil --}}
     <div class="block tablet:hidden mt-8" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1200"
         data-aos-easing="ease-in-out-cubic">
         <img src="{{ $content['imageSrc'] }}" alt="{{ $content['imageAlt'] }}"

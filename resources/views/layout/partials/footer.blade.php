@@ -131,11 +131,9 @@
                 const menu = document.querySelector(`[data-accordion-menu="${menuName}"]`);
                 const icon = document.querySelector(`[data-accordion-icon="${menuName}"]`);
 
-                // Alternar la visibilidad del menú y la rotación del ícono para el botón actual
                 menu.classList.toggle('hidden');
                 icon.classList.toggle('rotate-180');
 
-                // Cerrar otros menús abiertos
                 accordionButtons.forEach(otherButton => {
                     const otherMenuName = otherButton.getAttribute('data-accordion-button');
                     if (otherMenuName !== menuName) {

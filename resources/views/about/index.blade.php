@@ -6,9 +6,8 @@
 <x-HeroSection image="/images/about-banner.png" title="¿Quiénes Somos?" showWspButton="true" />
 
 @php
-// Se definen los datos fijos para las tarjetas
 $mission = [
-'icon' => '/icons/mision2.svg', // Reemplazar con la ruta de tu ícono de Misión
+'icon' => '/icons/mision2.svg',
 'title' => 'Misión',
 'text' => 'Brindar soluciones integrales en salud mediante medicamentos, dispositivos, equipamiento médico,
 almacenamiento especializado y cuidados de enfermería en casa, garantizando calidad, continuidad y confianza para
@@ -16,14 +15,14 @@ instituciones y familias.',
 ];
 
 $vision = [
-'icon' => '/icons/vision2.svg', // Reemplazar con la ruta de tu ícono de Visión
+'icon' => '/icons/vision2.svg',
 'title' => 'Visión',
 'text' => 'Ser reconocidos como la empresa líder e integral en salud, destacando por nuestra confiabilidad, innovación y
 compromiso humano, y consolidándonos como el aliado primordial de instituciones y hogares.',
 ];
 
 $filosofia = [
-'icon' => '/icons/filosofia.svg', // Reemplazar con la ruta de tu ícono de Filosofía
+'icon' => '/icons/filosofia.svg',
 'title' => 'Filosofía',
 'text' => 'Creemos que la salud es el bien más valioso. Nuestra filosofía se basa en la integralidad, confianza y
 compromiso humano, ofreciendo un servicio completo que asegura bienestar y tranquilidad a cada cliente.',
@@ -66,23 +65,19 @@ compromiso humano, ofreciendo un servicio completo que asegura bienestar y tranq
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-4 tablet:px-0">
 
-                    {{-- Card de Misión --}}
                     @include('about.components.about-card', ['data' => $mission])
 
-                    {{-- Card de Visión --}}
                     @include('about.components.about-card', ['data' => $vision])
 
                 </div>
 
                 <div class="space-y-6 px-4 tablet:px-0">
 
-                    {{-- Imagen de Equipo (Ancho completo de las dos columnas) --}}
                     <div class="relative rounded-lg overflow-hidden shadow-xl">
                         <img src="/images/about-image.jpg" alt="Equipo de profesionales en Droguería Jaén"
                             class="w-full h-auto object-cover">
                     </div>
 
-                    {{-- Texto de Filosofía (NO es un card) --}}
                     <div class="hidden md:block mb-0">
                         <h3 class="text-title mb-2">
                             Filosofía
@@ -93,7 +88,6 @@ compromiso humano, ofreciendo un servicio completo que asegura bienestar y tranq
                     </div>
                     <div class="md:hidden">
 
-                        {{-- Card de Filosofía (Visible solo en móvil) --}}
                         @include('about.components.about-card', ['data' => $filosofia])
 
                     </div>

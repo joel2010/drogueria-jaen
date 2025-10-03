@@ -2,14 +2,11 @@
 
 @section('content')
 
-{{-- <home-section></home-section> --}}
     <x-HeroSection
         image="/images/home-banner.png"
         title="En Droguería Jaén, la salud es un compromiso compartido"
         showWspButton="true"
     />
-
-
 
     @include('home.partials.featured')
     @include('home.partials.about')

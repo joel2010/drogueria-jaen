@@ -1,6 +1,5 @@
 <div class="relative w-full h-[100px] tablet:h-[400px] flex items-center justify-center text-white md:mt-[-25px]"
     style="background-image: url('{{ $image }}'); background-size: cover; background-position: center;">
-
     <div class="absolute inset-0 bg-black opacity-40"></div>
 
     <div class="relative z-10 p-4 text-center max-w-[700px]">
@@ -9,12 +8,6 @@
         </h1>
     </div>
 
-    {{--
-        ***************************************************
-        CLAVE 1: Control de Visibilidad con @if (Blade)
-        Asume que $showWspButton se pasa a la vista y es FALSE por defecto
-        ***************************************************
-    --}}
     @if(isset($showWspButton) && $showWspButton)
         <a href="https://api.whatsapp.com/send?phone=51957390675&text=Hola%20Drogueria%20Jaen,%20quiero%20cotizar%20algunos%20productos%20que%20vi%20en%20su%20web,%20quisiera%20mas%20informacion" target="_blank" rel="noopener noreferrer"
            class="items-center z-[99]

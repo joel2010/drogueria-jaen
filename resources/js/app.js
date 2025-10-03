@@ -1,13 +1,11 @@
 import './bootstrap';
 import { createApp } from 'vue';
-import HomeSection from '@views/home/index.vue';
 import CatalogSection from '@components/products/index.vue';
 import AOS from "aos";
-import "aos/dist/aos.css"; // 👈 importante si no lo tienes importado aún
+import "aos/dist/aos.css";
 
 const app = createApp({});
 
-// Inicializar AOS después de que Vue haya montado
 app.mixin({
     mounted() {
         AOS.init({

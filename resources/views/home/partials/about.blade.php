@@ -1,4 +1,3 @@
-{{-- resources/views/components/about-section.blade.php --}}
 @php
 $content = [
 'title' => 'Nosotros',
@@ -38,7 +37,6 @@ compromiso humano, ofreciendo un servicio completo que asegura bienestar y tranq
 <section class="mx-auto px-4 desktop:px-0 max-width text-justify pb-6 tablet:pb-10">
     <div class="flex flex-col tablet:flex-row items-start tablet:items-stretch gap-9">
 
-        {{-- Texto --}}
         <div class="w-full flex-1 order-1 tablet:order-2">
             <h2 class="text-title !text-primary mb-1" data-aos="fade-up" data-aos-duration="1200"
                 data-aos-easing="ease-in-out-cubic">
@@ -62,7 +60,6 @@ compromiso humano, ofreciendo un servicio completo que asegura bienestar y tranq
             {{-- Carrusel móvil --}}
             <div class="md:hidden relative max-w-desktop mx-auto overflow-hidden carousel-container !h-auto"
                 data-aos="fade-up" data-aos-delay="500" data-aos-duration="1200" data-aos-easing="ease-in-out-cubic">
-                {{-- Botones --}}
                 <button id="prevBtn"
                     class="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-1  rounded-full bg-white/70 backdrop-blur-sm shadow-md transition-all duration-300 border-[1px] border-primary border-solid"
                     aria-label="Anterior">
@@ -75,7 +72,6 @@ compromiso humano, ofreciendo un servicio completo que asegura bienestar y tranq
                     <img src="/icons/button-right.svg" alt="Siguiente" class="w-4 h-4">
                 </button>
 
-                {{-- Track --}}
                 <div class="carousel-track" id="carouselTrackAbout">
                     @foreach($content['features'] as $featureIndex => $feature)
                     <div class="carousel-slide" id="carousel-slide-about" data-aos="fade-up"
@@ -111,7 +107,6 @@ compromiso humano, ofreciendo un servicio completo que asegura bienestar y tranq
                 @endforeach
             </div>
 
-            {{-- Botón --}}
             <div class="space-y-6 order-3 desktop:order-4 flex justify-center desktop:justify-start" data-aos="fade-up"
                 data-aos-delay="1100" data-aos-duration="1200" data-aos-easing="ease-in-out-cubic">
                 <a href="/nosotros"

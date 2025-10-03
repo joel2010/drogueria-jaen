@@ -1,15 +1,12 @@
 <header class="w-full text-gray-800 z-10 relative">
     <div class="header-container">
-        {{-- Mobile Top Bar --}}
         <div class="tablet:hidden flex items-center justify-between w-full mb-4">
             <div class="flex items-center space-x-4 text-xs pl-4">
                 <div class="flex items-center space-x-2 mr-2">
                     <img src="/icons/phone.svg" alt="icono teléfono" class="w-4 h-4">
                     <p class="text-[11px]">
                         <a target="_blank"
-                            href="https://api.whatsapp.com/send?phone=51957390675&text=Hola%20Drogueria%20Jaen,%20quiero%20cotizar%20algunos%20productos%20que%20vi%20en%20su%20web,%20quisiera%20mas%20informacion">957
-                            390 675</a>
-
+                            href="https://api.whatsapp.com/send?phone=51957390675&text=Hola%20Drogueria%20Jaen,%20quiero%20cotizar%20algunos%20productos%20que%20vi%20en%20su%20web,%20quisiera%20mas%20informacion">957 390 675</a>
                     </p>
                 </div>
                 <div class="flex items-center space-x-2 border-l border-primary pl-2">
@@ -25,7 +22,6 @@
             </a>
         </div>
 
-        {{-- Mobile Header --}}
         <div class="tablet:hidden flex justify-between items-center w-full mb-0 tablet:mb-4 px-4">
             <button id="mobile-menu-button" class="text-primary focus:outline-none">
                 <img src="/icons/menu.svg" alt="Menú móvil" class="w-8 h-8">
@@ -36,7 +32,6 @@
             <div class="w-8"></div>
         </div>
 
-        {{-- Desktop Header --}}
         <div
             class="hidden tablet:flex flex-col tablet:flex-row tablet:items-center justify-between w-full mb-4 tablet:mb-3">
             <a href="/" class="mb-4 tablet:mb-0 flex items-center">
@@ -73,7 +68,6 @@
             </div>
         </div>
 
-        {{-- Desktop Nav --}}
         <nav class="hidden tablet:block w-full bg-primary text-white mt-4 tablet:mt-0">
             <ul class="flex justify-between items-center py-2 px-4">
                 <li class="w-full text-center">
@@ -116,7 +110,6 @@
         </nav>
     </div>
 
-    {{-- Mobile Menu --}}
     <div id="mobile-menu" class="hidden tablet:hidden bg-primary text-white py-4">
         <ul class="flex flex-col space-y-4 px-4">
             <li><a href="/"

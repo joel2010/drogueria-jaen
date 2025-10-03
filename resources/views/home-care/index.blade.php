@@ -2,7 +2,6 @@
 
 @section('content')
 @php
-// Define los datos de las características en un array para Blade
 $features = [
 [
 'icon' => '/icons/nurse.svg',
@@ -38,10 +37,10 @@ for ($i = 0; $i
 
 <div class="w-full overflow-hidden bg-gray-50 border-y border-gray-200">
     <div class="marquee-wrapper flex">
-        <div class="marquee-content flex py-2 text-title !text-[18px]  !text-primary">
+        <div class="marquee-content flex py-1 text-title !text-[16px]  !text-primary">
             {!! $marqueeContent !!}
         </div>
-        <div class="marquee-content flex py-2 text-title !text-[18px] !text-primary">
+        <div class="marquee-content flex py-1 text-title !text-[16px] !text-primary">
             {!! $marqueeContent !!}
         </div>
     </div>
@@ -51,7 +50,6 @@ for ($i = 0; $i
     <div
         class="desktop:grid desktop:grid-cols-2 desktop:gap-12 items-start bg-white max-w-desktop mx-auto p-6 tablet:p-10 rounded-3xl shadow-lg">
 
-        {{-- Columna izquierda: Texto + Features --}}
         <div class="order-2 desktop:order-1" data-aos="fade-right" data-aos-duration="1000"
             data-aos-easing="ease-out-cubic">
 

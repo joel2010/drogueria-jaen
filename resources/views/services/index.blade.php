@@ -50,14 +50,11 @@
             <div class="{{ $index === 0 ? 'md:col-span-2' : '' }}"
                 data-aos="fade-up" data-aos-duration="1000">
 
-                {{-- Contenedor interno con hover --}}
                 <div class="card-service bg-primary overflow-hidden shadow-lg hover:shadow-xl
                             transition-all duration-500 transform hover:-translate-y-2 h-full rounded-[20px]">
 
-                    {{-- Imagen --}}
                     <img src="{{ $service['image'] }}" alt="{{ $service['title'] }}" class="w-full h-[230px] tablet:h-48 object-cover">
 
-                    {{-- Texto --}}
                     <div class="bg-primary text-white p-6">
                         <h3 class="text-title text-center tablet:text-left mb-2 !text-white">{{ $service['title'] }}</h3>
                         <p class="text-description text-center tablet:text-left !text-white leading-relaxed">
@@ -73,17 +70,14 @@
 
 <section class="bg-gray-100 py-12 px-4">
     <div class="max-w-[500px] mx-auto text-center" data-aos="fade-up" data-aos-duration="1000">
-        {{-- Ícono --}}
         <div class="flex justify-center" data-aos="zoom-in" data-aos-delay="200">
             <img src="/icons/health-shield.svg" alt="icono salud" class="w-[76px] h-[76p]">
         </div>
 
-        {{-- Título --}}
         <h2 class="text-title mb-4" data-aos="fade-up" data-aos-delay="400">
             Reunimos en un solo lugar todo lo que tu institución o familia necesita:
         </h2>
 
-        {{-- Descripción --}}
         <p class="text-secondary !font-normal leading-relaxed" data-aos="fade-up" data-aos-delay="600">
             Abastecimiento confiable, productos farmacéuticos, equipamiento médico,
             almacenamiento seguro y cuidados en casa.

@@ -1,4 +1,3 @@
-{{-- resources/views/components/benefits-section.blade.php --}}
 @php
 $content = [
 'title' => 'Beneficios de trabajar con Droguería Jaén',
@@ -32,7 +31,6 @@ $content = [
 ];
 @endphp
 
-{{-- resources/views/components/benefits-section.blade.php --}}
 @php
 $content = [
 'title' => 'Beneficios de trabajar con Droguería Jaén',
@@ -67,7 +65,6 @@ $content = [
 @endphp
 
 <section class="max-width mx-auto px-4 py-6 tablet:pt-0 tablet:pb-8 text-center relative">
-    {{-- Título --}}
     <div class="mb-8" data-aos="fade-up" data-aos-duration="1000">
         <h2 class="text-title2">
             {{ $content['title'] }}
@@ -77,7 +74,6 @@ $content = [
         </p>
     </div>
 
-    {{-- Grid responsivo (2 columnas en mobile, 4 en desktop) --}}
     <div class="grid grid-cols-2 desktop:grid-cols-4 gap-7 items-stretch">
         @foreach ($content['benefits'] as $i => $benefit)
         <div data-aos="zoom-in" data-aos-delay="{{ $i * 150 }}" data-aos-duration="900"  class="cursor-pointer">
@@ -101,7 +97,6 @@ $content = [
 
 
 
-{{-- Script carrusel --}}
 <script>
     document.addEventListener("DOMContentLoaded", function () {
     const track = document.getElementById("benefitsCarouselTrack");

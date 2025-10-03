@@ -1,4 +1,3 @@
-{{-- resources/views/components/help-section.blade.php --}}
 @php
     $content = [
         'title' => '¿En qué puede ayudar Droguería Jaén?',
@@ -28,7 +27,6 @@
     <div class="mx-auto px-4 max-width">
         <div class="flex flex-col desktop:flex-row items-center gap-4 desktop:gap-12">
 
-            {{-- Caja de texto --}}
             <div class="w-full desktop:w-1/2 order-1 flex justify-center"
                  data-aos="fade-right"
                  data-aos-duration="1000">

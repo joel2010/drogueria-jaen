@@ -1,4 +1,3 @@
-{{-- resources/views/components/featured-section.blade.php --}}
 @php
 $features = [
 [
@@ -23,7 +22,6 @@ $features = [
 @endphp
 
 <section class="mx-auto tablet:py-8 relative max-width">
-    {{-- Versión escritorio --}}
     <div class="hidden tablet:flex justify-between gap-8 items-stretch mx-auto">
         @foreach($features as $index => $feature)
         <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="1200" data-aos-offset="150"
