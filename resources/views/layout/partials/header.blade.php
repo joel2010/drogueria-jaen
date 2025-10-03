@@ -35,7 +35,7 @@
         <div
             class="hidden tablet:flex flex-col tablet:flex-row tablet:items-center justify-between w-full mb-4 tablet:mb-3">
             <a href="/" class="mb-4 tablet:mb-0 flex items-center">
-                <img src="/images/logo.png" alt="Drogueria Jaen Logo" class="w-[302px]">
+                <img src="/images/logo.png" alt="Drogueria Jaen Logo" class="w-[280px]">
             </a>
             <div class="grid tablet:grid-cols-[2fr_1fr] gap-4 items-center">
                 <div
