@@ -243,15 +243,15 @@ $product = array_merge($product, [
                             <span class="mr-3 font-semibold text-sm">Síguenos en:</span>
                             <div class="flex space-x-3">
                                 <div class="flex space-x-4">
-                                    <a href="#" aria-label="Facebook"
+                                    <a  href="https://www.facebook.com/profile.php?id=61563440202360" target="_blank" aria-label="Facebook"
                                         class="text-gray-600 hover:text-blue-600 transition-colors">
                                         <img src="/icons/fb.svg" alt="icono Facebook" class="w-5 h-5">
                                     </a>
-                                    <a href="#" aria-label="TikTok"
+                                    {{-- <a href="#" aria-label="TikTok"
                                         class="text-gray-600 hover:text-black transition-colors">
                                         <img src="/icons/tiktok.svg" alt="icono TikTok" class="w-5 h-5">
-                                    </a>
-                                    <a href="#" aria-label="Instagram"
+                                    </a> --}}
+                                    <a href="https://www.instagram.com/drogueriajaen?igsh=b2dxMGxpZjd3YXQw" target="_blank" aria-label="Instagram"
                                         class="text-gray-600 hover:text-pink-600 transition-colors">
                                         <img src="/icons/instagram.svg" alt="icono Instagram" class="w-5 h-5">
                                     </a>
