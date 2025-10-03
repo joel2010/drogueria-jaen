@@ -22,12 +22,12 @@
             </a>
         </div>
 
-        <div class="tablet:hidden flex justify-between items-center w-full mb-0 tablet:mb-4 px-4">
+        <div class="tablet:hidden flex justify-between items-center w-full mb-3 tablet:mb-4 px-4">
             <button id="mobile-menu-button" class="text-primary focus:outline-none">
                 <img src="/icons/menu.svg" alt="Menú móvil" class="w-8 h-8">
             </button>
             <a href="/" class="flex items-center">
-                <img src="/images/logo_mobile.png" alt="Drogueria Jaen Logo" class="w-[170px]">
+                <img src="/images/logo.png" alt="Drogueria Jaen Logo" class="w-[170px]">
             </a>
             <div class="w-8"></div>
         </div>
@@ -35,7 +35,7 @@
         <div
             class="hidden tablet:flex flex-col tablet:flex-row tablet:items-center justify-between w-full mb-4 tablet:mb-3">
             <a href="/" class="mb-4 tablet:mb-0 flex items-center">
-                <img src="/images/logo.svg" alt="Drogueria Jaen Logo" class="w-[302px]">
+                <img src="/images/logo.png" alt="Drogueria Jaen Logo" class="w-[302px]">
             </a>
             <div class="grid tablet:grid-cols-[2fr_1fr] gap-4 items-center">
                 <div

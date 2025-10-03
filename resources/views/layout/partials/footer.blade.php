@@ -5,7 +5,7 @@
 
             <div class="flex flex-col items-center tablet:items-start mb-0 tablet:mb-0 mx-auto">
                 <a href="#" class="tablet:mb-6">
-                    <img src="/images/logo.svg" alt="Drogueria Jaen Logo" class=" w-full tablet:w-[220px]">
+                    <img src="/images/logo.png" alt="Drogueria Jaen Logo" class=" w-full tablet:w-[220px]">
                 </a>
             </div>
 
