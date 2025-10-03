@@ -88,43 +88,56 @@ $text_button = $text_button ?? 'text-white';
         </div>
 
         {{-- Carrusel en móvil --}}
-        <div class="desktop:hidden relative">
-            <div id="carousel"
-                class="flex overflow-x-auto relative w-full h-full snap-x snap-mandatory scroll-smooth gap-2 overflow-y-hidden">
-                @foreach ($content['products'] as $index => $product) <div
-                    class="flex-shrink-0 snap-center gap-2 w-[49%]">
-                    <x-product-card :product="$product" class="mx-2" :index="$index" />
-                </div> @endforeach </div> <button onclick="scrollCarousel('carousel', -1)"
-                class="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white/70 backdrop-blur-sm shadow-md transition-all duration-300 border-[1px] border-primary border-solid"
-                aria-label="Anterior"> <img src="/icons/button-left.svg" alt="Anterior" class="w-4 h-4"> </button>
-            <button onclick="scrollCarousel('carousel', 1)"
-                class="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white/70 backdrop-blur-sm shadow-md transition-all duration-300 border-[1px] border-primary border-solid"
-                aria-label="Siguiente"> <img src="/icons/button-right.svg" alt="Siguiente" class="w-4 h-4">
-            </button>
+        <div class="glide desktop:hidden relative">
+            <!-- Track -->
+            <div class="glide__track" data-glide-el="track">
+                <ul class="glide__slides">
+                    @foreach ($content['products'] as $index => $product)
+                    <li class="glide__slide flex-shrink-0 w-[49%]">
+                        <x-product-card :product="$product" :index="$index" />
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <!-- Controles -->
+            <div class="glide__arrows" data-glide-el="controls">
+                <button data-glide-dir="<"
+                    class="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white/70 backdrop-blur-sm shadow-md border border-primary transition-all hover:scale-110">
+                    <img src="/icons/button-left.svg" class="w-4 h-4" alt="Anterior">
+                </button>
+                <button data-glide-dir=">"
+                    class="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white/70 backdrop-blur-sm shadow-md border border-primary transition-all hover:scale-110">
+                    <img src="/icons/button-right.svg" class="w-4 h-4" alt="Siguiente">
+                </button>
+            </div>
         </div>
+
 
         {{-- Carrusel en desktop --}}
-        <div class="hidden desktop:block relative">
-            <div id="carousel-desktop"
-                class="flex overflow-x-auto overflow-y-hidden scroll-hidden scroll-smooth gap-6 snap-x snap-mandatory py-3">
-                @foreach ($content['products'] as $index => $product)
-                <div class="flex-shrink-0 snap-start w-[18%] min-w-[220px]">
-                    <x-product-card :product="$product" :index="$index" />
-                </div>
-                @endforeach
+        <div class="glide hidden desktop:block relative">
+            <div class="glide__track" data-glide-el="track">
+                <ul class="glide__slides">
+                    @foreach ($content['products'] as $index => $product)
+                    <li class="glide__slide flex-shrink-0 w-[18%] min-w-[220px]">
+                        <x-product-card :product="$product" :index="$index" />
+                    </li>
+                    @endforeach
+                </ul>
             </div>
-            <button onclick="scrollCarousel('carousel-desktop', -1)" class="absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/70 backdrop-blur-sm shadow-md
-                       transition-all duration-300 border border-primary
-                       hover:scale-110 hover:shadow-xl" aria-label="Anterior">
-                <img src="/icons/button-left.svg" alt="Anterior" class="w-5 h-5">
-            </button>
 
-            <button onclick="scrollCarousel('carousel-desktop', 1)" class="absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/70 backdrop-blur-sm shadow-md
-                       transition-all duration-300 border border-primary
-                       hover:scale-110 hover:shadow-xl" aria-label="Siguiente">
-                <img src="/icons/button-right.svg" alt="Siguiente" class="w-5 h-5">
-            </button>
+            <div class="glide__arrows" data-glide-el="controls">
+                <button data-glide-dir="<"
+                    class="absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/70 backdrop-blur-sm shadow-md border border-primary hover:scale-110">
+                    <img src="/icons/button-left.svg" class="w-5 h-5" alt="Anterior">
+                </button>
+                <button data-glide-dir=">"
+                    class="absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/70 backdrop-blur-sm shadow-md border border-primary hover:scale-110">
+                    <img src="/icons/button-right.svg" class="w-5 h-5" alt="Siguiente">
+                </button>
+            </div>
         </div>
+
 
         <div class="mt-8">
             <a href="/productos"
