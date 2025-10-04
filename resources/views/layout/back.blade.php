@@ -35,32 +35,18 @@
     <title>Droguería Jaén | Tu socio en salud</title>
     <meta name="description"
         content="En Droguería Jaén somos una empresa del rubro salud dedicada a ofrecer soluciones confiables e integrales para el bienestar de las personas y el fortalecimiento del sector sanitario.">
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-
-    <!-- Styles / Scripts -->
-    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @endif
-    @stack('head')
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/back/styles/main.css', 'resources/back/back.js'])
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
-<body id="app" class="overflow-x-hidden">
+<body class="overflow-x-hidden">
     @include('layout.partials.header')
 
-    <div
-        class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0 ">
-        <main class="w-full flex-col-reverse lg:flex-row  min-h-full  main__container md:mt-[-20px] !overflow-hidden">
-            @yield('content')
-        </main>
+    <div id="app" class="max-width mx-auto px-4 py-8">
     </div>
-
-    @if (Route::has('login'))
-    <div class="h-14.5 hidden lg:block"></div>
-    @endif
 
     @include('layout.partials.footer')
 </body>

@@ -1,0 +1,26 @@
+.auth {
+    max-width: 400px;
+    margin: 100px auto;
+}
+.form-group {
+    margin-bottom: 2rem;
+}
+.error {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: red;
+    line-height: 16px;
+}
+.si-no {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--el-color-danger);
+    border-radius: 50%;
+    color: white;
+    &.active {
+        background-color: var(--el-color-primary);
+    }
+}

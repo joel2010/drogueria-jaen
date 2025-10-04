@@ -15,9 +15,16 @@
         "vite": "^7.0.4"
     },
     "dependencies": {
+        "@element-plus/icons-vue": "^2.3.2",
         "@glidejs/glide": "^3.7.1",
         "@vitejs/plugin-vue": "^6.0.1",
         "aos": "^2.3.4",
-        "vue": "^3.5.21"
+        "element-plus": "^2.11.4",
+        "pinia": "^3.0.3",
+        "vee-validate": "^4.15.1",
+        "vue": "^3.5.22",
+        "vue-router": "^4.5.1",
+        "yup": "^1.7.1",
+        "yup-locales": "^1.2.28"
     }
 }
