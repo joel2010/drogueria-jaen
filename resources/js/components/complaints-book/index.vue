@@ -5,7 +5,7 @@
                 <div v-if="currentStep === 1" class="flex flex-col mb-2 gap-4 justify-center items-center">
                     <img src="/public/images/logo.png" alt="Droguería Jaen Logo" class="w-[370px] mr-4 max-w-max mb-1">
                     <div class="text-center text-sm">
-                        <p class="text-title2">RUC: XXXXXXXXXX</p>
+                        <p class="text-title2">RUC: 20554060651 - IMV VILLA</p>
                         <p class="text-title2">Los Olivos - Lima, Perú</p>
                     </div>
                 </div>
@@ -14,7 +14,7 @@
                     <img src="/public/images/logo.png" alt="Droguería Jaen Logo"
                         class="w-[286px]  sm:w-[370px] mr-4 max-w-max mb-1">
                     <div class="text-right text-sm">
-                        <p class="font-bold text-primary hidden sm:block">RUC: XXXXXXXXXX</p>
+                        <p class="font-bold text-primary hidden sm:block">RUC: 20554060651 - IMv VILLA</p>
                         <p class="text-primary hidden sm:block">Droguería Jaen</p>
                         <p class="text-gray-500 hidden sm:block">Los Olivos - Lima, Perú</p>
                     </div>
@@ -88,7 +88,7 @@
                             class="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
                             Continuar
                         </button>
-                        <button type="button" @click="cancelForm"
+                        <button type="button" @click="resetForm()"
                             class="inline-flex justify-center py-2 px-6 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                             Cancelar
                         </button>
@@ -103,7 +103,7 @@
                         <p><strong class="font-semibold">QUEJA:</strong> Disconformidad NO relacionada a los productos o
                             servicios. Expresa el malestar o descontento respecto a la atención recibida.</p>
                         <p>*La formulación del Reclamo o Queja no impide acudir a otras vías de solución de
-                            controversias ni es requisito previo para interponer una denuncia ante el INDECOPLI.</p>
+                            controversias ni es requisito previo para interponer una denuncia ante el INDECOPI.</p>
                         <p>*El proveedor deberá dar respuesta al Reclamo o Queja en un plazo no mayor a quince (15) días
                             hábiles, improrrogables.</p>
                         <p><strong class="font-semibold">Importante:</strong> El correo desde el cual recibirá la
@@ -183,7 +183,7 @@
                                 class="w-full sm:w-1/3 text-sm font-medium text-gray-700 mb-1 sm:mb-0">Bien</label>
                             <select id="bien" v-model="formData.bien"
                                 class="w-full border sm:w-2/3 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md shadow-sm">
-                                <option value="" disabled>Producto</option>
+                                <option value="" disabled>Seleccione</option>
                                 <option v-for="option in bienes" :key="option.value" :value="option.value">{{
                                     option.label }}</option>
                             </select>
@@ -293,8 +293,8 @@
                         <div class="relative w-full sm:w-2/3">
                             <span class="text-subtitle">(Opcional)</span>
                             <textarea id="observaciones" v-model="formData.observaciones" rows="4"
-                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm resize-y bg-gray-50 cursor-not-allowed"
-                                disabled></textarea>
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm resize-y bg-gray-50"
+                                ></textarea>
                             <p class="mt-2 text-description !text-black">Las acciones adoptadas para atender su reclamo
                                 o queja
                                 serán remitidas al correo electrónico registrado dentro del plazo legal</p>
@@ -324,14 +324,20 @@
                 </div>
             </form>
         </div>
+        <ConfirmationModal
+            :show="showConfirmationModal"
+            :image-url="teamImageUrl"
+            @close="showConfirmationModal = false"
+        />
     </div>
 </template>
 
 <script setup>
+import ConfirmationModal from './modal.vue';
 import { ref, reactive, computed } from 'vue';
 
 const currentStep = ref(1);
-
+const showConfirmationModal = ref(false);
 const formData = reactive({
     // Paso 1
     clientType: '',
@@ -430,6 +436,30 @@ const cancelForm = () => {
     }
 };
 
+const resetForm = () => {
+    Object.assign(formData, {
+        clientType: '',
+        reclamationType: '',
+        dniRuc: '',
+        razonSocial: '',
+        representanteLegal: '',
+        direccion: '',
+        dniCeRuc: '',
+        email: '',
+        telefono: '',
+        isMinor: false,
+        bien: '',
+        nFacturaBoleta: '',
+        montoReclamado: null,
+        descripcion: '',
+        tipoDetalle: 'RECLAMO',
+        detalle: '',
+        pedido: '',
+        files: [],
+        observaciones: '',
+    });
+    currentStep.value = 1;
+};
 const handleFileUpload = (event) => {
     formData.files = Array.from(event.target.files);
     console.log('Archivos seleccionados:', formData.files);
@@ -437,9 +467,9 @@ const handleFileUpload = (event) => {
 
 const submitForm = () => {
     console.log('Formulario enviado:', formData);
-    alert('Formulario enviado con éxito (simulado)!');
+    showConfirmationModal.value = true;
     // Aquí es donde harías la llamada a tu API
-    cancelForm();
+    resetForm();
 };
 </script>
 
