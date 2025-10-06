@@ -95,10 +95,10 @@
     </div>
 
     <div class="max-width mx-auto mb-12 flex flex-col tablet:flex-row tablet:justify-between items-center place-content-center space-y-4 pt-2 border-black border-t gap-1 tablet:gap-0">
-        <div class="flex items-center space-x-2 mb-0">
+        <a class="flex items-center space-x-2 mb-0 cursor-pointer" href="/libro-reclamaciones">
             <img src="/icons/book.svg" alt="icono libro de reclamaciones" class="w-16">
             <span class="text-sm">Libros de reclamaciones</span>
-        </div>
+        </a>
         <div class="flex flex-col tablet:flex-row items-center space-y-2">
             <span class="text-sm font-semibold mb-1 tablet:mb-0">Síguenos en:</span>
             <div class="flex space-x-4">

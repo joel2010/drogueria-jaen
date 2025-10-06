@@ -30,6 +30,10 @@ Route::get('/productos', function () {
     return view('products.index');
 });
 
+Route::get('/libro-reclamaciones', function () {
+    return view('complaints-book.index');
+});
+
 Route::get('/producto/{id}', function ($id) {
     return view('products.detail', ['id' => $id]);
 });

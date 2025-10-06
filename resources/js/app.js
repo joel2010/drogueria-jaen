@@ -1,6 +1,7 @@
 import './bootstrap';
 import { createApp } from 'vue';
 import CatalogSection from '@components/products/index.vue';
+import ComplaintsBookSection from '@components/complaints-book/index.vue';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm';
@@ -48,5 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Registrar componente global
 app.component('catalog-products', CatalogSection);
+app.component('complaints-book', ComplaintsBookSection);
 
 app.mount('#app');
