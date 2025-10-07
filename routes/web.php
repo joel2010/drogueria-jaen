@@ -1,11 +1,15 @@
 <?php
 
 use App\Http\Controllers\Back\BackController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\SpecialtyController;
+use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -54,7 +58,45 @@ Route::middleware('auth')->group(function () {
         Route::put('{id}/update', [SpecialtyController::class, 'update']);
         Route::delete('{id}/delete', [SpecialtyController::class, 'delete']);
     });
+
+    // Contacto
     Route::prefix('contacts')->group(function () {
         Route::get('', [ContactController::class, 'list']);
+    });
+
+    // landing page
+    Route::prefix('landing-pages')->group(function () {
+        Route::get('',                  [LandingPageController::class, 'list']);
+        Route::get('{id}/show',         [LandingPageController::class, 'showId']);
+        Route::post('store',            [LandingPageController::class, 'store']);
+        Route::post('{id}/update',      [LandingPageController::class, 'update']);
+        Route::delete('{id}/delete',    [LandingPageController::class, 'delete']);
+    });
+
+    // brands
+    Route::prefix('brands')->group(function () {
+        Route::get('',                  [BrandController::class, 'list']);
+        Route::get('{id}/show',         [BrandController::class, 'showId']);
+        Route::post('store',            [BrandController::class, 'store']);
+        Route::put('{id}/update',       [BrandController::class, 'update']);
+        Route::delete('{id}/delete',    [BrandController::class, 'delete']);
+    });
+
+    // categories
+    Route::prefix('categories')->group(function () {
+        Route::get('',                  [CategoryController::class, 'list']);
+        Route::get('{id}/show',         [CategoryController::class, 'showId']);
+        Route::post('store',            [CategoryController::class, 'store']);
+        Route::put('{id}/update',       [CategoryController::class, 'update']);
+        Route::delete('{id}/delete',    [CategoryController::class, 'delete']);
+    });
+
+    // tipos
+    Route::prefix('types')->group(function () {
+        Route::get('',                  [TypeController::class, 'list']);
+        Route::get('{id}/show',         [TypeController::class, 'showId']);
+        Route::post('store',            [TypeController::class, 'store']);
+        Route::put('{id}/update',       [TypeController::class, 'update']);
+        Route::delete('{id}/delete',    [TypeController::class, 'delete']);
     });
 });
