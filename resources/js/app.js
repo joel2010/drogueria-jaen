@@ -1,54 +1,69 @@
-import './bootstrap';
-import { createApp } from 'vue';
-import CatalogSection from '@components/products/index.vue';
-import ComplaintsBookSection from '@components/complaints-book/index.vue';
-import AOS from "aos";
-import "aos/dist/aos.css";
-import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm';
+import './bootstrap'
+import { createApp } from 'vue'
+import CatalogSection from '@components/products/index.vue'
+import ComplaintsBookSection from '@components/complaints-book/index.vue'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import Glide, {
+    Controls,
+    Breakpoints
+} from '@glidejs/glide/dist/glide.modular.esm'
 
-const app = createApp({});
+const app = createApp({})
 
 app.mixin({
-    mounted() {
+    mounted () {
         AOS.init({
             once: true,
             duration: 400,
             easing: 'ease-out',
-            offset: 0,
-        });
+            offset: 0
+        })
     }
-});
+})
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
     // Mobile slider
-    new Glide(".desktop\\:hidden.glide", {
-        type: "carousel",
-        perView: 2,
-        gap: 16,
-        startAt: 0,
-        breakpoints: {
-            768: { perView: 2 }
-        }
-    }).mount({ Controls, Breakpoints });
+    if (document.querySelector('.desktop\\:hidden.glide')) {
+        new Glide('.desktop\\:hidden.glide', {
+            type: 'carousel',
+            perView: 2,
+            gap: 16,
+            startAt: 0,
+            breakpoints: {
+                768: { perView: 2 }
+            }
+        }).mount({ Controls, Breakpoints })
+    }
 
-    new Glide(".desktop\\:block.glide", {
-        type: "carousel",
-        perView: 4,
-        startAt: 0,
-        gap: 24
-    }).mount({ Controls, Breakpoints });
+    if (document.querySelector('.desktop\\:block.glide')) {
+        new Glide('.desktop\\:block.glide', {
+            type: 'carousel',
+            perView: 4,
+            startAt: 0,
+            gap: 24
+        }).mount({ Controls, Breakpoints })
+    }
 
-        new Glide(".glide-features", {
-        type: "carousel",
-        perView: 1,     // 👈 solo 1 por página
-        gap: 16,
-        startAt: 0
-    }).mount({ Controls, Breakpoints });
-});
+    if (document.querySelector('.glide-features')) {
+        new Glide('.glide-features', {
+            type: 'carousel',
+            perView: 1, // 👈 solo 1 por página
+            gap: 16,
+            startAt: 0
+        }).mount({ Controls, Breakpoints })
+    }
 
+    const btnCloseModalContact = document.getElementById('btnCloseModalContact')
+    if (btnCloseModalContact) {
+        btnCloseModalContact.addEventListener('click', () => {
+            document.getElementById('divModalContact').remove()
+        })
+    }
+})
 
 // Registrar componente global
-app.component('catalog-products', CatalogSection);
-app.component('complaints-book', ComplaintsBookSection);
+app.component('catalog-products', CatalogSection)
+app.component('complaints-book', ComplaintsBookSection)
 
-app.mount('#app');
+app.mount('#app')

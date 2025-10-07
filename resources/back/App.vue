@@ -4,6 +4,7 @@
             <template #title>Productos</template>
             <el-menu-item :route="{ name: 'specialties' }" index="specialties">Especialidad</el-menu-item>
         </el-sub-menu>
+        <el-menu-item :route="{ name: 'contacts' }" index="contacts">Formulario de contacto</el-menu-item>
         <!-- <el-menu-item index="4">Orders</el-menu-item> -->
         <el-sub-menu index="5">
             <template #title>{{ user.name }}</template>

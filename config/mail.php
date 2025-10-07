@@ -115,4 +115,7 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    'to' => [
+        'email' => env('MAIL_TO', 'ventas@drogueriajaen.com.pe'),
+    ],
 ];

@@ -1,22 +1,22 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
-@import 'aos/dist/aos.css';
+@import "aos/dist/aos.css";
 @import "@glidejs/glide/dist/css/glide.core.min.css";
 @import "@glidejs/glide/dist/css/glide.theme.min.css";
 
 :root {
-    --primary: #123B84;
+    --primary: #123b84;
     --color-secondary: 210 20% 90%;
 }
 
 @theme {
     --color-primary: var(--primary);
     --color-secondary: hsl(var(--color-secondary));
-    --font-sans: 'Hind', ui-sans-serif, system-ui, sans-serif;
+    --font-sans: "Hind", ui-sans-serif, system-ui, sans-serif;
     --breakpoint-tablet: 768px;
     --breakpoint-desktop: 1001px;
     --spacing-tablet: 768px;
@@ -30,7 +30,6 @@
 .card-hover:hover {
     @apply -translate-y-1 shadow-lg scale-[1.02];
 }
-
 
 .carousel-container {
     position: relative;
@@ -56,7 +55,6 @@
     align-items: center;
 }
 
-
 .max-width {
     max-width: 1000px;
     padding-inline: 16px;
@@ -64,10 +62,8 @@
     @media (min-width: 1001px) {
         padding-left: 0rem;
         padding-right: 0rem;
-
     }
 }
-
 
 .header-container {
     display: flex;
@@ -75,29 +71,26 @@
     max-width: 1000px;
     padding: 0 0 0 0rem;
 }
-.main__container{
+.main__container {
     overflow: hidden;
 }
 
-
-
-.text-title{
+.text-title {
     font-size: 20px !important;
     font-weight: 600 !important;
     color: #000000;
 }
 
-.text-title2{
+.text-title2 {
     font-size: 18px !important;
     font-weight: 600 !important;
     color: #000000;
 }
 
-
 .text-description {
     font-size: 12px;
     font-weight: 400;
-    color: #6B7280;
+    color: #6b7280;
 }
 
 .text-subtitle {
@@ -109,7 +102,7 @@
 .text-description2 {
     font-size: 14px;
     font-weight: 400;
-    color: #6B7280;
+    color: #6b7280;
 }
 
 @media (min-width: 768px) {
@@ -120,13 +113,13 @@
         justify-content: space-between;
         align-items: center;
     }
-    .main__container{
+    .main__container {
         overflow: auto !important;
     }
-    .text-description{
+    .text-description {
         font-size: 14px;
     }
-    .text-title2{
+    .text-title2 {
         font-size: 24px !important;
     }
 }
@@ -139,10 +132,30 @@
 }
 
 .scroll-hidden {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .scroll-hidden::-webkit-scrollbar {
-  display: none;
+    display: none;
+}
+.error {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: red;
+    margin-top: 4px;
+}
+.auth {
+    max-width: 400px;
+    margin: 100px auto;
+}
+.form-group {
+    margin-bottom: 2rem;
+}
+.error {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: red;
+    line-height: 16px;
 }

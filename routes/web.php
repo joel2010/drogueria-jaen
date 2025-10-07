@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Back\BackController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\SpecialtyController;
@@ -37,11 +39,11 @@ Route::get('/libro-reclamaciones', function () {
 Route::get('/producto/{id}', function ($id) {
     return view('products.detail', ['id' => $id]);
 });
-
-Route::get('login', [LoginController::class, 'showForm']);
+Route::post('contacto', [FrontController::class, 'contactStore']);
+Route::get('login', [LoginController::class, 'showForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
-Route::get('dashboard', [BackController::class, 'home']);
 Route::middleware('auth')->group(function () {
+    Route::get('dashboard', [BackController::class, 'home']);
     Route::post('logout', [LogoutController::class, 'logout']);
 
     // Especialidad
@@ -51,5 +53,8 @@ Route::middleware('auth')->group(function () {
         Route::post('store', [SpecialtyController::class, 'store']);
         Route::put('{id}/update', [SpecialtyController::class, 'update']);
         Route::delete('{id}/delete', [SpecialtyController::class, 'delete']);
+    });
+    Route::prefix('contacts')->group(function () {
+        Route::get('', [ContactController::class, 'list']);
     });
 });
