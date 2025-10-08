@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ComplaintBookRequest;
+use App\Mail\ComplaintBookMail;
 use App\Mail\ContactMail;
 use App\Services\ComplaintBookService;
 use App\Services\ContactService;
@@ -58,7 +59,9 @@ class FrontController extends Controller
     public function complaintsBookStore(ComplaintBookRequest $request)
     {
         (new ComplaintBookService())->store($request->validated());
-
+        $data = $request->except('files');
+        $files = $request->hasFile('files') ? $request->file('files') : [];
+        Mail::to(config('mail.to.email'))->send(new ComplaintBookMail($data, $files));
         return redirect()->back()->with('ok', '1');
     }
 }
