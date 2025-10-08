@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('file_path');
             $table->string('type')->nullable();
             $table->string('extension');
+            $table->integer('order')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->index(['model_id', 'model_type']);

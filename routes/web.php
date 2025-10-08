@@ -3,11 +3,13 @@
 use App\Http\Controllers\Back\BackController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ComplaintBookController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +46,7 @@ Route::get('/producto/{id}', function ($id) {
     return view('products.detail', ['id' => $id]);
 });
 Route::post('contacto', [FrontController::class, 'contactStore']);
+Route::post('complaints-book', [FrontController::class, 'complaintsBookStore']);
 Route::get('login', [LoginController::class, 'showForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 Route::middleware('auth')->group(function () {
@@ -98,5 +101,19 @@ Route::middleware('auth')->group(function () {
         Route::post('store',            [TypeController::class, 'store']);
         Route::put('{id}/update',       [TypeController::class, 'update']);
         Route::delete('{id}/delete',    [TypeController::class, 'delete']);
+    });
+
+    // productos
+    Route::prefix('products')->group(function () {
+        Route::get('',                  [ProductController::class, 'list']);
+        Route::get('{id}/show',         [ProductController::class, 'showId']);
+        Route::post('store',            [ProductController::class, 'store']);
+        Route::post('{id}/update',      [ProductController::class, 'update']);
+        Route::delete('{id}/delete',    [ProductController::class, 'delete']);
+    });
+
+    // Contacto
+    Route::prefix('complaints-book')->group(function () {
+        Route::get('',  [ComplaintBookController::class, 'list']);
     });
 });

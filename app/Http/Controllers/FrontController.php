@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ComplaintBookRequest;
 use App\Mail\ContactMail;
+use App\Services\ComplaintBookService;
 use App\Services\ContactService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -49,6 +51,13 @@ class FrontController extends Controller
 
         (new ContactService())->store($request);
         Mail::to(config('mail.to.email'))->send(new ContactMail($request->all()));
+
+        return redirect()->back()->with('ok', '1');
+    }
+
+    public function complaintsBookStore(ComplaintBookRequest $request)
+    {
+        (new ComplaintBookService())->store($request->validated());
 
         return redirect()->back()->with('ok', '1');
     }

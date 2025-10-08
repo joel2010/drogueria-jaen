@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('slug')->nullable();
+            $table->string('name', 150);
+            $table->string('slug', 150)->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();

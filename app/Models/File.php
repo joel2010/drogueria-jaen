@@ -28,6 +28,7 @@ class File extends Model
         'file_path',
         'type',
         'extension',
+        'order'
     ];
 
     public function model()
