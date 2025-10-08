@@ -10,9 +10,7 @@ final class LandingPageService
 
     public function list()
     {
-        return LandingPage::where('state', true)
-            ->orderBy('order_index', 'asc')
-            ->get();
+        return LandingPage::orderBy('order_index', 'asc')->get();
     }
 
     public function showId($id): LandingPage
@@ -64,5 +62,10 @@ final class LandingPageService
             return true;
         }
         return false;
+    }
+
+    public function listFront()
+    {
+       return LandingPage::where('state',true)->orderBy('order_index', 'asc')->get();
     }
 }

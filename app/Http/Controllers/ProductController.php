@@ -22,10 +22,13 @@ class ProductController extends Controller
 
     public function list(Request $request)
     {
-        $search = $request->input('search');
-        $perPage = $request->input('per_page', 10);
+        $search  = $request->input('search');
+        $filters = $request->only(['category_id', 'brand_id', 'type_id', 'specialty_id']);
 
-        $products = $this->service->list($search, $perPage);
+        $perPage = (int) $request->input('per_page', 10);
+        $sortDirection = $request->input('sort_direction', 'desc');
+
+        $products = $this->service->list($search, $filters, $perPage, $sortDirection);
 
         return ProductListResource::collection($products);
     }

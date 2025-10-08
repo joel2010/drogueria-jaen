@@ -63,4 +63,9 @@ final class CategoryService
         }
         return false;
     }
+
+    public function listFront()
+    {
+        return Category::where('active', true)->get();
+    }
 }

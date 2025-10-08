@@ -14,52 +14,31 @@ use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home.index');
-});
+Route::get('/',                     [FrontController::class, 'home'])->name('home');
+Route::get('/nosotros',             [FrontController::class, 'about'])->name('about');
+Route::get('/contacto',             [FrontController::class, 'contact'])->name('contact');
+Route::get('/servicios',            [FrontController::class, 'services'])->name('services');
+Route::get('/cuidado-en-casa',      [FrontController::class, 'homeCare'])->name('home-care');
+Route::get('/productos',            [FrontController::class, 'products'])->name('products');
+Route::get('/producto/{id}',        [FrontController::class, 'productDetail'])->name('product.detail');
+Route::get('/libro-reclamaciones',  [FrontController::class, 'complaintsBook'])->name('complaints-book');
+Route::get('/products',             [FrontController::class, 'listProducts']);
+Route::get('login',                 [LoginController::class, 'showForm'])->name('login');
+Route::post('contacto',             [FrontController::class, 'contactStore']);
+Route::post('complaints-book',      [FrontController::class, 'complaintsBookStore']);
+Route::post('login',                [LoginController::class, 'login']);
 
-Route::get('/nosotros', function () {
-    return view('about.index');
-});
-
-Route::get('/contacto', function () {
-    return view('contact.index');
-});
-
-Route::get('/servicios', function () {
-    return view('services.index');
-});
-
-Route::get('/cuidado-en-casa', function () {
-    return view('home-care.index');
-});
-
-Route::get('/productos', function () {
-    return view('products.index');
-});
-
-Route::get('/libro-reclamaciones', function () {
-    return view('complaints-book.index');
-});
-
-Route::get('/producto/{id}', function ($id) {
-    return view('products.detail', ['id' => $id]);
-});
-Route::post('contacto', [FrontController::class, 'contactStore']);
-Route::post('complaints-book', [FrontController::class, 'complaintsBookStore']);
-Route::get('login', [LoginController::class, 'showForm'])->name('login');
-Route::post('login', [LoginController::class, 'login']);
 Route::middleware('auth')->group(function () {
     Route::get('dashboard', [BackController::class, 'home']);
     Route::post('logout', [LogoutController::class, 'logout']);
 
     // Especialidad
     Route::prefix('specialties')->group(function () {
-        Route::get('', [SpecialtyController::class, 'list']);
-        Route::get('{id}/show', [SpecialtyController::class, 'show']);
-        Route::post('store', [SpecialtyController::class, 'store']);
-        Route::put('{id}/update', [SpecialtyController::class, 'update']);
-        Route::delete('{id}/delete', [SpecialtyController::class, 'delete']);
+        Route::get('',                  [SpecialtyController::class, 'list']);
+        Route::get('{id}/show',         [SpecialtyController::class, 'show']);
+        Route::post('store',            [SpecialtyController::class, 'store']);
+        Route::put('{id}/update',       [SpecialtyController::class, 'update']);
+        Route::delete('{id}/delete',    [SpecialtyController::class, 'delete']);
     });
 
     // Contacto
@@ -76,7 +55,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('{id}/delete',    [LandingPageController::class, 'delete']);
     });
 
-    // brands
+    //  marcas
     Route::prefix('brands')->group(function () {
         Route::get('',                  [BrandController::class, 'list']);
         Route::get('{id}/show',         [BrandController::class, 'showId']);
@@ -112,7 +91,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('{id}/delete',    [ProductController::class, 'delete']);
     });
 
-    // Contacto
+    // libro de reclamaciones
     Route::prefix('complaints-book')->group(function () {
         Route::get('',  [ComplaintBookController::class, 'list']);
     });

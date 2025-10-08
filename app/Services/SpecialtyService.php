@@ -44,7 +44,7 @@ final class SpecialtyService
 
         return $record;
     }
-    
+
     public function update(Request $data, int $recordId): Specialty
     {
         $record = $this->createModel($this->show($recordId), $data);
@@ -52,10 +52,15 @@ final class SpecialtyService
 
         return $record;
     }
-    
+
     public function delete(int $recordId): void
     {
         $record = $this->show($recordId);
         $record->delete();
+    }
+
+    public function listFront(): Collection
+    {
+        return Specialty::where('active', true)->get();
     }
 }

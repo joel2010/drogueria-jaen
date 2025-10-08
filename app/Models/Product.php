@@ -50,25 +50,42 @@ class Product extends Model
         return $this->belongsTo(Specialty::class);
     }
 
-    public function scopeSearch(Builder $query, ?string $search): Builder
+    public function scopeSearch(Builder $query, ?string $search = null, ?array $filters = []): Builder
     {
-        if ($search) {
-            return $query->where(function (Builder $query) use ($search) {
+        if (!empty($search)) {
+            $query->where(function (Builder $query) use ($search) {
                 $query->where('name', 'like', "%{$search}%")
-                    ->orWhere('description', 'like', "%{$search}%")
-                    ->orWhereHas('category', function (Builder $query) use ($search) {
-                        $query->where('name', 'like', "%{$search}%");
-                    })
-                    ->orWhereHas('brand', function (Builder $query) use ($search) {
-                        $query->where('name', 'like', "%{$search}%");
-                    })
-                    ->orWhereHas('type', function (Builder $query) use ($search) {
-                        $query->where('name', 'like', "%{$search}%");
-                    })
-                    ->orWhereHas('specialty', function (Builder $query) use ($search) {
-                        $query->where('name', 'like', "%{$search}%");
-                    });
+                    ->orWhere('internal_id', 'like', "%{$search}%")
+                    ->orWhere('slug', 'like', "%{$search}%")
+                    ->orWhereHas('category', fn($q) => $q->where('name', 'like', "%{$search}%"))
+                    ->orWhereHas('brand', fn($q) => $q->where('name', 'like', "%{$search}%"))
+                    ->orWhereHas('type', fn($q) => $q->where('name', 'like', "%{$search}%"))
+                    ->orWhereHas('specialty', fn($q) => $q->where('name', 'like', "%{$search}%"));
             });
+        }
+
+        if (!empty($filters)) {
+            $query
+                ->when($filters['category_id'] ?? null, function ($q, $ids) {
+                    is_array($ids)
+                        ? $q->whereIn('category_id', $ids)
+                        : $q->where('category_id', $ids);
+                })
+                ->when($filters['brand_id'] ?? null, function ($q, $ids) {
+                    is_array($ids)
+                        ? $q->whereIn('brand_id', $ids)
+                        : $q->where('brand_id', $ids);
+                })
+                ->when($filters['type_id'] ?? null, function ($q, $ids) {
+                    is_array($ids)
+                        ? $q->whereIn('type_id', $ids)
+                        : $q->where('type_id', $ids);
+                })
+                ->when($filters['specialty_id'] ?? null, function ($q, $ids) {
+                    is_array($ids)
+                        ? $q->whereIn('specialty_id', $ids)
+                        : $q->where('specialty_id', $ids);
+                });
         }
 
         return $query;

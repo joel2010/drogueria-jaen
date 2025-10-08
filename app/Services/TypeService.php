@@ -64,4 +64,9 @@ final class TypeService
         }
         return false;
     }
+
+    public function listFront()
+    {
+        return Type::where('active', true)->get();
+    }
 }

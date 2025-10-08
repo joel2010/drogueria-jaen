@@ -63,4 +63,9 @@ final class BrandService
         }
         return false;
     }
+
+    public function listFront()
+    {
+        return Brand::where('active', true)->get();
+    }
 }
