@@ -79,7 +79,8 @@ class FrontController extends Controller
     {
         $data           = $this->landingPageService->listFront();
         $landingPage    = LandingPageListResource::collection($data)->resolve();
-        $product        = new ProductResource($this->productService->showId($id))->resolve();
+        $product        = (new ProductResource($this->productService->showId($id)))->resolve();
+
         return view('products.detail', compact('product', 'landingPage'));
     }
 
