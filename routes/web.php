@@ -29,13 +29,9 @@ Route::get('/cuidado-en-casa', [FrontController::class, 'homeCare']);
 
 Route::get('/productos', [FrontController::class, 'products']);
 
-Route::get('/libro-reclamaciones', function () {
-    return view('complaints-book.index');
-});
+Route::get('/libro-reclamaciones', [FrontController::class, 'complaintsBook']);
 
-Route::get('/producto/{id}', function ($id) {
-    return view('products.detail', ['id' => $id]);
-});
+Route::get('/producto/{slug}', [FrontController::class, 'productDetails']);
 Route::post('contacto', [FrontController::class, 'contactStore']);
 Route::post('complaints-book', [FrontController::class, 'complaintsBookStore']);
 Route::get('login', [LoginController::class, 'showForm'])->name('login');

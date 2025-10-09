@@ -1,51 +1,12 @@
-@php
-$content = [
-'title' => 'Productos Destacados',
-'subtitle' => 'Descubre nuestra amplia gama de productos de alta calidad',
-'products' => [
-[
-'id' => 1,
-'imageSrc' => '/images/product/product1.png',
-'name' => 'Transpore 3M 1527-1',
-'description' => 'Cinta médica hipoalergénica',
-],
-[
-'id' => 2,
-'imageSrc' => '/images/product/product2.png',
-'name' => 'Transpore 3M 1527-1',
-'description' => 'Cinta médica hipoalergénica',
-],
-[
-'id' => 3,
-'imageSrc' => '/images/product/product3.png',
-'name' => 'Gorro de enfermera',
-'description' => 'Material Tela no tejida SPP',
-],
-[
-'id' => 4,
-'imageSrc' => '/images/product/product4.png',
-'name' => 'Transpore 3m 1527-3',
-'description' => 'Cinta médica hipoalergénica',
-],
-[
-'id' => 5,
-'imageSrc' => '/images/product/product5.png',
-'name' => 'Steri Strip 1546',
-'description' => 'Parche para cerrar heridas',
-],
-],
-];
-@endphp
-
 <section class="bg-primary py-6 tablet:py-8 text-center">
     <div class="mx-auto px-4 max-width">
         {{-- Encabezado --}}
         <div class="mb-6">
             <h2 class="text-title2 !text-white">
-                {{ $content['title'] }}
+                Productos Destacados
             </h2>
             <p class="text-subtitle !font-normal !text-white">
-                {{ $content['subtitle'] }}
+                Descubre nuestra amplia gama de productos de alta calidad
             </p>
         </div>
 
@@ -53,7 +14,7 @@ $content = [
         <div class="desktop:hidden relative">
             <div id="carousel"
                 class="flex overflow-x-auto relative w-full h-full snap-x snap-mandatory scroll-smooth gap-2 overflow-y-hidden">
-                @foreach ($content['products'] as $index => $product)
+                @foreach ($mainProducts as $index => $product)
                 <div class="flex-shrink-0 snap-center gap-2 w-[49%]">
                     <x-product-card :product="$product" class="mx-2" :index="$index" />
                 </div>
@@ -72,17 +33,17 @@ $content = [
 
         {{-- Grid en escritorio --}}
         <div class="hidden desktop:grid  desktop:grid-cols-5 gap-6 justify-center">
-            @foreach (array_slice($content['products'], 0, 5) as $index => $product)
+            @foreach ($mainProducts as $index => $product)
             <x-product-card :product="$product" :index="$index" />
             @endforeach
         </div>
 
         {{-- Botón Ver más --}}
         <div class="mt-8">
-            <button
+            <a href="/productos"
                 class="bg-white text-primary font-semibold py-1 px-4 tablet:py-2 tablet:px-8 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300">
                 Ver más productos
-            </button>
+            </a>
         </div>
     </div>
 </section>

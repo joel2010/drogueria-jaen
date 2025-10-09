@@ -8,14 +8,20 @@ use App\Http\Resources\CategoryListResource;
 use App\Http\Resources\LandingPageListResource;
 use App\Http\Resources\ProductListResource;
 use App\Http\Resources\ProductResource;
+use App\Http\Resources\ProductsListFrontResource;
 use App\Http\Resources\SpecialtyListResource;
 use App\Http\Resources\TypeListResource;
 use App\Mail\ComplaintBookMail;
 use App\Mail\ContactMail;
 use App\Models\LandingPage;
+use App\Models\Product;
+use App\Services\BrandService;
+use App\Services\CategoryService;
 use App\Services\ComplaintBookService;
 use App\Services\ContactService;
 use App\Services\ProductService;
+use App\Services\SpecialtyService;
+use App\Services\TypeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -50,11 +56,37 @@ class FrontController extends Controller
         return view('home-care.index', compact('mainProducts'));
     }
     
-    public function products()
+    public function products(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = (new ProductService())->listForFront($request);
+            return ProductsListFrontResource::collection($data);
+        }
+        $mainProducts = (new ProductService())->main();
+        $types = (new TypeService())->availables();
+        $categories = (new CategoryService())->availables();
+        $specialties = (new SpecialtyService())->availables();
+        $brands = (new BrandService())->availables();
+
+        return view('products.index', compact('mainProducts', 'types', 'categories', 'specialties', 'brands'));
+    }
+
+    public function productDetails(string $slug)
     {
         $mainProducts = (new ProductService())->main();
+        $record = Product::where('slug', $slug)
+            ->where('active', true)
+            ->first();
+        if (!$record) {
+            return redirect()->to('/');
+        }
 
-        return view('products.index', compact('mainProducts'));
+        return view('products.detail', compact('record', 'mainProducts'));
+    }
+
+    public function complaintsBook()
+    {
+        return view('complaints-book.index');
     }
 
     public function contactStore(Request $request)

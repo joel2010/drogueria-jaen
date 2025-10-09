@@ -2,7 +2,7 @@
 
 @section('content')
     <div>
-        <catalog-products></catalog-products>
+        <catalog-products :categories='@json($categories)' :brands='@json($brands)' :specialties='@json($specialties)' :types='@json($types)'></catalog-products>
     </div>
     @include('home.partials.products', [
     'background_color' => 'bg-primary',

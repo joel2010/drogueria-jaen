@@ -2,47 +2,39 @@
   <div class="max-w-desktop mx-auto py-8">
     <!-- Header móvil -->
     <div
-      class="mx-4 flex flex-col md:flex-row justify-between items-start sm:items-center mb-6 border-b border-gray-400 pb-4 md:hidden"
-    >
+      class="mx-4 flex flex-col md:flex-row justify-between items-start sm:items-center mb-6 border-b border-gray-400 pb-4 md:hidden">
       <h1 class="text-3xl font-bold text-gray-800 mb-4 md:mb-0">Productos</h1>
       <div class="flex space-x-4 w-full md:w-auto justify-between">
-        <button
-          @click="toggleMobileFilter"
-          class="flex items-center max-w-max justify-center px-4 py-1 text-sm border border-primary rounded-md bg-white text-primary flex-grow md:flex-grow-0 shadow-sm transition-colors"
-        >
+        <button @click="toggleMobileFilter"
+          class="flex items-center max-w-max justify-center px-4 py-1 text-sm border border-primary rounded-md bg-white text-primary flex-grow md:flex-grow-0 shadow-sm transition-colors">
           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h18v3L12 14v8H8v-8L3 7V4z" />
           </svg>
           <span class="text-primary">Filtrar</span>
         </button>
 
- <div class="relative">
-          <button
-            @click="toggleSortMenu"
-            class="flex items-center w-full bg-white text-primary border border-primary text-sm py-1 px-5 md:py-2 md:px-8 rounded-md transition-colors duration-300 max-w-max"
-          >
-            <span>{{ sortLabel }}</span>
+        <div class="relative">
+          <button @click="toggleSortMenu"
+            class="flex items-center w-full bg-white text-primary border border-primary text-sm py-1 px-5 md:py-2 md:px-8 rounded-md transition-colors duration-300 max-w-max">
+            <span>{{ params.sort }}</span>
             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
 
           <!-- Popover -->
-          <div
-            v-show="openSortMenu"
-            class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-50"
-          >
-            <button
-              class="w-full text-left px-4 py-2 hover:bg-gray-100"
-              @click="setSort('asc')"
-            >
-             Orden ascendente
+          <div v-show="openSortMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-50">
+            <button class="w-full text-left px-4 py-2 hover:bg-gray-100"
+              @click="onSetFilter('sort', 'Orden por defecto')">
+              Orden por defecto
             </button>
-            <button
-              class="w-full text-left px-4 py-2 hover:bg-gray-100"
-              @click="setSort('desc')"
-            >
-              Orden descendente
+            <button class="w-full text-left px-4 py-2 hover:bg-gray-100"
+              @click="onSetFilter('sort', 'Nombres ascendente')">
+              Nombres ascendente
+            </button>
+            <button class="w-full text-left px-4 py-2 hover:bg-gray-100"
+              @click="onSetFilter('sort', 'Nombres descendente')">
+              Nombres descendente
             </button>
           </div>
         </div>
@@ -53,52 +45,136 @@
     <div class="md:grid md:grid-cols-[280px_1fr] md:gap-10 max-width mx-auto">
       <!-- Sidebar desktop -->
       <aside
-        class="hidden md:block space-y-0 bg-[#F3F3F3] border p-4 border-gray-200 rounded-xl shadow-lg overflow-hidden sticky top-8 h-full"
-      >
-        <div v-for="(options, filterName) in filters" :key="filterName" class="border-t border-gray-200 mb-2">
-          <button
-            @click="toggleFilter(filterName)"
+        class="hidden md:block space-y-0 bg-[#F3F3F3] border p-4 border-gray-200 rounded-xl shadow-lg overflow-hidden sticky top-8 h-full">
+        <div class="border-t border-gray-200 mb-2">
+          <button @click="toggleFilter('category')"
             class="filter-toggle w-full flex items-center mb-1 justify-between p-3 py-1 text-[16px] transition-colors border-[1px] border-primary"
             :class="{
-              'bg-primary text-[#00FFC3]': openFilters.includes(filterName),
-              'hover:bg-gray-100': !openFilters.includes(filterName)
-            }"
-          >
-            {{ filterName }}
-            <svg
-              class="w-4 h-4 transition-transform duration-300"
-              :class="{
-                'text-[#00FFC3] rotate-90': openFilters.includes(filterName),
-                'text-gray-500': !openFilters.includes(filterName)
-              }"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+              'bg-primary text-[#00FFC3]': openFilters.includes('category'),
+              'hover:bg-gray-100': !openFilters.includes('category')
+            }">
+            Categoría
+            <svg class="w-4 h-4 transition-transform duration-300" :class="{
+              'text-[#00FFC3] rotate-90': openFilters.includes('category'),
+              'text-gray-500': !openFilters.includes('category')
+            }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
           </button>
 
-          <div
-            v-show="openFilters.includes(filterName)"
-            class="filter-content p-0 border-b border-gray-200 bg-white transition-all duration-300 ease-in-out"
-          >
+          <div v-show="openFilters.includes('category')"
+            class="filter-content p-0 border-b border-gray-200 bg-white transition-all duration-300 ease-in-out">
             <div class="space-y-0 py-1">
-              <a
-                v-for="option in options"
-                :key="option"
-                href="#"
-                class="text-gray-800 p-2 py-1 text-[12px] flex gap-2 items-center transition-colors"
-                :class="{
-                  'bg-gray-200 text-primary font-semibold': selectedFilters[filterName]?.includes(option),
-                  'hover:bg-gray-100': !(selectedFilters[filterName]?.includes(option))
-                }"
-                @click.prevent="toggleSubFilter(filterName, option)"
-              >
+              <a v-for="(item, index) in categories" :key="index" href="#"
+                @click.prevent="onSetFilter('category_id', item.id)"
+                class="text-gray-800 p-2 py-1 text-[12px] flex gap-2 items-center transition-colors" :class="{
+                  'bg-gray-200 text-primary font-semibold': selectedFilters['category']?.includes(item.name),
+                  'hover:bg-gray-100': !(selectedFilters['category']?.includes(item.name))
+                }">
                 <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
-                {{ option }}
+                {{ item.name }}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-200 mb-2">
+          <button @click="toggleFilter('brand')"
+            class="filter-toggle w-full flex items-center mb-1 justify-between p-3 py-1 text-[16px] transition-colors border-[1px] border-primary"
+            :class="{
+              'bg-primary text-[#00FFC3]': openFilters.includes('brand'),
+              'hover:bg-gray-100': !openFilters.includes('brand')
+            }">
+            Marca
+            <svg class="w-4 h-4 transition-transform duration-300" :class="{
+              'text-[#00FFC3] rotate-90': openFilters.includes('brand'),
+              'text-gray-500': !openFilters.includes('brand')
+            }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          <div v-show="openFilters.includes('brand')"
+            class="filter-content p-0 border-b border-gray-200 bg-white transition-all duration-300 ease-in-out">
+            <div class="space-y-0 py-1">
+              <a v-for="(item, index) in brands" :key="index" href="#" @click.prevent="onSetFilter('brand_id', item.id)"
+                class="text-gray-800 p-2 py-1 text-[12px] flex gap-2 items-center transition-colors" :class="{
+                  'bg-gray-200 text-primary font-semibold': selectedFilters['brand']?.includes(item.name),
+                  'hover:bg-gray-100': !(selectedFilters['brand']?.includes(item.name))
+                }">
+                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                {{ item.name }}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-200 mb-2">
+          <button @click="toggleFilter('type')"
+            class="filter-toggle w-full flex items-center mb-1 justify-between p-3 py-1 text-[16px] transition-colors border-[1px] border-primary"
+            :class="{
+              'bg-primary text-[#00FFC3]': openFilters.includes('type'),
+              'hover:bg-gray-100': !openFilters.includes('type')
+            }">
+            Tipo
+            <svg class="w-4 h-4 transition-transform duration-300" :class="{
+              'text-[#00FFC3] rotate-90': openFilters.includes('type'),
+              'text-gray-500': !openFilters.includes('type')
+            }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          <div v-show="openFilters.includes('type')"
+            class="filter-content p-0 border-b border-gray-200 bg-white transition-all duration-300 ease-in-out">
+            <div class="space-y-0 py-1">
+              <a v-for="(item, index) in types" :key="index" href="#" @click.prevent="onSetFilter('type_id', item.id)"
+                class="text-gray-800 p-2 py-1 text-[12px] flex gap-2 items-center transition-colors" :class="{
+                  'bg-gray-200 text-primary font-semibold': selectedFilters['type']?.includes(item.name),
+                  'hover:bg-gray-100': !(selectedFilters['type']?.includes(item.name))
+                }">
+                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                {{ item.name }}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-200 mb-2">
+          <button @click="toggleFilter('specialty')"
+            class="filter-toggle w-full flex items-center mb-1 justify-between p-3 py-1 text-[16px] transition-colors border-[1px] border-primary"
+            :class="{
+              'bg-primary text-[#00FFC3]': openFilters.includes('specialty'),
+              'hover:bg-gray-100': !openFilters.includes('specialty')
+            }">
+            Especialidad
+            <svg class="w-4 h-4 transition-transform duration-300" :class="{
+              'text-[#00FFC3] rotate-90': openFilters.includes('specialty'),
+              'text-gray-500': !openFilters.includes('specialty')
+            }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          <div v-show="openFilters.includes('specialty')"
+            class="filter-content p-0 border-b border-gray-200 bg-white transition-all duration-300 ease-in-out">
+            <div class="space-y-0 py-1">
+              <a v-for="(item, index) in specialties" :key="index" href="#"
+                @click.prevent="onSetFilter('specialty_id', item.id)"
+                class="text-gray-800 p-2 py-1 text-[12px] flex gap-2 items-center transition-colors" :class="{
+                  'bg-gray-200 text-primary font-semibold': selectedFilters['specialty']?.includes(item.name),
+                  'hover:bg-gray-100': !(selectedFilters['specialty']?.includes(item.name))
+                }">
+                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                {{ item.name }}
               </a>
             </div>
           </div>
@@ -110,49 +186,43 @@
         <div class="hidden md:flex justify-between items-center mb-6 border-b border-gray-400 pb-1">
           <h2 class="text-3xl font-bold text-gray-800">Productos</h2>
           <div class="relative">
-            <button
-              @click="toggleSortMenu"
-              class="flex items-center w-full bg-primary text-white font-semibold py-1 px-4 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300 max-w-max"
-            >
-              <span>{{ sortLabel }}</span>
+            <button @click="toggleSortMenu"
+              class="flex items-center w-full bg-primary text-white font-semibold py-1 px-4 rounded-full shadow-lg hover:bg-primary-dark transition-colors duration-300 max-w-max">
+              <span>{{ params.sort }}</span>
               <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
 
             <!-- Popover -->
-            <div
-              v-show="openSortMenu"
-              class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-2xl z-50"
-            >
-              <button
-                class="w-full text-left px-4 py-2 hover:bg-gray-100"
-                @click="setSort('asc')"
-              >
-                Orden ascendente
+            <div v-show="openSortMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-2xl z-50">
+              <button class="w-full text-left px-4 py-2 hover:bg-gray-100"
+                @click="onSetFilter('sort', 'Orden por defecto')">
+                Orden por defecto
               </button>
-              <button
-                class="w-full text-left px-4 py-2 hover:bg-gray-100"
-                @click="setSort('desc')"
-              >
-                Orden descendente
+              <button class="w-full text-left px-4 py-2 hover:bg-gray-100"
+                @click="onSetFilter('sort', 'Nombres ascendente')">
+                Nombres ascendente
+              </button>
+              <button class="w-full text-left px-4 py-2 hover:bg-gray-100"
+                @click="onSetFilter('sort', 'Nombres descendente')">
+                Nombres descendente
               </button>
             </div>
           </div>
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          <div v-for="product in paginatedProducts" :key="product.id" class="cursor-pointer">
-            <a :href="`/producto/${product.id}`">
-                <div
-                  class="bg-white rounded-xl border border-gray-200 p-4 flex flex-col items-center text-center h-full min-h-[220px] transition-all duration-300 transform hover:scale-[1.03] hover:shadow-xl relative overflow-hidden shadow-xl"
-                >
-                  <div class="mb-4 flex-shrink-0 flex items-center justify-center w-full h-[100px] mt-2">
-                    <img :src="product.imageSrc" :alt="product.name" class="max-w-full max-h-full object-contain" />
-                  </div>
-                  <h3 class="text-base font-bold text-gray-800 leading-tight mt-auto">{{ product.name }}</h3>
-                  <p class="text-sm text-gray-500 mt-1 mb-2">{{ product.description }}</p>
+          <div v-for="product in records" :key="product.id" class="cursor-pointer">
+            <a :href="product.url">
+              <div
+                class="bg-white rounded-xl border border-gray-200 p-4 flex flex-col items-center text-center h-full min-h-[220px] transition-all duration-300 transform hover:scale-[1.03] hover:shadow-xl relative overflow-hidden shadow-xl">
+                <div class="mb-4 flex-shrink-0 flex items-center justify-center w-full h-[100px] mt-2">
+                  <img :src="product.cover?.path" :alt="product.name" class="max-w-full max-h-full object-contain" />
                 </div>
+                <h3 class="text-base font-bold text-gray-800 leading-tight mt-auto">{{ product.name }}</h3>
+                <p class="text-sm text-gray-500 mt-1 mb-2">{{ product.subtitle }}</p>
+              </div>
             </a>
           </div>
         </div>
@@ -161,29 +231,18 @@
 
     <!-- Paginador -->
     <div class="flex justify-center items-center mt-12 space-x-1 sm:space-x-2 mx-auto">
-      <button
-        @click="goToPage(currentPage - 1)"
-        :disabled="currentPage === 1"
-        class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 border border-gray-300 rounded-full text-gray-500 disabled:opacity-50"
-      >
+      <button @click="goToPage(1)" :disabled="params.page === 1"
+        class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 border border-gray-300 rounded-full text-gray-500 disabled:opacity-50">
         «
       </button>
-      <button
-        v-for="page in totalPages"
-        :key="page"
-        @click="goToPage(page)"
-        :class="[
-          'flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full text-sm sm:text-base',
-          currentPage === page ? 'bg-primary text-white font-bold shadow-lg' : 'border border-primary text-gray-700 hover:bg-gray-100'
-        ]"
-      >
+      <button v-for="page in paginator.last_page" :key="page" @click="goToPage(page)" :class="[
+        'flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full text-sm sm:text-base',
+        params.page === page ? 'bg-primary text-white font-bold shadow-lg' : 'border border-primary text-gray-700 hover:bg-gray-100'
+      ]">
         {{ page }}
       </button>
-      <button
-        @click="goToPage(currentPage + 1)"
-        :disabled="currentPage === totalPages"
-        class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 border border-gray-300 rounded-full text-gray-500 disabled:opacity-50"
-      >
+      <button @click="goToPage(paginator.last_page)" :disabled="params.page === paginator.last_page"
+        class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 border border-gray-300 rounded-full text-gray-500 disabled:opacity-50">
         »
       </button>
     </div>
@@ -197,36 +256,28 @@
     <!-- Drawer (siempre en DOM para animar transform) -->
     <div
       class="fixed inset-y-0 right-0 w-full max-w-[300px] bg-white shadow-xl transform transition-transform duration-300 z-50"
-      :class="openFilterMenu ? 'translate-x-0' : 'translate-x-full'"
-      role="dialog"
-      aria-modal="true"
-    >
+      :class="openFilterMenu ? 'translate-x-0' : 'translate-x-full'" role="dialog" aria-modal="true">
       <div class="flex justify-between items-center p-4 border-b shadow-sm">
         <h3 class="text-xl font-bold flex items-center text-gray-800">Filtrar Productos</h3>
         <button @click="closeMobileFilter" class="text-gray-500 hover:text-gray-900">✕</button>
       </div>
 
       <div class="p-4 overflow-y-auto h-full pb-32">
-        <div v-for="(options, filterName) in filters" :key="'mobile-'+filterName" class="border-t pt-4">
-          <button
-            @click="toggleFilter(filterName)"
-            class="w-full flex items-center justify-between text-lg font-bold text-gray-800 py-2 group"
-          >
+        <div v-for="(options, filterName) in filters" :key="'mobile-' + filterName" class="border-t pt-4">
+          <button @click="toggleFilter(filterName)"
+            class="w-full flex items-center justify-between text-lg font-bold text-gray-800 py-2 group">
             {{ filterName }}
             <span>{{ openFilters.includes(filterName) ? '▲' : '▼' }}</span>
           </button>
 
           <div v-show="openFilters.includes(filterName)" class="mt-2 space-y-1">
             <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 space-y-1">
-              <a
-                v-for="option in options"
-                :key="filterName + '-' + option"
-                href="#"
+              <a v-for="option in options" :key="filterName + '-' + option" href="#"
                 class="flex items-center justify-between text-gray-800 hover:text-blue-700 transition-colors p-2 rounded-md hover:bg-white"
-                @click.prevent="toggleSubFilter(filterName, option)"
-              >
+                @click.prevent="toggleSubFilter(filterName, option)">
                 <span>{{ option }}</span>
-                <input type="checkbox" class="rounded text-blue-700 w-4 h-4" :checked="selectedFilters[filterName]?.includes(option)" />
+                <input type="checkbox" class="rounded text-blue-700 w-4 h-4"
+                  :checked="selectedFilters[filterName]?.includes(option)" />
               </a>
             </div>
           </div>
@@ -234,16 +285,11 @@
       </div>
 
       <div class="absolute bottom-0 left-0 right-0 p-4 bg-white border-t flex justify-between space-x-4 shadow-2xl">
-        <button
-          @click="clearFilters"
-          class="w-1/2 py-3 text-lg font-semibold text-primary bg-[#00FFC3] rounded-md"
-        >
+        <button @click="clearFilters" class="w-1/2 py-3 text-lg font-semibold text-primary bg-[#00FFC3] rounded-md">
           Limpiar
         </button>
-        <button
-          @click="applyAndClose"
-          class="w-1/2 py-3 text-lg font-semibold text-white bg-primary rounded-md hover:bg-blue-800 transition-colors"
-        >
+        <button @click="applyAndClose"
+          class="w-1/2 py-3 text-lg font-semibold text-white bg-primary rounded-md hover:bg-blue-800 transition-colors">
           Aplicar
         </button>
       </div>
@@ -252,8 +298,14 @@
 </template>
 
 <script setup>
+import axios from "axios";
 import { ref, computed, watch, onMounted, onUnmounted } from "vue";
-
+defineProps({
+  categories: [],
+  types: [],
+  specialties: [],
+  brands: [],
+})
 const filters = ref({
   Categoría: ["Dispositivos médicos", "Ofertas"],
   Marca: ["3M", "B. Braun", "Johnson & Johnson"],
@@ -272,7 +324,27 @@ const filters = ref({
     "Rehabilitación",
   ],
 });
+const paginator = ref({
+  per_page: 1,
+  total: 1,
+  last_page: 1,
+})
+const records = ref([])
+const onSetFilter = async (param, value) => {
+  params.value[param] = value
+  await onGetRecords()
+}
+const onGetRecords = async () => {
+  await axios.get('/productos', { params: params.value }).then(response => {
+    records.value = response.data.data
+    paginator.value = response.data.meta
+  })
+}
 
+onMounted(async () => {
+  window.addEventListener("keydown", onKeyDown);
+  await onGetRecords()
+})
 // --- Productos base variados ---
 const baseProducts = [
   {
@@ -356,7 +428,14 @@ const baseProducts = [
     specialty: "Esterilización",
   },
 ];
-
+const params = ref({
+  category_id: '',
+  type_id: '',
+  brand_id: '',
+  specialty_id: '',
+  page: 1,
+  sort: 'Orden por defecto'
+})
 // --- Generamos más productos (variando nombre y orden de imágenes) ---
 const products = ref([]);
 let idCounter = 1;
@@ -387,7 +466,7 @@ const toggleFilter = (name) => {
   }
 };
 
-const toggleSubFilter = (filterName, option) => {
+const toggleSubFilter = async (filterName, option) => {
   if (!selectedFilters.value[filterName]) {
     selectedFilters.value[filterName] = [];
   }
@@ -397,7 +476,8 @@ const toggleSubFilter = (filterName, option) => {
     selectedFilters.value[filterName].push(option);
   }
   // cuando cambian filtros, volver a página 1
-  currentPage.value = 1;
+  params.value.page = 1
+  await onGetRecords()
 };
 
 // --- Productos filtrados ---
@@ -427,18 +507,9 @@ const mapFilterKey = (filterName) => {
   }
 };
 
-// --- Paginador ---
-const currentPage = ref(1);
-const pageSize = 8;
-const totalPages = computed(() => Math.max(1, Math.ceil(sortedProducts.value.length / pageSize)));
-
-const paginatedProducts = computed(() => {
-  const start = (currentPage.value - 1) * pageSize;
-  return sortedProducts.value.slice(start, start + pageSize);
-});
-
-const goToPage = (page) => {
-  if (page >= 1 && page <= totalPages.value) currentPage.value = page;
+const goToPage = async (page) => {
+  params.value.page = page
+  await onGetRecords()
 };
 
 // --- Mobile drawer functions ---
@@ -456,14 +527,15 @@ const applyAndClose = () => {
 };
 
 // Limpiar filtros
-const clearFilters = () => {
+const clearFilters = async () => {
   // reset selected filters
   Object.keys(selectedFilters.value).forEach((k) => {
     selectedFilters.value[k] = [];
   });
   // mejor asignar nuevo objeto vacío para reset total
   selectedFilters.value = {};
-  currentPage.value = 1;
+  params.value.page = 1
+  await onGetRecords()
 };
 const sortOrder = ref("asc");
 const openSortMenu = ref(false);
@@ -471,17 +543,6 @@ const openSortMenu = ref(false);
 const toggleSortMenu = () => {
   openSortMenu.value = !openSortMenu.value;
 };
-
-const setSort = (order) => {
-  sortOrder.value = order;
-  openSortMenu.value = false;
-};
-
-const sortLabel = computed(() => {
-  if (sortOrder.value === "asc") return "Orden ascendente";
-  if (sortOrder.value === "desc") return "Orden descendente";
-  return "Orden predeterminado";
-});
 
 // --- Productos ordenados ---
 const sortedProducts = computed(() => {
@@ -510,10 +571,6 @@ function onKeyDown(e) {
   }
 }
 
-onMounted(() => {
-  window.addEventListener("keydown", onKeyDown);
-});
-
 onUnmounted(() => {
   window.removeEventListener("keydown", onKeyDown);
   // asegurar desbloqueo de scroll si componente se desmonta
@@ -526,6 +583,7 @@ onUnmounted(() => {
 .fade-leave-active {
   transition: opacity 0.3s;
 }
+
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;

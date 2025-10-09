@@ -3,7 +3,9 @@
 namespace App\Services;
 
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Str;
 
 final class ProductService
@@ -103,5 +105,34 @@ final class ProductService
             ->where('active', true)
             ->orderBy('sort')
             ->get();
+    }
+
+    public function listForFront(Request $request): LengthAwarePaginator
+    {
+        $categoryId = $request->category_id;
+        $brandId = $request->brand_id;
+        $specialtyId = $request->specialty_id;
+        $typeId = $request->type_id;
+        $sort = $request->sort ?? 'Orden por defecto';
+
+        return Product::with(['cover'])
+            ->select('id', 'name', 'subtitle', 'slug')
+            ->when($brandId, fn (Builder $builder) => $builder->where('brand_id', $brandId))
+            ->when($categoryId, fn (Builder $builder) => $builder->where('category_id', $categoryId))
+            ->when($specialtyId, fn (Builder $builder) => $builder->where('specialty_id', $specialtyId))
+            ->when($typeId, fn (Builder $builder) => $builder->where('type_id', $typeId))
+            ->when($sort, function (Builder $builder) use ($sort) {
+                if ($sort == 'Orden por defecto') {
+                    $builder->orderBy('sort');
+                }
+                if ($sort == 'Nombres ascendente') {
+                    $builder->orderBy('name', 'ASC');
+                }
+                if ($sort == 'Nombres descendente') {
+                    $builder->orderBy('name', 'DESC');
+                }
+            })
+            ->where('active', true)
+            ->paginate(8);
     }
 }
