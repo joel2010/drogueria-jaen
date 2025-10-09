@@ -109,7 +109,7 @@
 
                                 </a>
 
-                                <a href="{{ $record->phone }}"
+                                <a href="{{ $record->phone }}" target="_blank"
                                     class="flex items-center w-full sm:w-auto justify-center bg-primary text-white font-semibold py-1 px-6 rounded-full shadow-lg hover:bg-primary-dark transition-colors text-lg min-w-max">
                                     Más información
                                     <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
