@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ComplaintBookRequest;
+use App\Http\Resources\BrandListResource;
+use App\Http\Resources\CategoryListResource;
+use App\Http\Resources\LandingPageListResource;
+use App\Http\Resources\ProductListResource;
+use App\Http\Resources\ProductResource;
+use App\Http\Resources\SpecialtyListResource;
+use App\Http\Resources\TypeListResource;
 use App\Mail\ComplaintBookMail;
 use App\Mail\ContactMail;
 use App\Models\LandingPage;
@@ -41,6 +48,13 @@ class FrontController extends Controller
         $mainProducts = (new ProductService())->main();
 
         return view('home-care.index', compact('mainProducts'));
+    }
+    
+    public function products()
+    {
+        $mainProducts = (new ProductService())->main();
+
+        return view('products.index', compact('mainProducts'));
     }
 
     public function contactStore(Request $request)
@@ -93,6 +107,7 @@ class FrontController extends Controller
         $data = $request->except('files');
         $files = $request->hasFile('files') ? $request->file('files') : [];
         Mail::to(config('mail.to.email'))->send(new ComplaintBookMail($data, $files));
+
         return redirect()->back()->with('ok', '1');
     }
 }

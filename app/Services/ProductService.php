@@ -9,10 +9,16 @@ use Illuminate\Support\Str;
 final class ProductService
 {
 
-    public function list(?string $search = null, int $perPage = 10)
+    public function list(?string $search = null, ?array $filters = [], int $perPage = 10, ?string $sortDirection = 'desc')
     {
-        return Product::search($search)
-            ->orderBy('id', 'desc')
+        $allowedDirections = ['asc', 'desc'];
+        $sortDirection = in_array(strtolower($sortDirection), $allowedDirections)
+            ? strtolower($sortDirection)
+            : 'desc';
+
+        return Product::query()
+            ->search($search, $filters)
+            ->orderBy('id', $sortDirection)
             ->paginate($perPage);
     }
 

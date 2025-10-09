@@ -19,7 +19,6 @@ class SpecialtyListResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'active' => $this->active,
-            'created_at' => Helper::getDateLongFormat($this->created_at),
         ];
     }
 }

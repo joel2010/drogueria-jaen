@@ -27,9 +27,7 @@ Route::get('/servicios', [FrontController::class, 'services']);
 
 Route::get('/cuidado-en-casa', [FrontController::class, 'homeCare']);
 
-Route::get('/productos', function () {
-    return view('products.index');
-});
+Route::get('/productos', [FrontController::class, 'products']);
 
 Route::get('/libro-reclamaciones', function () {
     return view('complaints-book.index');
@@ -48,11 +46,11 @@ Route::middleware('auth')->group(function () {
 
     // Especialidad
     Route::prefix('specialties')->group(function () {
-        Route::get('', [SpecialtyController::class, 'list']);
-        Route::get('{id}/show', [SpecialtyController::class, 'show']);
-        Route::post('store', [SpecialtyController::class, 'store']);
-        Route::put('{id}/update', [SpecialtyController::class, 'update']);
-        Route::delete('{id}/delete', [SpecialtyController::class, 'delete']);
+        Route::get('',                  [SpecialtyController::class, 'list']);
+        Route::get('{id}/show',         [SpecialtyController::class, 'show']);
+        Route::post('store',            [SpecialtyController::class, 'store']);
+        Route::put('{id}/update',       [SpecialtyController::class, 'update']);
+        Route::delete('{id}/delete',    [SpecialtyController::class, 'delete']);
     });
 
     // Contacto
@@ -69,7 +67,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('{id}/delete',    [LandingPageController::class, 'delete']);
     });
 
-    // brands
+    //  marcas
     Route::prefix('brands')->group(function () {
         Route::get('',                  [BrandController::class, 'list']);
         Route::get('{id}/show',         [BrandController::class, 'showId']);
@@ -110,7 +108,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('{id}/delete', [FileController::class, 'delete']);
     });
 
-    // Contacto
+    // libro de reclamaciones
     Route::prefix('complaints-book')->group(function () {
         Route::get('',  [ComplaintBookController::class, 'list']);
     });
