@@ -5,13 +5,44 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ComplaintBookRequest;
 use App\Mail\ComplaintBookMail;
 use App\Mail\ContactMail;
+use App\Models\LandingPage;
 use App\Services\ComplaintBookService;
 use App\Services\ContactService;
+use App\Services\ProductService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class FrontController extends Controller
 {
+    public function index()
+    {
+        $banners = LandingPage::with(['computer', 'mobile'])
+            ->select('title', 'id')
+            ->orderBy('order')
+            ->get();
+        $mainProducts = (new ProductService())->main();
+
+        return view('home.index', compact('banners', 'mainProducts'));
+    }
+    
+    public function about()
+    {
+        $mainProducts = (new ProductService())->main();
+
+        return view('about.index', compact('mainProducts'));
+    }
+    public function services()
+    {
+        return view('services.index');
+    }
+
+    public function homeCare()
+    {
+        $mainProducts = (new ProductService())->main();
+
+        return view('home-care.index', compact('mainProducts'));
+    }
+
     public function contactStore(Request $request)
     {
         $request->validate([

@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
-
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Product extends Model
 {
@@ -23,11 +24,28 @@ class Product extends Model
         'brand_id',
         'type_id',
         'specialty_id',
+        'show_in_home',
+        'active',
     ];
+
+    protected $casts = [
+        'active' => 'bool',
+        'show_in_home' => 'bool',
+    ];
+
+    public function getUrlAttribute()
+    {
+        return url("producto/{$this->slug}");
+    }
 
     public function files()
     {
-        return $this->morphMany(File::class, 'model')->orderBy('order');
+        return $this->morphMany(File::class, 'model');
+    }
+    
+    public function cover(): MorphOne
+    {
+        return $this->morphOne(File::class, 'model', 'model_type', 'model_id')->orderBy('id', 'ASC');
     }
 
     public function category()

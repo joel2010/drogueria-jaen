@@ -2,71 +2,8 @@
 
 
 $content = [
-'title' => 'Nuestros Productos',
-'subtitle' => 'Descubre nuestra amplia gama de productos de alta calidad',
-'products' => [
-[
-'id' => 1,
-'imageSrc' => '/images/product/product1.png',
-'name' => 'Transpore 3M 1527-1',
-'description' => 'Cinta médica hipoalergénica',
-],
-[
-'id' => 2,
-'imageSrc' => '/images/product/product2.png',
-'name' => 'Venda Elástica',
-'description' => 'Compresión y soporte para lesiones',
-],
-[
-'id' => 3,
-'imageSrc' => '/images/product/product3.png',
-'name' => 'Gorro de enfermera',
-'description' => 'Material Tela no tejida SPP',
-],
-[
-'id' => 4,
-'imageSrc' => '/images/product/product4.png',
-'name' => 'Transpore 3M 1527-3',
-'description' => 'Cinta médica hipoalergénica',
-],
-[
-'id' => 5,
-'imageSrc' => '/images/product/product5.png',
-'name' => 'Steri Strip 1546',
-'description' => 'Parche para cerrar heridas',
-],
-// Agrego más productos de ejemplo
-[
-'id' => 6,
-'imageSrc' => '/images/product/product1.png',
-'name' => 'Alcohol Medicinal',
-'description' => 'Desinfectante de uso médico',
-],
-[
-'id' => 7,
-'imageSrc' => '/images/product/product2.png',
-'name' => 'Guantes de Látex',
-'description' => 'Protección y seguridad en procedimientos',
-],
-[
-'id' => 8,
-'imageSrc' => '/images/product/product3.png',
-'name' => 'Mascarilla',
-'description' => 'Filtro de 3 capas de protección',
-],
-[
-'id' => 9,
-'imageSrc' => '/images/product/product4.png',
-'name' => 'Termómetro Digital',
-'description' => 'Medición precisa y rápida',
-],
-[
-'id' => 10,
-'imageSrc' => '/images/product/product5.png',
-'name' => 'Jeringa 5ml',
-'description' => 'Uso médico desechable',
-],
-],
+    'title' => 'Nuestros Productos',
+    'subtitle' => 'Descubre nuestra amplia gama de productos de alta calidad',
 ];
 
 $background_color = $background_color ?? 'bg-[#00E5A1]';
@@ -92,7 +29,7 @@ $text_button = $text_button ?? 'text-white';
             <!-- Track -->
             <div class="glide__track" data-glide-el="track">
                 <ul class="glide__slides">
-                    @foreach ($content['products'] as $index => $product)
+                    @foreach ($mainProducts as $index => $product)
                     <li class="glide__slide flex-shrink-0 w-[49%]">
                         <x-product-card :product="$product" :index="$index" />
                     </li>
@@ -118,7 +55,7 @@ $text_button = $text_button ?? 'text-white';
         <div class="glide hidden desktop:block relative">
             <div class="glide__track" data-glide-el="track">
                 <ul class="glide__slides">
-                    @foreach ($content['products'] as $index => $product)
+                    @foreach ($mainProducts as $index => $product)
                     <li class="glide__slide flex-shrink-0 w-[18%] min-w-[220px]">
                         <x-product-card :product="$product" :index="$index" />
                     </li>

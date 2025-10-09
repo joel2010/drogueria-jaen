@@ -10,8 +10,7 @@ final class LandingPageService
 
     public function list()
     {
-        return LandingPage::where('state', true)
-            ->orderBy('order_index', 'asc')
+        return LandingPage::orderBy('order', 'asc')
             ->get();
     }
 
@@ -29,9 +28,7 @@ final class LandingPageService
     public function fillModel(LandingPage $record, Request $data): LandingPage
     {
         $record->title        = $data->title;
-        $record->subtitle     = $data->subtitle;
-        $record->state        = filter_var($data->input('state', true), FILTER_VALIDATE_BOOLEAN);
-        $record->order_index  = $data->order_index ?? (LandingPage::max('order_index') ?? 0) + 1;
+        $record->order  = $data->order ?? (LandingPage::max('order') ?? 0) + 1;
 
         return $record;
     }

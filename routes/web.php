@@ -5,6 +5,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ComplaintBookController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LoginController;
@@ -14,25 +15,17 @@ use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home.index');
-});
+Route::get('/', [FrontController::class, 'index']);
 
-Route::get('/nosotros', function () {
-    return view('about.index');
-});
+Route::get('/nosotros', [FrontController::class, 'about']);
 
 Route::get('/contacto', function () {
     return view('contact.index');
 });
 
-Route::get('/servicios', function () {
-    return view('services.index');
-});
+Route::get('/servicios', [FrontController::class, 'services']);
 
-Route::get('/cuidado-en-casa', function () {
-    return view('home-care.index');
-});
+Route::get('/cuidado-en-casa', [FrontController::class, 'homeCare']);
 
 Route::get('/productos', function () {
     return view('products.index');
@@ -68,7 +61,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // landing page
-    Route::prefix('landing-pages')->group(function () {
+    Route::prefix('banners')->group(function () {
         Route::get('',                  [LandingPageController::class, 'list']);
         Route::get('{id}/show',         [LandingPageController::class, 'showId']);
         Route::post('store',            [LandingPageController::class, 'store']);
@@ -110,6 +103,11 @@ Route::middleware('auth')->group(function () {
         Route::post('store',            [ProductController::class, 'store']);
         Route::post('{id}/update',      [ProductController::class, 'update']);
         Route::delete('{id}/delete',    [ProductController::class, 'delete']);
+        Route::get('tables',    [ProductController::class, 'tables']);
+    });
+
+    Route::prefix('files')->group(function () {
+        Route::delete('{id}/delete', [FileController::class, 'delete']);
     });
 
     // Contacto

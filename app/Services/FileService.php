@@ -5,23 +5,18 @@ namespace App\Services;
 use App\Models\File;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 final class FileService
 {
 
     public function storeFile(UploadedFile $file, string $model, int $modelId, ?string $type = null, ?int $index = null): File
     {
-        $folder = class_basename($model);
-        $path = "uploads/{$folder}/{$modelId}";
-        Storage::disk('public')->makeDirectory($path);
-
+        $path = "uploads";
         $extension = $file->getClientOriginalExtension();
-
-        $hash = substr(md5(time() . $file->getClientOriginalName()), 0, 12);
-        $filename = $hash . '.' . $extension;
-
+        $filename = Str::uuid()->toString() . '.' . $extension;
         $storedPath = $file->storeAs($path, $filename, 'public');
-
+        
         return File::create([
             'model_type' => $model,
             'model_id'   => $modelId,
@@ -37,5 +32,11 @@ final class FileService
     {
         Storage::delete($file->file_path);
         $file->delete();
+    }
+
+    public function delete(int $id): void
+    {
+        File::where('id', $id)
+            ->delete();
     }
 }

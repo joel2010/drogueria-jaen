@@ -15,14 +15,21 @@ class LandingPageResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $imageComputer = $this->imageComputer();
+        $imageCellular = $this->imageCellular();
+
         return [
             'id'                => $this->id,
             'title'             => $this->title,
-            'subtitle'          => $this->subtitle,
-            'state'             => $this->state,
-            'order_index'       => $this->order_index,
-            'image_computer'    => $this->imageComputer()?->file_path ? asset('storage/' . $this->imageComputer()->file_path) : null,
-            'image_cellular'    => $this->imageCellular()?->file_path ? asset('storage/' . $this->imageCellular()->file_path) : null,
+            'sort'       => $this->order,
+            'image_computer'    => $imageComputer ? [
+                    'id' => $imageComputer->id,
+                    'file_path' => asset('storage/' . $imageComputer->file_path),
+                ] : null,
+            'image_cellular'    => $imageCellular ? [
+                'id' => $imageCellular->id,
+                'file_path' => asset('storage/' . $imageCellular->file_path)
+             ] : null,
             'created_at'        => Helper::getDateLongFormat($this->created_at),
         ];
     }

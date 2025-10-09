@@ -63,4 +63,12 @@ final class BrandService
         }
         return false;
     }
+
+    public function availables()
+    {
+        return Brand::select('id', 'name')
+            ->where('active', true)
+            ->orderBy('name')
+            ->get();
+    }
 }

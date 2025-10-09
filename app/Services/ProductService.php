@@ -42,6 +42,9 @@ final class ProductService
         $record->brand_id     = $data->input('brand_id');
         $record->type_id      = $data->input('type_id');
         $record->specialty_id = $data->input('specialty_id');
+        $record->show_in_home = $data->input('show_in_home');
+        $record->active = $data->input('active');
+        $record->sort = $data->input('sort');
 
         return $record;
     }
@@ -74,5 +77,25 @@ final class ProductService
             return true;
         }
         return false;
+    }
+
+    public function tables(): array
+    {
+        return [
+            'types' => (new TypeService())->availables(),
+            'specialties' => (new SpecialtyService())->availables(),
+            'brands' => (new BrandService())->availables(),
+            'categories' => (new CategoryService())->availables(),
+        ];
+    }
+
+    public function main()
+    {
+        return Product::with(['cover'])
+            ->select('id', 'name', 'subtitle', 'slug')
+            ->where('show_in_home', true)
+            ->where('active', true)
+            ->orderBy('sort')
+            ->get();
     }
 }

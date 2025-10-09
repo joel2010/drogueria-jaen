@@ -35,6 +35,7 @@ class ProductController extends Controller
         DB::beginTransaction();
         try {
             $data = $this->service->showId($id);
+            $data->load('files');
 
             DB::commit();
         } catch (\Exception $e) {
@@ -145,5 +146,14 @@ class ProductController extends Controller
         }
 
         return $this->response();
+    }
+
+    public function tables()
+    {
+        $data = $this->service->tables();
+
+        return $this->response([
+            'data' => $data,
+        ]);
     }
 }

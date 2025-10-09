@@ -58,4 +58,12 @@ final class SpecialtyService
         $record = $this->show($recordId);
         $record->delete();
     }
+
+    public function availables()
+    {
+        return Specialty::select('id', 'name')
+            ->where('active', true)
+            ->orderBy('name')
+            ->get();
+    }
 }

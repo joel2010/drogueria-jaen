@@ -63,4 +63,12 @@ final class CategoryService
         }
         return false;
     }
+
+    public function availables()
+    {
+        return Category::select('id', 'name')
+            ->where('active', true)
+            ->orderBy('name')
+            ->get();
+    }
 }

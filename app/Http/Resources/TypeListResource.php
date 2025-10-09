@@ -19,7 +19,8 @@ class TypeListResource extends JsonResource
             'id'                => $this->id,
             'name'              => $this->name,
             'slug'              => $this->slug,
-            'active'            => $this->active
+            'active'            => $this->active,
+            'created_at' => Helper::getDateLongFormat($this->created_at),
         ];
     }
 }

@@ -3,6 +3,7 @@ import { createPinia } from 'pinia'
 import router from './router'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { es } from 'yup-locales'
 // VeeValidate y Yup
 import { configure } from 'vee-validate'

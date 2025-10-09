@@ -64,4 +64,12 @@ final class TypeService
         }
         return false;
     }
+
+    public function availables()
+    {
+        return Type::select('id', 'name')
+            ->where('active', true)
+            ->orderBy('name')
+            ->get();
+    }
 }

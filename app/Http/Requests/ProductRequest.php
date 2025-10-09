@@ -33,13 +33,16 @@ class ProductRequest extends FormRequest
                 Rule::unique('products', 'internal_id')->ignore($this->route('id'))->whereNull('deleted_at'),
             ],
             'presentation'  => 'nullable|string|max:255',
-            'phone'         => 'nullable|integer|max:999999999',
+            'phone'         => 'nullable|max:250',
             'category_id'   => 'nullable|exists:categories,id',
             'brand_id'      => 'nullable|exists:brands,id',
             'type_id'       => 'nullable|exists:types,id',
             'specialty_id'  => 'nullable|exists:specialties,id',
             'images'        => 'sometimes|array',
             'images.*'      => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
+            'active' => 'required|boolean',
+            'show_in_home' => 'required|boolean',
+            'sort' => 'required|numeric|min:1',
         ];
     }
 }

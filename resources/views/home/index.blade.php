@@ -1,12 +1,15 @@
 @extends('layout.app')
 
 @section('content')
-
-    <x-HeroSection
-        image="/images/home-banner.png"
-        title="En Droguería Jaén, la salud es un compromiso compartido"
-        showWspButton="true"
-    />
+    @foreach ($banners as $banner)
+        @if ($banner->computer && $banner->mobile)
+        <x-HeroSection
+            image="/storage/{{ $banner->computer->file_path }}"
+            title="{{ $banner->title }}"
+            showWspButton="true"
+        />
+        @endif
+    @endforeach
 
     @include('home.partials.featured')
     @include('home.partials.about')

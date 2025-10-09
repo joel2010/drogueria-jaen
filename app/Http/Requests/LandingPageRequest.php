@@ -35,16 +35,14 @@ class LandingPageRequest extends FormRequest
                 'boolean',
             ],
             'image_computer' => [
-                'required',
+                'nullable',
                 'file',
                 'mimes:jpg,jpeg,png,webp,avif',
-                // 'dimensions:min_width=1200,min_height=600',
             ],
             'image_cellular' => [
                 'nullable',
                 'file',
                 'mimes:jpg,jpeg,png,webp,avif',
-                // 'dimensions:min_width=600,min_height=600',
             ],
 
         ];

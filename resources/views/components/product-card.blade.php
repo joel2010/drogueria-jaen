@@ -1,4 +1,4 @@
-<div data-aos="fade-up"
+<a href="{{ $product->url }}" data-aos="fade-up"
      data-aos-delay="{{ $index * 100 }}"
      data-aos-duration="1200"
      data-aos-easing="ease-in-out-cubic"
@@ -8,17 +8,19 @@
               h-full min-h-[250px] tablet:min-h-[220px] my-2 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
               transform hover:scale-[1.03] hover:-translate-y-1">
 
+    @if ($product->cover)
     <div class="mb-4 flex-shrink-0">
-      <img src="{{ $product['imageSrc'] }}"
-           alt="{{ $product['name'] }}"
+      <img src="/storage/{{ $product->cover->file_path }}"
+           alt="{{ $product->name }}"
            class="w-full object-contain h-[100px]">
     </div>
+    @endif
 
     <!-- 👇 Esto hace que título + descripción empujen igual y queden centrados -->
     <div class="flex flex-col flex-1 justify-between w-full">
-      <h3 class="text-subtitle mb-2">{{ $product['name'] }}</h3>
-      <p class="text-description2">{{ $product['description'] }}</p>
+      <h3 class="text-subtitle mb-2">{{ $product->name }}</h3>
+      <p class="text-description2">{{ $product->subtitle }}</p>
     </div>
 
   </div>
-</div>
+</a>

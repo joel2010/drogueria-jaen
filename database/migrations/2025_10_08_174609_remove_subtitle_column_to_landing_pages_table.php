@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('landing_pages', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->integer('order');
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::table('landing_pages', function (Blueprint $table) {
+            $table->dropColumn('state');
+            $table->dropColumn('subtitle');
         });
     }
 
@@ -25,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('landing_pages');
+        Schema::table('landing_pages', function (Blueprint $table) {
+            //
+        });
     }
 };

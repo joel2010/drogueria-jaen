@@ -11,3 +11,44 @@
         background-color: var(--el-color-primary);
     }
 }
+.files {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    padding: 15px;
+    margin-bottom: 1rem;
+}
+.files.small{
+    grid-template-columns: repeat(2, 1fr);
+}
+.files li {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+.files .files__btns {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 2;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s linear;
+}
+.files li:hover .files__btns {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.files img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
