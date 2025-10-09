@@ -3,7 +3,7 @@
 @section('content')
 
 {{-- <home-section></home-section> --}}
-<x-HeroSection image="/images/about-banner.png" title="¿Quiénes Somos?" showWspButton="true" />
+<x-HeroSection image="/images/about-banner.png" title="¿Quiénes Somos?" showWspButton="true" :limitHeight="true"/>
 
 @php
 $mission = [

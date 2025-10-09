@@ -6,9 +6,9 @@
 
             <div class="max-width mx-auto tablet:mt-10">
                 <div class="mb-6 border-b border-gray-400 pb-2">
-                    <a href="#" class="text-subtitle hover:text-primary">Inicio</a>
+                    <a href="/" class="text-subtitle hover:text-primary">Inicio</a>
                     <span class="mx-2">|</span>
-                    <a href="#" class="text-subtitle hover:text-primary">Productos</a>
+                    <a href="/productos" class="text-subtitle hover:text-primary">Productos</a>
                     <span class="mx-2">|</span>
                     <a href="#" class="text-subtitle !text-primary">Dispositivos médicos</a>
                 </div>
@@ -151,63 +151,93 @@
     @include('products.partials.products-featured')
 @endsection
 
+@push('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const carouselMobile = document.getElementById('image-carousel-mobile');
-        const dotsMobile = document.querySelectorAll('#carousel-dots-mobile .dot-indicator');
-        const mainImageDesktop = document.getElementById('main-product-image-desktop');
-        const thumbSelectors = document.querySelectorAll('#desktop-thumbnails .thumb-selector');
+document.addEventListener('DOMContentLoaded', function() {
+    const carouselMobile = document.getElementById('image-carousel-mobile');
+    const dotsMobile = document.querySelectorAll('#carousel-dots-mobile .dot-indicator');
+    const mainImageDesktop = document.getElementById('main-product-image-desktop');
+    const thumbSelectors = document.querySelectorAll('#desktop-thumbnails .thumb-selector');
 
-        // --- Lógica para Desktop (Miniaturas) ---
-        if (mainImageDesktop && thumbSelectors.length > 0) {
-            thumbSelectors.forEach(button => {
-                button.addEventListener('click', function() {
-                    const newSrc = this.getAttribute('data-image-src');
-
-                    mainImageDesktop.style.opacity = '0';
-                    setTimeout(() => {
-                        mainImageDesktop.src = newSrc;
-                        mainImageDesktop.style.opacity = '1';
-                    }, 100);
-
-                    thumbSelectors.forEach(t => t.classList.remove('border-primary', 'border-gray-300'));
-                    thumbSelectors.forEach(t => t.classList.add('border-gray-300'));
-                    this.classList.remove('border-gray-300');
-                    this.classList.add('border-primary');
-                });
+    // --- Lógica para Desktop (Miniaturas) ---
+    if (mainImageDesktop && thumbSelectors.length > 0) {
+        thumbSelectors.forEach(button => {
+            button.addEventListener('click', function() {
+                const newSrc = this.getAttribute('data-image-src');
+                mainImageDesktop.style.opacity = '0';
+                setTimeout(() => {
+                    mainImageDesktop.src = newSrc;
+                    mainImageDesktop.style.opacity = '1';
+                }, 100);
+                thumbSelectors.forEach(t => t.classList.remove('border-primary'));
+                thumbSelectors.forEach(t => t.classList.add('border-gray-300'));
+                this.classList.remove('border-gray-300');
+                this.classList.add('border-primary');
             });
-        }
+        });
+    }
 
-        if (carouselMobile && dotsMobile.length > 0) {
-            const updateDots = () => {
-                const scrollLeft = carouselMobile.scrollLeft;
+    // --- Lógica para Mobile (Dots) ---
+    if (carouselMobile && dotsMobile.length > 0) {
+        const updateDots = () => {
+            const scrollLeft = carouselMobile.scrollLeft;
+            const imageWidth = carouselMobile.offsetWidth;
+            const activeIndex = Math.round(scrollLeft / imageWidth);
+            dotsMobile.forEach((dot, index) => {
+                dot.classList.remove('!bg-primary', 'bg-gray-400');
+                dot.classList.add(index === activeIndex ? '!bg-primary' : 'bg-gray-400');
+            });
+        };
+        carouselMobile.addEventListener('scroll', updateDots);
+        dotsMobile.forEach(dot => {
+            dot.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
                 const imageWidth = carouselMobile.offsetWidth;
-                const activeIndex = Math.round(scrollLeft / imageWidth);
-
-                dotsMobile.forEach((dot, index) => {
-                    dot.classList.remove('!bg-primary');
-                    dot.classList.add('bg-gray-400');
-                    if (index === activeIndex) {
-                        dot.classList.remove('bg-gray-400');
-                        dot.classList.add('!bg-primary');
-                    }
-                });
-            };
-
-            carouselMobile.addEventListener('scroll', updateDots);
-
-            dotsMobile.forEach(dot => {
-                dot.addEventListener('click', function() {
-                    const index = parseInt(this.getAttribute('data-index'));
-                    const imageWidth = carouselMobile.offsetWidth;
-                    carouselMobile.scrollTo({
-                        left: index * imageWidth,
-                        behavior: 'smooth'
-                    });
-                });
+                carouselMobile.scrollTo({ left: index * imageWidth, behavior: 'smooth' });
             });
+        });
+        updateDots();
+    }
 
-            updateDots();
-        }
-    });
+    // --- 🔍 Efecto Zoom (Lupa) ---
+  const img = document.getElementById("main-product-image-desktop");
+  if (!img) return;
+
+  // ✅ Envolver la imagen en un contenedor si no existe
+  if (!img.parentElement.id.includes("main-product-image-desktop-container")) {
+    const wrapper = document.createElement("div");
+    wrapper.id = "main-product-image-desktop-container";
+    wrapper.classList.add("w-full");
+    img.parentNode.insertBefore(wrapper, img);
+    wrapper.appendChild(img);
+  }
+
+  const container = document.getElementById("main-product-image-desktop-container");
+
+  container.addEventListener("mousemove", (e) => {
+    const rect = container.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    img.style.transformOrigin = `${x}% ${y}%`;
+    img.style.transform = "scale(2)"; // 🔍 Ajusta el nivel de zoom aquí
+  });
+
+  container.addEventListener("mouseleave", () => {
+    img.style.transformOrigin = "center center";
+    img.style.transform = "scale(1)";
+  });
+});
 </script>
+@endpush
+<style scoped>
+    #main-product-image-desktop-container {
+    position: relative;
+    overflow: hidden;
+    cursor: zoom-in;
+    }
+
+    #main-product-image-desktop {
+    transition: transform 0.25s ease-out;
+    transform-origin: center center;
+    }
+</style>

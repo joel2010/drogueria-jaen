@@ -50,20 +50,14 @@
 </head>
 
 <body id="app" class="overflow-x-hidden">
-    @include('layout.partials.header')
 
     <div
-        class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0 ">
-        <main class="w-full flex-col-reverse lg:flex-row  min-h-full  main__container md:mt-[-20px] !overflow-hidden">
+        class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0 bg-primary">
+        <main class="w-full flex-col-reverse lg:flex-row  min-h-full  main__container !overflow-hidden">
             @yield('content')
         </main>
     </div>
 
-    @if (Route::has('login'))
-    <div class="h-14.5 hidden lg:block"></div>
-    @endif
-
-    @include('layout.partials.footer')
     @stack('scripts')
 </body>
 

@@ -1,6 +1,6 @@
 <template>
     <div class="min-h-screen to-gray-800 flex items-center justify-center p-4 sm:p-6 lg:p-8">
-        <div class="bg-white rounded-lg w-full max-w-4xl overflow-hidden">
+        <div class="bg-white rounded-[20px] w-full max-w-4xl overflow-hidden px-6 pb-10">
             <div class="pt-6 px-0 pb-4">
                 <div v-if="currentStep === 1" class="flex flex-col mb-2 gap-4 justify-center items-center">
                     <img src="/public/images/logo.png" alt="Droguería Jaen Logo" class="w-[370px] mr-4 max-w-max mb-1">
@@ -46,17 +46,17 @@
             <form @submit.prevent="nextStep">
                 <div v-if="currentStep === 1" class="space-y-6">
                     <div>
-                        <label for="clientType" class="block text-subtitle">TIPO DE CLIENTE</label>
-                        <select id="clientType" v-model="formData.clientType"
+                        <label for="customer_type" class="block text-subtitle">TIPO DE CLIENTE</label>
+                        <select id="customer_type" v-model="formData.customer_type"
                             class="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md shadow-sm sm:max-w-[50%]">
                             <option value="" disabled>Seleccione</option>
                             <option v-for="option in clientTypes" :key="option.value" :value="option.value">{{
                                 option.label }}</option>
                         </select>
-                        <p class="text-description mt-1" v-if="formData.clientType === 'cliente'">Cliente Drogueria
+                        <p class="text-description mt-1" v-if="formData.customer_type === 'cliente'">Cliente Drogueria
                             Jaen: Persona Natural o Jurídica que cuenta con un código de Cliente Drogueria Jaen y que
                             adquiere nuestros productos para comercializarlos y no para consumir.</p>
-                        <p class="text-description mt-1" v-if="formData.clientType === 'consumidor_final'">Consumidor
+                        <p class="text-description mt-1" v-if="formData.customer_type === 'consumidor_final'">Consumidor
                             Final: Persona Natural o Jurídica que adquiere nuestros productos para su consumo personal.
                             No los comercializa.</p>
                     </div>
@@ -78,11 +78,17 @@
                     </div>
 
                     <div>
-                        <label for="dniRuc" class="block text-subtitle">DNI / CE / RUC</label>
-                        <input type="text" id="dniRuc" v-model="formData.dniRuc" placeholder="Ingrese su documento"
+                        <label for="document_number" class="block text-subtitle">DNI / CE / RUC</label>
+                        <input type="text" id="document_number" v-model="formData.document_number"
+                            placeholder="Ingrese su documento"
                             class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm sm:max-w-[50%]">
                     </div>
-
+                    <div v-if="formData.customer_type === 'consumidor_final'">
+                        <label for="invoice_number" class="block text-subtitle">N°Factura /
+                            Boleta - Opcional</label>
+                        <input type="text" id="invoice_number" v-model="formData.invoice_number"
+                            class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm sm:max-w-[50%]">
+                    </div>
                     <div class="grid grid-cols-1 sm:flex  gap-3 justify-center mt-7">
                         <button type="submit"
                             class="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
@@ -115,35 +121,53 @@
                 </div>
 
                 <div v-else-if="currentStep === 2" class="space-y-6">
-                    <h2 class="text-lg font-bold text-gray-800 mb-4 uppercase">Identificación del Cliente Reclamante
+                    <h2 class="text-lg font-bold text-gray-800 mb-4 uppercase">Identificación del {{
+                        formData.customer_type
+                            == 'cliente' ? 'Cliente' : 'Proveedor' }} Reclamante
                     </h2>
                     <div class="grid grid-cols-1 gap-x-8 gap-y-4">
-                        <div class="flex flex-col sm:flex-row sm:items-center">
-                            <label for="razonSocial"
+                        <div class="flex flex-col sm:flex-row sm:items-center"
+                            v-if="formData.customer_type == 'cliente'">
+                            <label for="company_name"
                                 class="w-full sm:w-1/3 text-sm font-medium text-gray-700 mb-1 sm:mb-0">Razón
                                 social</label>
-                            <input type="text" id="razonSocial" v-model="formData.razonSocial"
+                            <input type="text" id="company_name" v-model="formData.company_name"
                                 class="w-full sm:w-2/3 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
                         </div>
-                        <div class="flex flex-col sm:flex-row sm:items-center">
-                            <label for="representanteLegal"
+                        <div class="flex flex-col sm:flex-row sm:items-center" v-else>
+                            <label for="first_name"
+                                class="w-full sm:w-1/3 text-sm font-medium text-gray-700 mb-1 sm:mb-0">Nombre
+                                completo</label>
+                            <input type="text" id="first_name" v-model="formData.first_name"
+                                class="w-full sm:w-2/3 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center"
+                            v-if="formData.customer_type == 'cliente'">
+                            <label for="legal_representative"
                                 class="w-full sm:w-1/3 text-sm font-medium text-gray-700 mb-1 sm:mb-0">Representante
                                 Legal</label>
-                            <input type="text" id="representanteLegal" v-model="formData.representanteLegal"
+                            <input type="text" id="legal_representative" v-model="formData.legal_representative"
+                                class="w-full sm:w-2/3 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center" v-else>
+                            <label for="last_name"
+                                class="w-full sm:w-1/3 text-sm font-medium text-gray-700 mb-1 sm:mb-0">Apellido
+                                completo</label>
+                            <input type="text" id="last_name" v-model="formData.last_name"
                                 class="w-full sm:w-2/3 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
                         </div>
                         <div class="flex flex-col sm:flex-row sm:items-center">
-                            <label for="direccion"
+                            <label for="address"
                                 class="w-full sm:w-1/3 text-sm font-medium text-gray-700 mb-1 sm:mb-0">Dirección</label>
-                            <input type="text" id="direccion" v-model="formData.direccion"
+                            <input type="text" id="address" v-model="formData.address"
                                 placeholder="Ingresar su dirección"
                                 class="w-full sm:w-2/3 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
                         </div>
                         <div class="flex flex-col sm:flex-row sm:items-center">
-                            <label for="dniCeRuc"
+                            <label for="document_number"
                                 class="w-full sm:w-1/3 text-sm font-medium text-gray-700 mb-1 sm:mb-0">DNI / CE /
                                 RUC</label>
-                            <input type="text" id="dniCeRuc" v-model="formData.dniCeRuc"
+                            <input type="text" id="document_number" v-model="formData.document_number"
                                 class="w-full sm:w-2/3 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
                         </div>
                         <div class="flex flex-col sm:flex-row sm:items-center">
@@ -153,22 +177,23 @@
                                 class="w-full sm:w-2/3 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
                         </div>
                         <div class="flex flex-col sm:flex-row sm:items-center">
-                            <label for="telefono"
+                            <label for="phone"
                                 class="w-full sm:w-1/3 text-sm font-medium text-gray-700 mb-1 sm:mb-0">Teléfono</label>
-                            <input type="tel" id="telefono" v-model="formData.telefono"
+                            <input type="tel" id="phone" v-model="formData.phone"
                                 class="w-full sm:w-2/3 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
                         </div>
-                        <div class="flex flex-col sm:flex-row sm:items-center">
+                        <div class="flex flex-col sm:flex-row sm:items-center"
+                            v-if="formData.customer_type !== 'cliente'">
                             <label class="w-full sm:w-1/3 text-sm font-medium text-gray-700 mb-1 sm:mb-0">¿Menor de
                                 edad?</label>
                             <div class="w-full sm:w-2/3 flex items-center space-x-4">
                                 <div class="flex items-center">
-                                    <input id="minor-yes" name="minorAge" type="radio" v-model="formData.isMinor"
+                                    <input id="minor-yes" name="minorAge" type="radio" v-model="formData.minor"
                                         :value="true" class="focus:ring-primary h-4 w-4 text-primary border-gray-300">
                                     <label for="minor-yes" class="ml-2 block text-sm text-gray-700">Sí</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input id="minor-no" name="minorAge" type="radio" v-model="formData.isMinor"
+                                    <input id="minor-no" name="minorAge" type="radio" v-model="formData.minor"
                                         :value="false" class="focus:ring-primary h-4 w-4 text-primary border-gray-300">
                                     <label for="minor-no" class="ml-2 block text-sm text-gray-700">No</label>
                                 </div>
@@ -179,9 +204,9 @@
                     <h2 class="text-lg font-bold text-gray-800 mb-4 mt-6 uppercase">Identificación Bien Contratado</h2>
                     <div class="grid grid-cols-1 gap-x-8 gap-y-4">
                         <div class="flex flex-col sm:flex-row sm:items-center">
-                            <label for="bien"
+                            <label for="good"
                                 class="w-full sm:w-1/3 text-sm font-medium text-gray-700 mb-1 sm:mb-0">Bien</label>
-                            <select id="bien" v-model="formData.bien"
+                            <select id="good" v-model="formData.good"
                                 class="w-full border sm:w-2/3 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md shadow-sm">
                                 <option value="" disabled>Seleccione</option>
                                 <option v-for="option in bienes" :key="option.value" :value="option.value">{{
@@ -189,27 +214,28 @@
                             </select>
                         </div>
                         <div class="flex flex-col sm:flex-row sm:items-center">
-                            <label for="nFacturaBoleta"
+                            <label for="invoice_number"
                                 class="w-full sm:w-1/3 text-sm font-medium text-gray-700 mb-1 sm:mb-0">N°Factura /
                                 Boleta</label>
-                            <input type="text" id="nFacturaBoleta" v-model="formData.nFacturaBoleta"
+                            <input type="text" id="invoice_number" v-model="formData.invoice_number"
                                 class="w-full sm:w-2/3 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
                         </div>
                         <div class="flex flex-col sm:flex-row sm:items-center">
-                            <label for="montoReclamado"
+                            <label for="claimed_amount"
                                 class="w-full sm:w-1/3 text-sm font-medium text-gray-700 mb-1 sm:mb-0">Monto Reclamado
                                 (S./)</label>
-                            <input type="number" id="montoReclamado" v-model="formData.montoReclamado"
+                            <input type="number" id="claimed_amount" v-model="formData.claimed_amount"
                                 class="w-full sm:w-2/3 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
                         </div>
                         <div class="flex flex-col sm:flex-row">
-                            <label for="descripcion"
+                            <label for="good_description"
                                 class="w-full sm:w-1/3 text-sm font-medium text-gray-700 mb-1 sm:mb-0">Descripción</label>
                             <div class="relative w-full sm:w-2/3">
-                                <textarea id="descripcion" v-model="formData.descripcion" rows="3" maxlength="150"
+                                <textarea id="good_description" v-model="formData.good_description" rows="3"
+                                    maxlength="150"
                                     class="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 pr-10 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm resize-y"></textarea>
                                 <span class="absolute bottom-2 right-2 text-xs text-gray-400">{{
-                                    formData.descripcion.length }} / 150</span>
+                                    formData.good_description.length }} / 150</span>
                             </div>
                         </div>
                     </div>
@@ -218,39 +244,46 @@
                         del Cliente Droguería Jaen</h2>
                     <div class="grid grid-cols-1 gap-y-4">
                         <div class="flex flex-col sm:flex-row sm:items-center">
-                            <label for="tipoDetalle"
+                            <label for="complaint_type"
                                 class="w-full sm:w-1/3 text-sm font-medium text-gray-700 mb-1 sm:mb-0">Tipo</label>
-                            <input type="text" id="tipoDetalle" v-model="formData.tipoDetalle" placeholder="RECLAMO"
+                            <input type="text" id="complaint_type" v-model="formData.complaint_type"
+                                placeholder="RECLAMO"
                                 class="w-full sm:w-2/3 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm bg-gray-50 cursor-not-allowed"
                                 disabled>
                         </div>
                         <div class="flex flex-col sm:flex-row">
-                            <label for="detalle"
+                            <label for="complaint_detail"
                                 class="w-full sm:w-1/3 text-sm font-medium text-gray-700 mb-1 sm:mb-0">Detalle</label>
                             <div class="relative w-full sm:w-2/3">
-                                <textarea id="detalle" v-model="formData.detalle" rows="4" maxlength="500"
+                                <textarea id="complaint_detail" v-model="formData.complaint_detail" rows="4"
+                                    maxlength="500"
                                     class="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 pr-10 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm resize-y"></textarea>
-                                <span class="absolute bottom-2 right-2 text-xs text-gray-400">{{ formData.detalle.length
+                                <span class="absolute bottom-2 right-2 text-xs text-gray-400">{{
+                                    formData.complaint_detail.length
                                     }} / 500</span>
                             </div>
                         </div>
                         <div class="flex flex-col sm:flex-row">
-                            <label for="pedido"
+                            <label for="customer_request"
                                 class="w-full sm:w-1/3 text-sm font-medium text-gray-700 mb-1 sm:mb-0">Pedido</label>
                             <div class="relative w-full sm:w-2/3">
-                                <textarea id="pedido" v-model="formData.pedido" rows="4" maxlength="500"
+                                <textarea id="customer_request" v-model="formData.customer_request" rows="4"
+                                    maxlength="500"
                                     class="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 pr-10 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm resize-y"></textarea>
-                                <span class="absolute bottom-2 right-2 text-xs text-gray-400">{{ formData.pedido.length
+                                <span class="absolute bottom-2 right-2 text-xs text-gray-400">{{
+                                    formData.customer_request.length
                                     }} / 500</span>
                             </div>
                         </div>
                     </div>
 
+                    <h2 class="text-lg font-bold text-gray-800 mb-4 mt-6 uppercase">Opcional</h2>
 
-                    <div class="mt-6 flex flex-col sm:flex-row">
+                    <div class="mt-2 flex flex-col sm:flex-row">
                         <div class="w-full sm:w-1/3">
                             <label class="block text-subtitle mb-2">Adjuntar Archivo</label>
-                            <p class="text-description mb-2 mr-5">(En caso de tener varios archivos, adjúntalos en un .zip 0
+                            <p class="text-description mb-2 mr-5">(En caso de tener varios archivos, adjúntalos en un
+                                .zip 0
                                 .rar). Tamaño máximo permitido: 25 MB)</p>
                         </div>
                         <div class="flex flex-col items-start sm:items-center gap-3">
@@ -288,13 +321,12 @@
                     </div>
 
                     <div class="flex flex-col sm:flex-row">
-                        <label for="observaciones" class=" w-full sm:w-1/3 block text-subtitle">Observaciones y/o
+                        <label for="supplier_observations" class=" w-full sm:w-1/3 block text-subtitle">Observaciones
+                            y/o
                             acciones adoptadas por el proveedor </label>
                         <div class="relative w-full sm:w-2/3">
-                            <span class="text-subtitle">(Opcional)</span>
-                            <textarea id="observaciones" v-model="formData.observaciones" rows="4"
-                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm resize-y bg-gray-50"
-                                ></textarea>
+                            <textarea id="supplier_observations" v-model="formData.supplier_observations" rows="4"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm resize-y bg-gray-50"></textarea>
                             <p class="mt-2 text-description !text-black">Las acciones adoptadas para atender su reclamo
                                 o queja
                                 serán remitidas al correo electrónico registrado dentro del plazo legal</p>
@@ -324,15 +356,13 @@
                 </div>
             </form>
         </div>
-        <ConfirmationModal
-            :show="showConfirmationModal"
-            :image-url="teamImageUrl"
-            @close="showConfirmationModal = false"
-        />
+        <ConfirmationModal :show="showConfirmationModal" :image-url="teamImageUrl"
+            @close="showConfirmationModal = false" />
     </div>
 </template>
 
 <script setup>
+import axios from 'axios';
 import ConfirmationModal from './modal.vue';
 import { ref, reactive, computed } from 'vue';
 
@@ -340,26 +370,27 @@ const currentStep = ref(1);
 const showConfirmationModal = ref(false);
 const formData = reactive({
     // Paso 1
-    clientType: '',
+    customer_type: '',
+    first_name: '',
+    last_name: '',
     reclamationType: '',
-    dniRuc: '',
     // Paso 2
-    razonSocial: '',
-    representanteLegal: '',
-    direccion: '',
-    dniCeRuc: '',
+    company_name: '',
+    legal_representative: '',
+    address: '',
+    document_number: '',
     email: '',
-    telefono: '',
-    isMinor: false, // Nuevo campo para menor de edad (radio box)
-    bien: '',
-    nFacturaBoleta: '',
-    montoReclamado: null,
-    descripcion: '',
-    tipoDetalle: 'RECLAMO',
-    detalle: '',
-    pedido: '',
+    phone: '',
+    minor: false,
+    good: '',
+    invoice_number: '',
+    claimed_amount: null,
+    good_description: '',
+    complaint_type: 'RECLAMO',
+    complaint_detail: '',
+    customer_request: '',
     files: [],
-    observaciones: '',
+    supplier_observations: '',
 });
 
 const clientTypes = [
@@ -387,14 +418,14 @@ const currentDate = computed(() => {
 
 const nextStep = () => {
     if (currentStep.value === 1) {
-        if (!formData.clientType || !formData.reclamationType || !formData.dniRuc) {
+        if (!formData.customer_type || !formData.reclamationType || !formData.document_number) {
             alert('Por favor, complete todos los campos obligatorios del Paso 1.');
             return;
         }
         currentStep.value = 2;
     } else if (currentStep.value === 2) {
         // Validaciones para el Paso 2
-        if (!formData.razonSocial || !formData.direccion || !formData.email || formData.isMinor === null || !formData.bien || !formData.detalle || !formData.pedido) {
+        if (!formData.company_name || !formData.address || !formData.email || formData.minor === null || !formData.good || !formData.complaint_detail || !formData.customer_request) {
             alert('Por favor, complete todos los campos obligatorios del Paso 2.');
             return;
         }
@@ -411,25 +442,25 @@ const prevStep = () => {
 const cancelForm = () => {
     if (confirm('¿Estás seguro que deseas cancelar? Se perderán los datos ingresados.')) {
         Object.assign(formData, {
-            clientType: '',
+            customer_type: '',
             reclamationType: '',
-            dniRuc: '',
-            razonSocial: '',
-            representanteLegal: '',
-            direccion: '',
-            dniCeRuc: '',
+            document_number: '',
+            company_name: '',
+            legal_representative: '',
+            address: '',
+            document_number: '',
             email: '',
-            telefono: '',
-            isMinor: false,
-            bien: '',
-            nFacturaBoleta: '',
-            montoReclamado: null,
-            descripcion: '',
-            tipoDetalle: 'RECLAMO',
-            detalle: '',
-            pedido: '',
+            phone: '',
+            minor: false,
+            good: '',
+            invoice_number: '',
+            claimed_amount: null,
+            good_description: '',
+            complaint_type: 'RECLAMO',
+            complaint_detail: '',
+            customer_request: '',
             files: [],
-            observaciones: '',
+            supplier_observations: '',
         });
         currentStep.value = 1;
         alert('Formulario cancelado y datos limpiados.');
@@ -438,25 +469,25 @@ const cancelForm = () => {
 
 const resetForm = () => {
     Object.assign(formData, {
-        clientType: '',
+        customer_type: '',
         reclamationType: '',
-        dniRuc: '',
-        razonSocial: '',
-        representanteLegal: '',
-        direccion: '',
-        dniCeRuc: '',
+        document_number: '',
+        company_name: '',
+        legal_representative: '',
+        address: '',
+        document_number: '',
         email: '',
-        telefono: '',
-        isMinor: false,
-        bien: '',
-        nFacturaBoleta: '',
-        montoReclamado: null,
-        descripcion: '',
-        tipoDetalle: 'RECLAMO',
-        detalle: '',
-        pedido: '',
+        phone: '',
+        minor: false,
+        good: '',
+        invoice_number: '',
+        claimed_amount: null,
+        good_description: '',
+        complaint_type: 'RECLAMO',
+        complaint_detail: '',
+        customer_request: '',
         files: [],
-        observaciones: '',
+        supplier_observations: '',
     });
     currentStep.value = 1;
 };
@@ -465,12 +496,44 @@ const handleFileUpload = (event) => {
     console.log('Archivos seleccionados:', formData.files);
 };
 
-const submitForm = () => {
-    console.log('Formulario enviado:', formData);
-    showConfirmationModal.value = true;
-    // Aquí es donde harías la llamada a tu API
-    resetForm();
-};
+
+
+const submitForm = async () => {
+    try {
+        const formToSend = new FormData()
+        console.log('Preparando datos para enviar:', formData);
+
+        for (const key in formData) {
+            const value = formData[key];
+
+            if (key === 'files' && Array.isArray(value)) {
+                value.forEach((file) => formToSend.append('files[]', file));
+            } else if (value === null || value === undefined) {
+                formToSend.append(key, '');
+            } else if (typeof value === 'boolean') {
+                formToSend.append(key, value ? '1' : '0');
+            } else {
+                formToSend.append(key, value);
+            }
+        }
+
+        console.log('Contenido de FormData:', Array.from(formToSend.entries()));
+
+
+        // Llamada a la API con la instancia configurada
+        const response = await axios.post('/complaints-book', formToSend, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        })
+        showConfirmationModal.value = true;
+
+        alert('Reclamo enviado correctamente ✅')
+        console.log('Respuesta del servidor:', response.data)
+        resetForm()
+    } catch (error) {
+        console.error('Error al enviar el formulario:', error)
+        alert('Ocurrió un error al enviar el reclamo. Intente nuevamente.')
+    }
+}
 </script>
 
 <style scoped>

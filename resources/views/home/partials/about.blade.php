@@ -124,7 +124,7 @@ compromiso humano, ofreciendo un servicio completo que asegura bienestar y tranq
         </div>
     </div>
 </section>
-
+@push('scripts')
 <script>
     document.addEventListener("DOMContentLoaded", function () {
     const track = document.getElementById("carouselTrackAbout");
@@ -150,3 +150,4 @@ compromiso humano, ofreciendo un servicio completo que asegura bienestar y tranq
     });
 });
 </script>
+@endpush

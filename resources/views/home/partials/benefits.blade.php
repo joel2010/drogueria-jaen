@@ -96,7 +96,7 @@ $content = [
 </section>
 
 
-
+@push('scripts')
 <script>
     document.addEventListener("DOMContentLoaded", function () {
     const track = document.getElementById("benefitsCarouselTrack");
@@ -122,3 +122,4 @@ $content = [
     });
 });
 </script>
+@endpush

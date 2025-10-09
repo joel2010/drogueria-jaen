@@ -68,8 +68,8 @@
               <a v-for="(item, index) in categories" :key="index" href="#"
                 @click.prevent="onSetFilter('category_id', item.id)"
                 class="text-gray-800 p-2 py-1 text-[12px] flex gap-2 items-center transition-colors" :class="{
-                  'bg-gray-200 text-primary font-semibold': selectedFilters['category']?.includes(item.name),
-                  'hover:bg-gray-100': !(selectedFilters['category']?.includes(item.name))
+                  'bg-gray-200 text-primary font-semibold': params.category_id === item.id,
+                  'hover:bg-gray-100': params.category_id !== item.id
                 }">
                 <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -101,8 +101,8 @@
             <div class="space-y-0 py-1">
               <a v-for="(item, index) in brands" :key="index" href="#" @click.prevent="onSetFilter('brand_id', item.id)"
                 class="text-gray-800 p-2 py-1 text-[12px] flex gap-2 items-center transition-colors" :class="{
-                  'bg-gray-200 text-primary font-semibold': selectedFilters['brand']?.includes(item.name),
-                  'hover:bg-gray-100': !(selectedFilters['brand']?.includes(item.name))
+                  'bg-gray-200 text-primary font-semibold': params.brand_id === item.id,
+                  'hover:bg-gray-100': params.brand_id !== item.id
                 }">
                 <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -134,8 +134,8 @@
             <div class="space-y-0 py-1">
               <a v-for="(item, index) in types" :key="index" href="#" @click.prevent="onSetFilter('type_id', item.id)"
                 class="text-gray-800 p-2 py-1 text-[12px] flex gap-2 items-center transition-colors" :class="{
-                  'bg-gray-200 text-primary font-semibold': selectedFilters['type']?.includes(item.name),
-                  'hover:bg-gray-100': !(selectedFilters['type']?.includes(item.name))
+                  'bg-gray-200 text-primary font-semibold': params.type_id === item.id,
+                  'hover:bg-gray-100': params.type_id !== item.id
                 }">
                 <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -168,8 +168,8 @@
               <a v-for="(item, index) in specialties" :key="index" href="#"
                 @click.prevent="onSetFilter('specialty_id', item.id)"
                 class="text-gray-800 p-2 py-1 text-[12px] flex gap-2 items-center transition-colors" :class="{
-                  'bg-gray-200 text-primary font-semibold': selectedFilters['specialty']?.includes(item.name),
-                  'hover:bg-gray-100': !(selectedFilters['specialty']?.includes(item.name))
+                  'bg-gray-200 text-primary font-semibold': params.specialty_id === item.id,
+                  'hover:bg-gray-100': params.specialty_id !== item.id
                 }">
                 <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -250,7 +250,7 @@
     <!-- Drawer móvil + Backdrop -->
     <!-- Backdrop -->
     <div v-if="openFilterMenu" class="fixed inset-0 z-40" aria-hidden="true">
-      <div class="absolute inset-0 bg-black/30  bg-opacity-50" @click="closeMobileFilter"></div>
+      <div class="absolute inset-0 bg-black/30 bg-opacity-50" @click="closeMobileFilter"></div>
     </div>
 
     <!-- Drawer (siempre en DOM para animar transform) -->
@@ -262,22 +262,108 @@
         <button @click="closeMobileFilter" class="text-gray-500 hover:text-gray-900">✕</button>
       </div>
 
-      <div class="p-4 overflow-y-auto h-full pb-32">
-        <div v-for="(options, filterName) in filters" :key="'mobile-' + filterName" class="border-t pt-4">
-          <button @click="toggleFilter(filterName)"
-            class="w-full flex items-center justify-between text-lg font-bold text-gray-800 py-2 group">
-            {{ filterName }}
-            <span>{{ openFilters.includes(filterName) ? '▲' : '▼' }}</span>
+      <div class="overflow-y-auto h-full pb-32">
+        <!-- Categorías -->
+        <div class="border-t">
+          <button @click="toggleFilter('category')"
+            :class="openFilters.includes('category')
+              ? 'w-full flex items-center justify-between text-lg font-bold text-[#00FFC3] bg-primary py-2 group p-4'
+              : 'w-full flex items-center justify-between text-lg font-bold text-gray-800 py-2 group p-4'">
+            Categoría
+            <span>{{ openFilters.includes('category') ? '▲' : '▼' }}</span>
           </button>
 
-          <div v-show="openFilters.includes(filterName)" class="mt-2 space-y-1">
-            <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 space-y-1">
-              <a v-for="option in options" :key="filterName + '-' + option" href="#"
-                class="flex items-center justify-between text-gray-800 hover:text-blue-700 transition-colors p-2 rounded-md hover:bg-white"
-                @click.prevent="toggleSubFilter(filterName, option)">
-                <span>{{ option }}</span>
-                <input type="checkbox" class="rounded text-blue-700 w-4 h-4"
-                  :checked="selectedFilters[filterName]?.includes(option)" />
+          <div v-show="openFilters.includes('category')" class="mt-2 space-y-1 px-4">
+            <div class="space-y-1">
+              <a v-for="item in categories" :key="'mobile-cat-' + item.id" href="#"
+                :class="[
+                  'flex items-center gap-2 text-gray-800 hover:text-blue-700 transition-colors py-1 rounded-md hover:bg-white',
+                  tempFilters.category_id === item.id ? 'text-primary' : ''
+                ]"                @click.prevent="toggleMobileSubFilter('category_id', item.id)">
+                                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <span>{{ item.name }}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Marcas -->
+        <div class="border-t">
+          <button @click="toggleFilter('brand')"
+            :class="openFilters.includes('brand')
+              ? 'w-full flex items-center justify-between text-lg font-bold text-[#00FFC3] bg-primary py-2 group p-4'
+              : 'w-full flex items-center justify-between text-lg font-bold text-gray-800 py-2 group p-4'">
+            Marca
+            <span>{{ openFilters.includes('brand') ? '▲' : '▼' }}</span>
+          </button>
+
+          <div v-show="openFilters.includes('brand')" class="mt-2 space-y-1">
+            <div class="space-y-1  px-4">
+              <a v-for="item in brands" :key="'mobile-brand-' + item.id" href="#"
+                :class="[
+                  'flex items-center gap-2 text-gray-800 hover:text-blue-700 transition-colors py-1 rounded-md hover:bg-white',
+                  tempFilters.brand_id === item.id ? 'text-primary' : ''
+                ]"                @click.prevent="toggleMobileSubFilter('brand_id', item.id)">
+                                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <span>{{ item.name }}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tipos -->
+        <div class="border-t">
+          <button @click="toggleFilter('type')"
+            :class="openFilters.includes('type')
+              ? 'w-full flex items-center justify-between text-lg font-bold text-[#00FFC3] bg-primary py-2 group p-4'
+              : 'w-full flex items-center justify-between text-lg font-bold text-gray-800 py-2 group p-4'">
+            Tipo
+            <span>{{ openFilters.includes('type') ? '▲' : '▼' }}</span>
+          </button>
+
+          <div v-show="openFilters.includes('type')" class="mt-2 space-y-1">
+            <div class="space-y-1  px-4">
+              <a v-for="item in types" :key="'mobile-type-' + item.id" href="#"
+                :class="[
+                  'flex items-center gap-2 text-gray-800 hover:text-blue-700 transition-colors py-1 rounded-md hover:bg-white',
+                  tempFilters.type_id === item.id ? 'text-primary' : ''
+                ]"
+                @click.prevent="toggleMobileSubFilter('type_id', item.id)">
+                                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <span>{{ item.name }}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Especialidades -->
+        <div class="border-t">
+          <button @click="toggleFilter('specialty')"
+           :class="openFilters.includes('specialty')
+              ? 'w-full flex items-center justify-between text-lg font-bold text-[#00FFC3] bg-primary py-2 group p-4'
+              : 'w-full flex items-center justify-between text-lg font-bold text-gray-800 py-2 group p-4'">
+            Especialidad
+            <span>{{ openFilters.includes('specialty') ? '▲' : '▼' }}</span>
+          </button>
+
+          <div v-show="openFilters.includes('specialty')" class="space-y-1">
+            <div class="space-y-1 px-4">
+              <a v-for="item in specialties" :key="'mobile-spec-' + item.id" href="#"
+                :class="[
+                  'flex items-center gap-2 text-gray-800 hover:text-blue-700 transition-colors py-1 rounded-md hover:bg-white',
+                  tempFilters.specialty_id === item.id ? 'text-primary' : ''
+                ]"
+                @click.prevent="toggleMobileSubFilter('specialty_id', item.id)">
+                                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <span>{{ item.name }}</span>
               </a>
             </div>
           </div>
@@ -299,135 +385,36 @@
 
 <script setup>
 import axios from "axios";
-import { ref, computed, watch, onMounted, onUnmounted } from "vue";
-defineProps({
-  categories: [],
-  types: [],
-  specialties: [],
-  brands: [],
-})
-const filters = ref({
-  Categoría: ["Dispositivos médicos", "Ofertas"],
-  Marca: ["3M", "B. Braun", "Johnson & Johnson"],
-  Tipo: ["Cintas", "Gasa", "Suturas"],
-  Especialidad: [
-    "Cirugía",
-    "Desinfección",
-    "Drenaje",
-    "Emergencia",
-    "Esterilización",
-    "Ginecología",
-    "Laboratorio",
-    "Medición",
-    "Oxígeno Terapia",
-    "Protección",
-    "Rehabilitación",
-  ],
+import { ref, watch, onMounted, onUnmounted } from "vue";
+
+const props = defineProps({
+  categories: {
+    type: Array,
+    default: () => []
+  },
+  types: {
+    type: Array,
+    default: () => []
+  },
+  specialties: {
+    type: Array,
+    default: () => []
+  },
+  brands: {
+    type: Array,
+    default: () => []
+  },
 });
+
+// Estado de paginación y productos
 const paginator = ref({
   per_page: 1,
   total: 1,
   last_page: 1,
-})
-const records = ref([])
-const onSetFilter = async (param, value) => {
-  params.value[param] = value
-  await onGetRecords()
-}
-const onGetRecords = async () => {
-  await axios.get('/productos', { params: params.value }).then(response => {
-    records.value = response.data.data
-    paginator.value = response.data.meta
-  })
-}
+});
+const records = ref([]);
 
-onMounted(async () => {
-  window.addEventListener("keydown", onKeyDown);
-  await onGetRecords()
-})
-// --- Productos base variados ---
-const baseProducts = [
-  {
-    idOriginal: 1,
-    name: "Transpore 3M 1527-3",
-    description: "Cinta médica hipoalergénica de uso quirúrgico",
-    imageSrc: "/images/product/product1.png",
-    category: "Dispositivos médicos",
-    brand: "3M",
-    type: "Cintas",
-    specialty: "Cirugía",
-  },
-  {
-    idOriginal: 2,
-    name: "Micropore 3M Blanco",
-    description: "Cinta adhesiva transpirable para fijación",
-    imageSrc: "/images/product/product2.png",
-    category: "Ofertas",
-    brand: "3M",
-    type: "Cintas",
-    specialty: "Laboratorio",
-  },
-  {
-    idOriginal: 3,
-    name: "Gasa Estéril 10x10 cm",
-    description: "Gasa absorbente para cubrir heridas",
-    imageSrc: "/images/product/product3.png",
-    category: "Dispositivos médicos",
-    brand: "B. Braun",
-    type: "Gasa",
-    specialty: "Emergencia",
-  },
-  {
-    idOriginal: 4,
-    name: "Steri Strip Adhesivo",
-    description: "Tira adhesiva para cierre de pequeñas heridas",
-    imageSrc: "/images/product/product4.png",
-    category: "Ofertas",
-    brand: "Johnson & Johnson",
-    type: "Suturas",
-    specialty: "Protección",
-  },
-  {
-    idOriginal: 5,
-    name: "Esparadrapo B. Braun Classic",
-    description: "Cinta médica de fijación fuerte",
-    imageSrc: "/images/product/product2.png",
-    category: "Dispositivos médicos",
-    brand: "B. Braun",
-    type: "Cintas",
-    specialty: "Rehabilitación",
-  },
-  {
-    idOriginal: 6,
-    name: "Gasa Johnson Multiuso",
-    description: "Ideal para curaciones en emergencia",
-    imageSrc: "/images/product/product1.png",
-    category: "Ofertas",
-    brand: "Johnson & Johnson",
-    type: "Gasa",
-    specialty: "Emergencia",
-  },
-  {
-    idOriginal: 7,
-    name: "Sutura absorbible 3M",
-    description: "Sutura quirúrgica de rápida absorción",
-    imageSrc: "/images/product/product3.png",
-    category: "Dispositivos médicos",
-    brand: "3M",
-    type: "Suturas",
-    specialty: "Cirugía",
-  },
-  {
-    idOriginal: 8,
-    name: "Sutura no absorbible B. Braun",
-    description: "Resistente, indicada para cirugía general",
-    imageSrc: "/images/product/product4.png",
-    category: "Dispositivos médicos",
-    brand: "B. Braun",
-    type: "Suturas",
-    specialty: "Esterilización",
-  },
-];
+// Parámetros de búsqueda
 const params = ref({
   category_id: '',
   type_id: '',
@@ -435,29 +422,54 @@ const params = ref({
   specialty_id: '',
   page: 1,
   sort: 'Orden por defecto'
-})
-// --- Generamos más productos (variando nombre y orden de imágenes) ---
-const products = ref([]);
-let idCounter = 1;
-for (let i = 0; i < 5; i++) {
-  baseProducts.forEach((p, idx) => {
-    products.value.push({
-      ...p,
-      id: idCounter++,
-      originalid: idx + 1,
-      name: p.name + " Lote " + (i + 1),
-      imageSrc: `/images/product/product${((idx + i) % 4) + 1}.png`, // rota imágenes
-    });
-  });
-}
+});
 
-// --- Estado de filtros ---
-const openFilters = ref([]); // desplegables abiertos (pueden ser varios)
-const selectedFilters = ref({}); // { "Marca": ["3M", "B. Braun"], "Categoría": ["Ofertas"] }
+// Estado de filtros desktop
+const openFilters = ref([]);
 
-// Mobile drawer state
+// Filtros temporales para mobile (antes de aplicar)
+const tempFilters = ref({
+  category_id: '',
+  type_id: '',
+  brand_id: '',
+  specialty_id: ''
+});
+
+// Estado del drawer mobile
 const openFilterMenu = ref(false);
 
+// Estado del menú de ordenamiento
+const openSortMenu = ref(false);
+
+// Función para obtener productos de la API
+const onGetRecords = async () => {
+  try {
+    const response = await axios.get('/productos', { params: params.value });
+    records.value = response.data.data;
+    paginator.value = response.data.meta;
+  } catch (error) {
+    console.error('Error al obtener productos:', error);
+  }
+};
+
+// Establecer filtro (para desktop y ordenamiento)
+const onSetFilter = async (param, value) => {
+  if (param === 'sort') {
+    params.value[param] = value;
+    openSortMenu.value = false;
+  } else {
+    // Si es el mismo filtro, lo limpiamos
+    if (params.value[param] === value) {
+      params.value[param] = '';
+    } else {
+      params.value[param] = value;
+    }
+  }
+  params.value.page = 1;
+  await onGetRecords();
+};
+
+// Toggle para abrir/cerrar secciones de filtros
 const toggleFilter = (name) => {
   if (openFilters.value.includes(name)) {
     openFilters.value = openFilters.value.filter((f) => f !== name);
@@ -466,94 +478,73 @@ const toggleFilter = (name) => {
   }
 };
 
-const toggleSubFilter = async (filterName, option) => {
-  if (!selectedFilters.value[filterName]) {
-    selectedFilters.value[filterName] = [];
-  }
-  if (selectedFilters.value[filterName].includes(option)) {
-    selectedFilters.value[filterName] = selectedFilters.value[filterName].filter((o) => o !== option);
+// Toggle para filtros en mobile (solo actualiza temporales)
+const toggleMobileSubFilter = (paramKey, value) => {
+  // Si es el mismo valor, lo desmarcamos
+  if (tempFilters.value[paramKey] === value) {
+    tempFilters.value[paramKey] = '';
   } else {
-    selectedFilters.value[filterName].push(option);
-  }
-  // cuando cambian filtros, volver a página 1
-  params.value.page = 1
-  await onGetRecords()
-};
-
-// --- Productos filtrados ---
-const filteredProducts = computed(() => {
-  let results = products.value;
-  Object.entries(selectedFilters.value).forEach(([filterName, options]) => {
-    if (options && options.length > 0) {
-      const key = mapFilterKey(filterName);
-      if (key) results = results.filter((p) => options.includes(p[key]));
-    }
-  });
-  return results;
-});
-
-const mapFilterKey = (filterName) => {
-  switch (filterName) {
-    case "Categoría":
-      return "category";
-    case "Marca":
-      return "brand";
-    case "Tipo":
-      return "type";
-    case "Especialidad":
-      return "specialty";
-    default:
-      return "";
+    tempFilters.value[paramKey] = value;
   }
 };
 
+// Paginación
 const goToPage = async (page) => {
-  params.value.page = page
-  await onGetRecords()
+  params.value.page = page;
+  await onGetRecords();
 };
 
-// --- Mobile drawer functions ---
+// Abrir drawer mobile
 const toggleMobileFilter = () => {
+  if (!openFilterMenu.value) {
+    // Al abrir, copiar filtros actuales a temporales
+    tempFilters.value = { ...params.value };
+  }
   openFilterMenu.value = !openFilterMenu.value;
 };
 
+// Cerrar drawer mobile
 const closeMobileFilter = () => {
   openFilterMenu.value = false;
 };
 
-// Aplica (cierra drawer). Los filtros están aplicados en vivo.
-const applyAndClose = () => {
+// Aplicar filtros temporales y cerrar drawer
+const applyAndClose = async () => {
+  // Copiar filtros temporales a params
+  params.value.category_id = tempFilters.value.category_id || '';
+  params.value.type_id = tempFilters.value.type_id || '';
+  params.value.brand_id = tempFilters.value.brand_id || '';
+  params.value.specialty_id = tempFilters.value.specialty_id || '';
+
+  params.value.page = 1;
+  await onGetRecords();
   closeMobileFilter();
 };
 
-// Limpiar filtros
+// Limpiar todos los filtros
 const clearFilters = async () => {
-  // reset selected filters
-  Object.keys(selectedFilters.value).forEach((k) => {
-    selectedFilters.value[k] = [];
-  });
-  // mejor asignar nuevo objeto vacío para reset total
-  selectedFilters.value = {};
-  params.value.page = 1
-  await onGetRecords()
-};
-const sortOrder = ref("asc");
-const openSortMenu = ref(false);
+  // Limpiar filtros temporales (mobile)
+  tempFilters.value = {
+    category_id: '',
+    type_id: '',
+    brand_id: '',
+    specialty_id: ''
+  };
 
+  // Limpiar parámetros reales
+  params.value.category_id = '';
+  params.value.type_id = '';
+  params.value.brand_id = '';
+  params.value.specialty_id = '';
+  params.value.page = 1;
+
+  await onGetRecords();
+};
+
+// Toggle menú de ordenamiento
 const toggleSortMenu = () => {
   openSortMenu.value = !openSortMenu.value;
 };
-
-// --- Productos ordenados ---
-const sortedProducts = computed(() => {
-  let results = [...filteredProducts.value];
-  if (sortOrder.value === "asc") {
-    results.sort((a, b) => a.name.localeCompare(b.name));
-  } else if (sortOrder.value === "desc") {
-    results.sort((a, b) => b.name.localeCompare(a.name));
-  }
-  return results;
-});
 
 // Bloquear scroll del body cuando drawer abierto
 watch(openFilterMenu, (val) => {
@@ -564,16 +555,26 @@ watch(openFilterMenu, (val) => {
   }
 });
 
-// cerrar con Escape y cleanup
+// Cerrar drawer con tecla Escape
 function onKeyDown(e) {
-  if (e.key === "Escape" && openFilterMenu.value) {
-    closeMobileFilter();
+  if (e.key === "Escape") {
+    if (openFilterMenu.value) {
+      closeMobileFilter();
+    }
+    if (openSortMenu.value) {
+      openSortMenu.value = false;
+    }
   }
 }
 
+// Lifecycle hooks
+onMounted(async () => {
+  window.addEventListener("keydown", onKeyDown);
+  await onGetRecords();
+});
+
 onUnmounted(() => {
   window.removeEventListener("keydown", onKeyDown);
-  // asegurar desbloqueo de scroll si componente se desmonta
   document.body.style.overflow = "";
 });
 </script>
