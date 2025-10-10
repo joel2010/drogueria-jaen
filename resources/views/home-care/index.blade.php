@@ -33,7 +33,7 @@ for ($i = 0; $i
 
 
     <x-HeroSection image="/images/care-home-banner.jpg" title="Cuidado en Casa"
-    showWspButton="true" :limitHeight="true"/>
+    showWspButton="true" :limitHeight="true" additionalClasses="!bg-top"/>
 
 <div class="w-full overflow-hidden bg-gray-50 border-y border-gray-200">
     <div class="marquee-wrapper flex">

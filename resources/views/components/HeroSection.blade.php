@@ -1,4 +1,4 @@
-<div class="relative w-full h-[100px] tablet:h-[400px] flex items-center justify-center text-white md:mt-[-25px] {{ isset($limitHeight) && $limitHeight ? 'max-h-[100px] tablet:max-h-[200px]' : '' }}"
+<div class="relative w-full h-[100px] tablet:h-[400px] flex items-center justify-center text-white md:mt-[-25px] {{ isset($limitHeight) && $limitHeight ? 'max-h-[100px] tablet:max-h-[230px] ' : '' }} {{ isset($additionalClasses) ? $additionalClasses : '' }}"
     style="background-image: url('{{ $image }}'); background-size: cover; background-position: center; ">
     <div class="absolute inset-0 bg-black opacity-40"></div>
 

@@ -29,7 +29,7 @@
                 </div>
                 <div v-if="currentStep === 2" class="flex flex-col sm:flex-row items-center justify-between">
                     <h1 class="text-title text-left">
-                        Libro de Reclamaciones <span class="hidden sm:inline-block">- Cliente de Droguería Jaen</span>
+                        Libro de Reclamaciones
                     </h1>
                     <p class="text-title text-center">
                         Fecha: {{ currentDate }}
