@@ -97,6 +97,7 @@ Route::middleware('auth')->group(function () {
         Route::post('store',            [ProductController::class, 'store']);
         Route::post('{id}/update',      [ProductController::class, 'update']);
         Route::delete('{id}/delete',    [ProductController::class, 'delete']);
+        Route::put('{id}/delete-pdf',    [ProductController::class, 'deletePdf']);
         Route::get('tables',    [ProductController::class, 'tables']);
     });
 

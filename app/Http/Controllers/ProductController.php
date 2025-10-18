@@ -71,7 +71,7 @@ class ProductController extends Controller
             }
 
             DB::commit();
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
             $this->writeLog($e);
             return $this->response(null, Helper::getErrorFromException($e), 500);
@@ -117,7 +117,7 @@ class ProductController extends Controller
             }
 
             DB::commit();
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
             $this->writeLog($e);
             return $this->response(null, Helper::getErrorFromException($e), 500);
@@ -142,7 +142,7 @@ class ProductController extends Controller
             $landing->delete();
 
             DB::commit();
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
             $this->writeLog($e);
             return $this->response(null, Helper::getErrorFromException($e), 500);
@@ -158,5 +158,15 @@ class ProductController extends Controller
         return $this->response([
             'data' => $data,
         ]);
+    }
+
+    public function deletePdf(int $id)
+    {
+        Product::where('id', $id)
+            ->update([
+                'pdf' => null
+            ]);
+
+        return $this->response();
     }
 }

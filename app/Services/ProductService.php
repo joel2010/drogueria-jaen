@@ -53,7 +53,7 @@ final class ProductService
         $record->show_in_home = $data->input('show_in_home');
         $record->active = $data->input('active');
         $record->sort = $data->input('sort');
-        if ($data->file('pdf')->isValid()) {
+        if ($data->hasFile('pdf') && $data->file('pdf')->isValid()) {
             $record->pdf = "storage/" . (new FileService)->upload($data->file('pdf'));
         }
 

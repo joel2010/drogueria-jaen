@@ -27,6 +27,9 @@ export const useProductsStore = defineStore('products', {
                 }
             })
         },
+        async onDeletePdf (id) {
+            return await http.put(`/products/${id}/delete-pdf`)
+        },
         async onShow (id) {
             return await http.get(`/products/${id}/show`)
         },

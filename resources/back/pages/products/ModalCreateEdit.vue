@@ -75,7 +75,8 @@
                 <el-col :span="24" :md="12" class="form-group">
                     <div style="display: flex; align-items: center; justify-content: space-between;">
                         <label for="pdf">Ficha técnica</label>
-                        <a v-if="pdfPath" class="text-primary" :href="pdfPath" target="_blank">Ver pdf</a>
+                        <a v-if="pdfPath" class="text-primary ms-auto mr-3" :href="pdfPath" target="_blank">Ver pdf</a>
+                        <a v-if="pdfPath" class="text-danger" href="#" @click.prevent="onDeletePdf">Eliminar pdf</a>
                     </div>
                     <div class="el-input">
                         <div class="el-input__wrapper">
@@ -209,6 +210,19 @@ const loading = ref(false)
 const onChangePdf = (e) => {
     const files = e.target.files
     pdf.value = files[0]
+}
+
+const onDeletePdf = async () => {
+    pdfPath.value = null
+    pdf.value = null
+    if (record.value.id) {
+        const response = await productsStore.onDeletePdf(record.value.id)
+        ElNotification({
+            title: successAxiosTitle,
+            message: response.data.message,
+            type: 'success',
+        })
+    }
 }
 
 const onOpen = async () => {
