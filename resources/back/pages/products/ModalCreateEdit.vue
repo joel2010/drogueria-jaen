@@ -72,6 +72,17 @@
                     <el-input v-model="sort" id="sort" type="number"></el-input>
                     <span v-if="errors.sort" class="error">{{ errors.sort }}</span>
                 </el-col>
+                <el-col :span="24" :md="12" class="form-group">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <label for="pdf">Ficha técnica</label>
+                        <a v-if="pdfPath" class="text-primary" :href="pdfPath" target="_blank">Ver pdf</a>
+                    </div>
+                    <div class="el-input">
+                        <div class="el-input__wrapper">
+                            <input id="pdf" class="el-input__inner" type="file" @change="onChangePdf" />
+                        </div>
+                    </div>
+                </el-col>
             </el-row>
             <div class="form-group">
                 <label>Imágenes</label>
@@ -150,7 +161,8 @@ const onDeleteImage = async (img, index) => {
     }
     files.value.splice(index, 1)
 }
-
+const pdf = ref(null)
+const pdfPath = ref('')
 const fileStore = useFilesStore()
 const productsStore = useProductsStore()
 const { onCatchAxiosError } = useErrorsBackend()
@@ -194,6 +206,11 @@ const [active] = defineField('active')
 const [sort] = defineField('sort')
 const loading = ref(false)
 
+const onChangePdf = (e) => {
+    const files = e.target.files
+    pdf.value = files[0]
+}
+
 const onOpen = async () => {
     if (record.value) {
         title.value = 'Editar producto'
@@ -220,6 +237,7 @@ const onSetDefaultData = (data = null) => {
     sort.value = data ? data.sort : 1
     active.value = data ? data.active : true
     files.value = data ? data.files : []
+    pdfPath.value = data ? data.pdf : ''
 }
 
 const onSubmit = handleSubmit(async (values) => {
@@ -244,6 +262,9 @@ const onSubmit = handleSubmit(async (values) => {
                 data.append('images[]', file.raw)
             }
         })
+        if (pdf.value) {
+            data.append('pdf', pdf.value)
+        }
 
         const response = record.value ? await productsStore.onUpdate(record.value.id, data) : await productsStore.onStore(data)
         ElNotification({

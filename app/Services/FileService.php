@@ -27,6 +27,15 @@ final class FileService
             'order'      => $index
         ]);
     }
+   
+    public function upload(UploadedFile $file): string
+    {
+        $path = "uploads";
+        $extension = $file->getClientOriginalExtension();
+        $filename = Str::uuid()->toString() . '.' . $extension;
+        
+        return $file->storeAs($path, $filename, 'public');
+    }
 
     public function deleteFile(File $file): void
     {

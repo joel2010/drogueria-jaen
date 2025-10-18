@@ -30,6 +30,7 @@ class ProductResource extends JsonResource
             'sort'    => $this->sort,
             'show_in_home'    => $this->show_in_home,
             'active'    => $this->active,
+            'pdf' =>  $this->pdf ? asset($this->pdf) : null,
             'files'        => $this->files->map(fn($file) => [
                 'id'        => $file->id,
                 'file_path' =>  asset('storage/' . $file->file_path),

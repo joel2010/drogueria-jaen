@@ -96,6 +96,14 @@
                                     <strong class="uppercase text-sm block sm:inline">ESPECIALIDAD:</strong>
                                     <span class="sm:ml-1">{{ $record->specialty->name }}</span>
                                 </p>
+                                @if ($record->pdf)
+                                    <p class="flex gap-1 items-center">
+                                        <strong class="uppercase text-sm block sm:inline">FICHA TÉCNICA:</strong>
+                                        <a href="{{ asset($record->pdf) }}" class="sm:ml-1" target="_blank">
+                                            <img src="{{ asset('images/pdf.png') }}" alt="Descargar ficha técnica" class="imgfluid" width="32">
+                                        </a>
+                                    </p>
+                                @endif
                             </div>
                         </div>
 
