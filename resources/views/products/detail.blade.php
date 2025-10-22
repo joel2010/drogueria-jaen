@@ -84,18 +84,22 @@
                             <h2 class="text-subtitle !text-primary mb-2 uppercase">
                                 Especificaciones</h2>
                             <div class="space-y-2 text-gray-700">
+                                @if ($record->type)
                                 <p class="flex gap-1 items-center">
                                     <strong class="uppercase text-sm block sm:inline">TIPO:</strong>
                                     <span class="sm:ml-1">{{ $record->type->name }}</span>
                                 </p>
+                                @endif
                                 <p class="flex gap-1 items-center">
                                     <strong class="uppercase text-sm block sm:inline">PRESENTACIÓN:</strong>
                                     <span class="sm:ml-1">{{ $record->presentation }}</span>
                                 </p>
+                                @if ($record->specialty)
                                 <p class="flex gap-1 items-center">
                                     <strong class="uppercase text-sm block sm:inline">ESPECIALIDAD:</strong>
                                     <span class="sm:ml-1">{{ $record->specialty->name }}</span>
                                 </p>
+                                @endif
                                 @if ($record->pdf)
                                     <p class="flex gap-1 items-center">
                                         <strong class="uppercase text-sm block sm:inline">FICHA TÉCNICA:</strong>

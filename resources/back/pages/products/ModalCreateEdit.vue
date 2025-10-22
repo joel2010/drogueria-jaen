@@ -37,7 +37,7 @@
                 </el-col>
                 <el-col :span="24" :md="6" class="form-group">
                     <label for="brand_id">Marca</label>
-                    <el-select v-model="brand_id" id="brand_id" filteable>
+                    <el-select v-model="brand_id" id="brand_id" filterable>
                         <el-option v-for="(item, index) in tables.brands" :key="index" :value="item.id"
                             :label="item.name"></el-option>
                     </el-select>
@@ -45,7 +45,7 @@
                 </el-col>
                 <el-col :span="24" :md="6" class="form-group">
                     <label for="specialty_id">Especialidad</label>
-                    <el-select v-model="specialty_id" id="specialty_id" filteable>
+                    <el-select v-model="specialty_id" id="specialty_id" filterable>
                         <el-option v-for="(item, index) in tables.specialties" :key="index" :value="item.id"
                             :label="item.name"></el-option>
                     </el-select>
@@ -53,7 +53,7 @@
                 </el-col>
                 <el-col :span="24" :md="6" class="form-group">
                     <label for="type_id">Tipo</label>
-                    <el-select v-model="type_id" id="type_id" filteable>
+                    <el-select v-model="type_id" id="type_id" filterable>
                         <el-option v-for="(item, index) in tables.types" :key="index" :value="item.id"
                             :label="item.name"></el-option>
                     </el-select>
@@ -61,7 +61,7 @@
                 </el-col>
                 <el-col :span="24" :md="6" class="form-group">
                     <label for="category_id">Categoría</label>
-                    <el-select v-model="category_id" id="category_id" filteable>
+                    <el-select v-model="category_id" id="category_id" filterable>
                         <el-option v-for="(item, index) in tables.categories" :key="index" :value="item.id"
                             :label="item.name"></el-option>
                     </el-select>
@@ -182,10 +182,10 @@ const { errors, defineField, handleSubmit, setFieldError } = useForm({
         internal_id: string().required().max(25).label('SKU'),
         presentation: string().required().max(50).label('Presentación'),
         phone: string().required().max(250).label('Mensaje por whatsapp'),
-        category_id: number().required().label('Categoría'),
-        brand_id: number().required().label('Marca'),
-        type_id: number().required().label('Tipo'),
-        specialty_id: number().required().label('Especialidad'),
+        category_id: string().required().label('Categoría'),
+        brand_id: string().required().label('Marca'),
+        type_id: string().nullable().label('Tipo'),
+        specialty_id: string().nullable().label('Especialidad'),
         active: bool().required().label('Mostrar producto'),
         show_in_home: bool().required().label('Mostrar en la página principal'),
         sort: number().required().min(1).label('Ubicación'),
